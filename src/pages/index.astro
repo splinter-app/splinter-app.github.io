@@ -1,0 +1,15 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Hero from '../components/HomeCTA.astro'
+import HighlightBlocks from '../components/HightlightRows.astro'
+import CTA from '../components/Team.astro'
+
+const title = 'Splinter | Ingestion Pipeline'
+const description = 'Splinter is an open-source pipeline designed to simplify the processing of unstructured data and its integration into AI and machine learning applications'
+---
+
+<Layout title={title} description={description}>
+	<Hero />
+	<HighlightBlocks />
+	<CTA />
+</Layout>

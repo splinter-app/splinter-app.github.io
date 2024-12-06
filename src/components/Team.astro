@@ -1,0 +1,32 @@
+---
+import Section from './ui/Section.astro'
+import Row from './ui/Row.astro'
+import Col from './ui/Col.astro'
+// - UI
+import CTA from './ui/DarkBlock.astro'
+
+// Content
+import ctaImage from '../assets/cta-dark-bg.webp'
+---
+
+<Section id='team'>
+	<Row>
+		<Col span="1" />
+		<Col span="10">
+			<CTA
+				title="The Team"
+				text=""
+				mode="dark"
+				bg={ctaImage}
+			>
+      <div style="display: flex; justify-content: space-around;" >
+        
+      </div>
+        
+				
+    </CTA>
+      
+			<Col span="1" />
+		</Col>
+	</Row>
+</Section>

@@ -1,0 +1,67 @@
+---
+// Home page CTA Section
+// ------------
+// Description: A centered call to action section that contains: a title, text, a user review snippet, a button and a image.
+
+// Components
+// - Layout
+import Section from './ui/Section.astro'
+import Row from './ui/Row.astro'
+import Col from './ui/Col.astro'
+// - UI
+import { Image } from 'astro:assets'
+import Button from './ui/Button.astro'
+import '../styles/gradient.css';
+
+// Content
+// - Hero Image
+import heroImage from '../assets/hero-01.png'
+---
+
+<Section id="intro" padding="top" classes="bg-neutral-50 dark:bg-neutral-900 gradient-background">
+  <Row>
+		<Col span="2" />
+		<Col span="8" align="center">
+			
+			<h1>Transform <strong>unstructured data</strong> for AI</h1>
+
+			<p class="pb-0 text-lg">An open-source ingestion pipeline designed to transform unstructured data into vectorized formats for integration with knowledge bases</p>
+			<Button size="lg" link="/">Read the Case Study</Button>
+		</Col>
+		<Col span="2" />
+		<Col span="2" />
+		<Col span="8">
+      
+			<Image
+				src={heroImage}
+				alt="Splinter UI"
+				class="translate-y-8 shadow-neutral-200 dark:shadow-neutral-950"
+				format="webp"
+			/>
+      
+      </Col>
+		<Col span="2" />
+	</Row>
+	<!-- <Row>
+		<Col span="2" />
+    <Col span="8" classes="flex flex-col items-center">
+			<Image
+				src={heroImage}
+				alt="Foxi. The tailwind astro theme"
+				class="translate-y-8 shadow-neutral-200 dark:shadow-neutral-950 max-w-md p-20"
+				format="webp"
+			/>
+      <Col span="8" align="center">
+        <h1>Integrate <strong>unstructured data</strong> into AI applications</h1>
+        <p class="pb-0 text-lg">Splinter is an open-source ingestion pipeline designed to transform unstructured data into vectorized formats for integration with knowledge bases.</p>
+        <Button size="lg" link="/">Read the Case Study</Button>
+      </Col>
+      </Col
+		>
+		
+		<Col span="2" />
+		<Col span="2" />
+		
+		<Col span="2" />
+	</Row> -->
+</Section>
