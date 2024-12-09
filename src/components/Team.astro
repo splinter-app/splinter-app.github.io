@@ -39,7 +39,7 @@ const developers = [
 
 <section class="team-section" id="team">
   <div class="container">
-    <h2 class="h2-title center">Meet the Team</h2>
+    <h3 class="h2-title center">Meet the Team</h3>
 
     <div class="team-grid">
       {developers.map((developer) => (
@@ -61,3 +61,93 @@ const developers = [
     </div>
   </div>
 </section>
+
+<style>
+  .team-section {
+    padding: 70px 0;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .team-section .h2-title {
+    font-size: 2.5rem; /* Reduced font size */
+    margin-bottom: 60px; /* Added space below the title */
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .team-section .team-grid {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    flex-wrap: nowrap; /* Default layout: single row */
+    padding: 0 20px;
+  }
+
+  .team-section .team-card {
+    background: #fbfbfb;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    min-width: 250px;
+  }
+
+  .team-section .team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(255, 85, 0, 0.797);
+  }
+
+  .team-section .team-photo {
+    width: 120px; 
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 0 auto 15px auto;
+    display: block;
+  }
+
+  .team-section .h3-title {
+    font-size: 1.5rem; 
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+
+  .team-section .role {
+    font-size: 1rem; 
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+
+  .team-section .s-paragraph {
+    font-size: 0.9rem; 
+    color: #555;
+  }
+
+  .team-section .social-links {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .team-section .social-icon {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.2s;
+  }
+
+  .team-section .social-icon:hover {
+    transform: scale(1.1);
+  }
+
+  /* Responsive Design: Vertical Layout for Narrow Screens */
+  @media (max-width: 768px) {
+    .team-section .team-grid {
+      flex-wrap: wrap; /* Cards stack vertically */
+      gap: 20px; /* Smaller gap for vertical layout */
+    }
+  }
+</style>
