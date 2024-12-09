@@ -1,0 +1,330 @@
+---
+import { marked } from 'marked';
+import fs from 'fs';
+import path from 'path';
+import he from 'he'; // Optional: HTML entity decoding
+
+// Path to your markdown file
+const markdownPath = path.resolve('src/content/case-study/case-study.md');
+
+// Read the markdown file as raw text
+const markdownContent = fs.readFileSync(markdownPath, 'utf-8');
+
+// Array to store the headings for the Table of Contents (ToC)
+let toc = [];
+
+// Custom renderer for marked
+const renderer = {
+  heading({ tokens, depth }) {
+    const text = this.parser.parseInline(tokens);
+    const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
+
+    // Skip h4, h5, h6 from the Table of Contents
+    if (depth >= 4) {
+      return `<h${depth} id="${escapedText}">${text}</h${depth}>`; // Just render them as regular headings in content
+    }
+
+    if (depth === 1) {
+      return `<h${depth} id="${escapedText}">${text}</h${depth}>`;
+    }
+
+    // Only include h1, h2, h3 in the ToC (skip h4 and above)
+    toc.push({
+      level: depth,
+      text: he.decode(text), // Decode special HTML entities like apostrophes
+      id: escapedText,
+    });
+
+    return `
+      <h${depth} id="${escapedText}">
+        <a href="#${escapedText}" class="anchor">
+          <span class="header-link"></span>
+        </a>
+        ${text}
+      </h${depth}>
+    `;
+  },
+
+  // Custom renderer for images with captions
+  image({ href, title, text }) {
+    const imageUrl = href; // The URL of the image
+    const caption = text ? `<figcaption><em>${text}</em></figcaption>` : ''; // The caption (if available)
+
+    return `
+      <figure style="text-align: center;">
+        <img src="${imageUrl}" alt="${text}" title="${title}" class="markdown-image" />
+        ${caption}
+      </figure>
+    `;
+  }
+};
+
+// Use the custom renderer with marked
+marked.use({ renderer });
+
+// Convert the markdown content to HTML using 'marked' and the custom renderer
+const caseStudyHtml = marked(markdownContent);
+
+---
+
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<div class="case-study-container">
+  <aside class="table-of-contents">
+    <nav>
+      <ul>
+        <!-- Dynamically generate the Table of Contents -->
+        {toc.map(heading => (
+          <li class={`level-${heading.level}`}>
+            <a href={`#${heading.id}`}>{heading.text}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="case-study-content">
+    <section>
+      <div set:html={caseStudyHtml} />
+    </section>
+  </main>
+</div>
+
+<style global>
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+.case-study-container {
+  display: flex;
+  max-width: 1500px;
+  margin: 0 auto;
+  gap: 2rem;
+  padding: 0 1rem;
+}
+
+.table-of-contents {
+  position: sticky;
+  top: 6rem;
+  align-self: start;
+  width: 250px;
+  padding: 1rem 1.5rem 1rem 0;
+  background-color: transparent;
+  border-right: 1px solid #e0e0e0;
+  height: fit-content;
+  margin-right: 2rem;
+}
+
+.table-of-contents h2 {
+  margin-bottom: 1rem;
+  font-size: 0.7rem;
+  padding-bottom: 0.5rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.table-of-contents ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.table-of-contents a {
+  display: block;
+  text-decoration: none;
+  color: #333;
+  transition: background 0.3s ease, color 0.3s ease;
+  font-weight: 400;
+  padding-bottom: 0.5rem;
+}
+
+.table-of-contents a:hover {
+  color: #f5b895;
+}
+
+.table-of-contents .level-2 {
+  font-size: 0.85rem;
+}
+
+.table-of-contents .level-3 {
+  margin-left: 0.75rem; /* Add more indentation for level-3 items */
+  font-size: 0.75rem; /* Optionally adjust font size to visually indicate the hierarchy */
+}
+
+.case-study-content {
+  flex-grow: 1;
+  max-width: 1000px;
+  padding-left: 2rem;
+}
+
+.case-study-content section {
+  margin-bottom: 2rem;
+  padding: 0;
+}
+
+.case-study-content h1,
+.case-study-content h2,
+.case-study-content h3,
+.case-study-content h4,
+.case-study-content h5 {
+  line-height: 1.3;
+  color: #FD7854;
+}
+
+.case-study-content h1 {
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 2.5rem;
+  font-weight: 500;
+}
+
+.case-study-content h2 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.case-study-content h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.case-study-content h4 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.case-study-content h5 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.case-study-content p {
+  font-weight: 300;
+  line-height: 1.6;
+  font-size: 1rem;
+  margin-top: 1.5rem;
+}
+
+.case-study-content ul {
+  list-style-type: disc; /* Default bullet style */
+  margin-left: 1.5rem;
+  padding-left: 1.2rem;
+}
+
+.case-study-content li {
+  font-size: 1rem;
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+.case-study-content ul ul {
+  list-style-type: circle; /* Nested bullets get a circle style */
+}
+
+.case-study-content ul ul li {
+  font-size: 0.95rem; /* Optionally adjust the font size for nested items */
+}
+
+.table-of-contents a.active {
+  /* Apply gradient to the background of the text */
+  background: linear-gradient(45deg, #f5b895, #ff6a13, #ff4500);
+  -webkit-background-clip: text; /* Safari */
+  background-clip: text; /* For other browsers */
+  color: transparent; /* Make the text color transparent to show the gradient */
+  font-weight: bold;
+  transition: background 0.3s ease; /* Transition only the background gradient */
+}
+
+.markdown-image {
+  max-width: 100%;
+  height: auto;
+  display: block; /* Ensures the image is displayed as a block element */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+figure {
+  display: block;
+  text-align: center;
+  width: 100%;
+}
+
+figcaption {
+  margin-top: 2rem; /* Adjust this value to control the space between the image and caption */
+  font-style: italic; /* Optional: keep the italicized caption */
+  font-size: 0.75rem; /* Optional: adjust the font size of the caption */
+}
+
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Select all sections (h2 and h3) and links
+    const sections = document.querySelectorAll('.case-study-content h2, .case-study-content h3');
+    const links = document.querySelectorAll('.table-of-contents a');
+
+    // Function to update the active link in the TOC
+    function updateTOC() {
+      let currentSection = null;
+
+      // Loop through sections and check if any part is visible in the viewport
+      sections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+
+        // Check if any part of the section is in the viewport (i.e., rect.top >= 0)
+        if (rect.top >= 0 && rect.top < window.innerHeight) {
+          // If we don't have a "currentSection", or this section is further down than the previous visible one
+          if (!currentSection || rect.top < currentSection.getBoundingClientRect().top) {
+            currentSection = section; // Update to the first visible section (the top-most one)
+          }
+        }
+      });
+
+      // Highlight the corresponding link in the TOC
+      links.forEach(link => link.classList.remove('active')); // Remove active class from all
+      if (currentSection) {
+        const id = currentSection.id;
+        const activeLink = document.querySelector(`.table-of-contents a[href="#${id}"]`);
+        if (activeLink) {
+          activeLink.classList.add('active'); // Add active class to the current link
+        }
+      }
+    }
+
+    // Listen to the scroll event and update the TOC
+    window.addEventListener('scroll', updateTOC);
+
+    // Initial update when the page is loaded (for the case when the page is already scrolled)
+    updateTOC();
+  });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    // Select all links in the Table of Contents
+    const tocLinks = document.querySelectorAll('.table-of-contents a');
+
+    // Offset scrolling for the Table of Contents links
+    tocLinks.forEach(link => {
+      link.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent default behavior (instant jump)
+        
+        const targetId = this.getAttribute('href').slice(1); // Get the target section ID
+        const targetElement = document.getElementById(targetId);
+        
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 120, // Offset by 120px to account for the header (adjust as needed)
+            behavior: 'smooth' // Smooth scroll
+          });
+        }
+      });
+    });
+  });
+
+</script>
