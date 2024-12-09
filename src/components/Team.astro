@@ -1,32 +1,63 @@
 ---
-import Section from './ui/Section.astro'
-import Row from './ui/Row.astro'
-import Col from './ui/Col.astro'
-// - UI
-import CTA from './ui/DarkBlock.astro'
-
-// Content
-import ctaImage from '../assets/cta-dark-bg.webp'
+import github from '../assets/github-mark.svg'
+import linkedin from '../assets/linkedin.svg'
+const developers = [
+  {
+    name: "Amir Sadeghifar",
+    role: "Software Engineer",
+    photo: "https://avatars.githubusercontent.com/u/129813120?v=4",
+    city: "Miami, FL",
+    github:"https://github.com/amirsadeghifar",
+    linkedin: "link.com",
+  },
+  {
+    name: "Brian Ouyang",
+    role: "Software Engineer",
+    photo: "https://avatars.githubusercontent.com/u/12991354?v=4",
+    city: "Los Angeles, CA",
+    github: "https://github.com/bouyang",
+    linkedin: "link.com",
+  },
+  {
+    name: "Harold Camacho",
+    role: "Software Engineer",
+    photo: "https://avatars.githubusercontent.com/u/87204490?v=4",
+    city: "Toronto, Canada",
+    github: "https://github.com/camachoh1",
+    linkedin: "link.com",
+  },
+  {
+    name: "Ricardo Delgado",
+    role: "Software Engineer",
+    photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzPzbZotYQdx6Xdkfz8FeJUPWu5-ufox82Bw&s",
+    city: "Houston, TX",
+    github: "https://github.com/rgd731",
+    linkedin:"link.com",
+  },
+];
 ---
 
-<Section id='team'>
-	<Row>
-		<Col span="1" />
-		<Col span="10">
-			<CTA
-				title="The Team"
-				text=""
-				mode="dark"
-				bg={ctaImage}
-			>
-      <div style="display: flex; justify-content: space-around;" >
-        
-      </div>
-        
-				
-    </CTA>
-      
-			<Col span="1" />
-		</Col>
-	</Row>
-</Section>
+<section class="team-section" id="team">
+  <div class="container">
+    <h2 class="h2-title center">Meet the Team</h2>
+
+    <div class="team-grid">
+      {developers.map((developer) => (
+        <div class="team-card">
+          <img src={developer.photo} alt={developer.name} class="team-photo" />
+          <h3 class="h3-title">{developer.name}</h3>
+          <p class="role">{developer.role}</p>
+          <p class="s-paragraph">{developer.city}</p>
+          <div class="social-links">
+            <a href={developer.github} target="_blank" rel="noopener noreferrer">
+              <img src={github.src} alt="GitHub Logo" class="social-icon" />
+            </a>
+            <a href={developer.linkedin} target="_blank" rel="noopener noreferrer">
+              <img src={linkedin.src} alt="LinkedIn Logo" class="social-icon" />
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
