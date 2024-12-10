@@ -1,330 +1,1922 @@
 ---
-import { marked } from 'marked';
-import fs from 'fs';
-import path from 'path';
-import he from 'he'; // Optional: HTML entity decoding
-
-// Path to your markdown file
-const markdownPath = path.resolve('src/content/case-study/case-study.md');
-
-// Read the markdown file as raw text
-const markdownContent = fs.readFileSync(markdownPath, 'utf-8');
-
-// Array to store the headings for the Table of Contents (ToC)
-let toc = [];
-
-// Custom renderer for marked
-const renderer = {
-  heading({ tokens, depth }) {
-    const text = this.parser.parseInline(tokens);
-    const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
-
-    // Skip h4, h5, h6 from the Table of Contents
-    if (depth >= 4) {
-      return `<h${depth} id="${escapedText}">${text}</h${depth}>`; // Just render them as regular headings in content
-    }
-
-    if (depth === 1) {
-      return `<h${depth} id="${escapedText}">${text}</h${depth}>`;
-    }
-
-    // Only include h1, h2, h3 in the ToC (skip h4 and above)
-    toc.push({
-      level: depth,
-      text: he.decode(text), // Decode special HTML entities like apostrophes
-      id: escapedText,
-    });
-
-    return `
-      <h${depth} id="${escapedText}">
-        <a href="#${escapedText}" class="anchor">
-          <span class="header-link"></span>
-        </a>
-        ${text}
-      </h${depth}>
-    `;
-  },
-
-  // Custom renderer for images with captions
-  image({ href, title, text }) {
-    const imageUrl = href; // The URL of the image
-    const caption = text ? `<figcaption><em>${text}</em></figcaption>` : ''; // The caption (if available)
-
-    return `
-      <figure style="text-align: center;">
-        <img src="${imageUrl}" alt="${text}" title="${title}" class="markdown-image" />
-        ${caption}
-      </figure>
-    `;
-  }
-};
-
-// Use the custom renderer with marked
-marked.use({ renderer });
-
-// Convert the markdown content to HTML using 'marked' and the custom renderer
-const caseStudyHtml = marked(markdownContent);
 
 ---
 
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 
-<div class="case-study-container">
-  <aside class="table-of-contents">
-    <nav>
-      <ul>
-        <!-- Dynamically generate the Table of Contents -->
-        {toc.map(heading => (
-          <li class={`level-${heading.level}`}>
-            <a href={`#${heading.id}`}>{heading.text}</a>
+  <section id="case-study">
+
+    <!-- CASE STUDY TOC -->
+    <div id="case-study-content">
+      
+      <aside id="toc" class="show">
+        <ul>
+          <li data-section="Introduction">
+            <a href="#section-1-Introduction">Introduction</a>
           </li>
-        ))}
-      </ul>
-    </nav>
-  </aside>
+  
+          <li class="subitem" data-section="Introduction">
+            <a href="#section-1-1-Terms">Terms</a>
+          </li>
+  
+          <li data-section="The Problem">
+            <a href="#section-2-The-Problem">The Problem</a>
+          </li>
+  
+          <li class="subitem" data-section="The Problem">
+            <a href="#section-2-1-Deploy-Previews">Deploy Previews</a>
+          </li>
+  
+          <li class="subitem" data-section="The Problem">
+            <a href="#section-2-2-Limitations-of-Deploy-Previews"
+              >Limitations of Deploy Previews</a
+            >
+          </li>
+  
+          <li data-section="Existing Solutions">
+            <a href="#section-3-Existing-Solutions">Existing Solutions</a>
+          </li>
+  
+          <li class="subitem" data-section="Existing Solutions">
+            <a href="#section-3-1-Deploy-Previews-as-a-Feature"
+              >Deploy Previews as a Feature</a
+            >
+          </li>
+  
+          <li class="subitem" data-section="Existing Solutions">
+            <a href="#section-3-2-Livecycle">Livecycle</a>
+          </li>
+  
+          <li class="subitem" data-section="Existing Solutions">
+            <a href="#section-3-3-DIY">DIY</a>
+          </li>
+  
+          <li data-section="Introducing Campfire">
+            <a href="#section-4-Introducing-Campfire">Introducing Campfire</a>
+          </li>
+  
+          <li class="subitem" data-section="Introducing Campfire">
+            <a href="#section-4-1-Who-Campfire-is-For">Who Campfire is For</a>
+          </li>
+  
+          <li class="subitem" data-section="Introducing Campfire">
+            <a href="#section-4-2-Campfire-Features">Campfire Features</a>
+          </li>
+  
+          <li data-section="Developing Campfire">
+            <a href="#section-5-Developing-Campfire">Developing Campfire</a>
+          </li>
+  
+          <li class="subitem" data-section="Developing Campfire">
+            <a href="#section-5-1-Automating-Deploy-Previews"
+              >Automating Deploy Previews</a
+            >
+          </li>
+  
+          <li class="subitem" data-section="Developing Campfire">
+            <a href="#section-5-2-Accessing-Deploy-Previews"
+              >Accessing Deploy Previews</a
+            >
+          </li>
+  
+          <li class="subitem" data-section="Developing Campfire">
+            <a href="#section-5-3-Feedback-Interface">Feedback Interface</a>
+          </li>
+  
+          <li class="subitem" data-section="Developing Campfire">
+            <a href="#section-5-4-Data-Storage">Data Storage</a>
+          </li>
+  
+          <li data-section="Future Work">
+            <a href="#section-7-Future-Work">Future Work</a>
+          </li>
+  
+          <li data-section="References">
+            <a href="#section-8-References">References</a>
+          </li>
+        </ul>
+      </aside>
+      <!-- CASE STUDY SECTIONS -->
+      <article>
+        <section id="section-1-Introduction" data-section="Introduction">
+          <h1>1 - Introduction</h1>
+          <p>
+            Campfire is an open-source, self-hosted, collaborative
+            deploy-preview solution for containerized, headless frontends.
+            Much like the way an actual campfire brings people together to
+            trade stories, Campfire aims to be a central place for
+            cross-functional teams to visually review and discuss proposed
+            code changes or bug fixes early in the software development cycle.
+          </p>
+          <p>
+            <img
+              src="images/case-study/01.png"
+              alt="Campfire brings teams together"
+            />
+          </p>
+          <p>
+            Campfire generates a deploy preview for each pull request,
+            showcasing the latest commit with the proposed changes, which can
+            be accessed through a public URL. The URL directs users to their
+            deploy preview, equipped with Campfire's suite of comprehensive
+            feedback tools.
+          </p>
+          <p>
+            Integrating a feedback interface directly into the deploy preview
+            simplifies collaboration between teams and addresses common
+            bottlenecks that delay project timelines.
+          </p>
+        </section>
+  
+        <section id="section-1-1-Terms" data-section="Terms">
+          <h2>1.1 - Terms</h2>
+          <p>
+            In this case study, we'll frequently reference the following
+            technical terms:
+          </p>
+          <ul>
+            <li>
+              <strong>Client App</strong> - The codebase of the user,
+              retrieved from the repository when initiating a new pull request
+              or when a new commit is made to the same pull request.
+            </li>
+            <li>
+              <p>
+                <strong>Deploy Preview</strong> - The ephemeral infrastructure
+                provisioned to host a live preview of the Client App for each
+                pull request. Also known as ephemeral environments, preview
+                environments, or preview apps.
+              </p>
+            </li>
+            <li>
+              <p>
+                <strong>Feedback Interface</strong> - A relatively new
+                component of some deploy preview solutions, which provides an
+                overlay for user collaboration and feedback on the previewed
+                changes.
+              </p>
+            </li>
+          </ul>
+        </section>
+  
+        <section id="section-2-The-Problem" data-section="The Problem">
+          <h1>2 - The Problem</h1>
+          <p>
+            In the early days of web development, software engineers often
+            made live changes directly on production servers, a risky practice
+            that could easily break the website or service.
+          </p>
+          <p>
+            As the industry matured, developers began adopting version control
+            systems like Git and SVN to better manage and track code changes.
+            However, these systems did not solve the problem of testing
+            changes in a controlled environment before production deployment.
+            <br />
+            <a class="reference" href="#section-8-References">1</a>
+            <a class="reference" href="#section-8-References">2</a>
+          </p>
+          <p>
+            The rise of agile development and continuous
+            integration/continuous deployment (CI/CD) practices led to the
+            adoption of staging environments. These environments allowed teams
+            to test code in settings that closely mirrored their production
+            environment, enabling them to identify and fix bugs without
+            affecting the live application. Despite the benefits, staging
+            environments introduced significant bottlenecks. Multiple
+            developers often pushed their changes to a single staging
+            environment simultaneously, leading to conflicts and resource
+            contention. This not only caused delays and increased security
+            risks but also led to bugs and higher operational costs.
+            <a class="reference" href="#section-8-References">3</a>
+          </p>
+          <p>
+            <img
+              src="images/case-study/staging-blocked.png"
+              alt="Bottleneck"
+            />
+          </p>
+          <p>
+            The process of resolving bugs found in staging involves several
+            structured steps, especially when using tools like GitHub:
+          </p>
+          <ol>
+            <li>
+              <strong>Branch Creation</strong> - Developers create a new
+              branch from the main codebase, allowing them to address bugs
+              without impacting the stable production version.
+            </li>
+            <li>
+              <strong>Commit Changes</strong> - Necessary fixes are made and
+              committed to the branch, with detailed commit messages
+              explaining the changes.
+            </li>
+            <li>
+              <strong>Push to Repository</strong> - The branch is then pushed
+              to the remote repository on GitHub.
+            </li>
+            <li>
+              <strong>Create Pull Request</strong> - A pull request is opened
+              against the main branch for merging the fixes and facilitating
+              code review.
+            </li>
+            <li>
+              <strong>Code Review and Approval</strong> - The pull request is
+              reviewed by team members who may suggest or request changes.
+            </li>
+            <li>
+              <strong>Merge and Deploy to Staging</strong> - After approval,
+              the changes are merged and deployed to the staging environment
+              to verify the bug fix.
+            </li>
+            <li>
+              <strong>Testing in Staging</strong> - The application is tested
+              in staging to ensure the fix is effective and no new issues have
+              arisen.
+            </li>
+            <li>
+              <strong>Push to Production</strong> - Once confirmed, the
+              changes are deployed to production.
+            </li>
+            <li>
+              <strong>Monitoring</strong> - Post-deployment the application is
+              monitored for any unexpected issues.
+            </li>
+          </ol>
+          <p>
+            If bugs are detected during staging tests, the process from branch
+            creation to staging deployment may need to be repeated to ensure
+            all issues are thoroughly addressed.
+            <br />
+            <a class="reference" href="#section-8-References">4</a
+            ><a class="reference" href="#section-8-References">5</a
+            ><a class="reference" href="#section-8-References">6</a>
+          </p>
+          <p>
+            Historically, non-engineering team members such as UI designers,
+            QA testers, marketers, and product managers had limited
+            opportunities to view and provide feedback on proposed changes
+            until late in the development process. Often, they only saw these
+            changes when they were moved to the staging or production
+            environments.
+          </p>
+          <p>
+            This delay not only prevented timely feedback that could influence
+            design and functionality but also excluded these key stakeholders
+            from early stages of project discussions. Additionally, the lack
+            of a dedicated feedback mechanism in earlier development stages
+            meant that their insights, which could significantly impact user
+            experience and product success, were often underutilized or
+            solicited too late to make meaningful adjustments without
+            time-consuming revisions.
+            <a class="reference" href="#section-8-References">7</a>
+          </p>
+          <p>
+            <img
+              src="images/case-study/02.png"
+              alt="Before deploy previews dev cycle"
+            />
+          </p>
+        </section>
+  
+        <section
+          id="section-2-1-Deploy-Previews"
+          data-section="Deploy Previews"
+        >
+          <h2>2.1 - Deploy Previews</h2>
+          <p>
+            Deploy previews were introduced as a solution to streamline the
+            code review process, allowing engineers to view changes earlier in
+            the development process without the need to manually pull down
+            code or wait for access to a staging environment. This drastically
+            shortened the cycle between identifying bugs and deploying fixes,
+            enabling faster iterations and more efficient development.
+          </p>
+          <p>
+            Deploy previews also provided an accessible platform for
+            non-engineering team members to view proposed changes. This
+            expanded the review process to a broader group of stakeholders and
+            enabled collaboration across different teams. Despite their
+            effectiveness in demonstrating code changes, deploy previews
+            initially lacked integrated tools for submitting feedback directly
+            within the previews.
+          </p>
+          <p>
+            <img
+              src="images/case-study/03.png"
+              alt="Introduction of deploy previews into dev cycle"
+            />
+          </p>
+        </section>
+  
+        <section
+          id="section-2-2-Limitations-of-Deploy-Previews"
+          data-section="Limitations of Deploy Previews"
+        >
+          <h2>2.2 - Limitations of Deploy Previews</h2>
+          <p>
+            While deploy previews were adept at showcasing code changes, they
+            lacked an interface to provide feedback to the proposed changes
+            within the same application. This forced users to use third-party
+            tools to provide feedback on the proposed changes, like Slack and
+            GitHub for comments or Loom and Zight (formerly CloudApp) for
+            screen recordings, or Zoom for synchronous video calls. The
+            absence of a unified feedback interface often led to scattered
+            comments across many different platforms, complicating the
+            aggregation and tracking of feedback, and often causing the
+            context to be lost.
+          </p>
+          <p>
+            Comments made across multiple different platforms led to
+            disjointed communication, complicating the feedback process. Even
+            if developers consolidated discussions on GitHub, non-engineering
+            team members, such as project managers, designers, and QA
+            personnel, were often left out of the loop. They often don’t have
+            GitHub accounts and would seek a straightforward way to comment on
+            visual changes. Not having a built-in, accessible feedback system
+            in deploy previews made it harder to collaborate and quickly fix
+            problems.
+            <a class="reference" href="#section-8-References">8</a>
+          </p>
+          <p>
+            <img
+              src="images/case-study/04.png"
+              alt="Overwhelmed and frustrated developer"
+            />
+          </p>
+        </section>
+  
+        <section
+          id="section-3-Existing-Solutions"
+          data-section="Existing Solutions"
+        >
+          <h1>3 - Existing Solutions</h1>
+          <p>
+            Several solutions have recently been developed to add a
+            communication layer to deploy previews, making collaboration more
+            accessible for non-technical team members. Services like Netlify
+            Drawer, Vercel Comments, and Livecycle have attempted to bridge
+            this gap by offering built-in tools for capturing feedback when
+            the user is viewing proposed changes. Each of these services
+            presents different tradeoffs, particularly in terms of hosting
+            options, whether they are open-source, and the ease of setup and
+            use.
+          </p>
+        </section>
+  
+        <section
+          id="section-3-1-Deploy-Previews-as-a-Feature"
+          data-section="Deploy Previews as a Feature"
+        >
+          <h2>3.1 - Deploy Previews as a Feature</h2>
+          <p>
+            Netlify and Vercel integrate deploy previews within their broader
+            suite of services, providing a production-like view of changes
+            pre-deployment. Netlify, primarily a host for static sites and
+            supports Jamstack projects, includes Netlify Drawer as a feature
+            available for their deploy previews. Similarly, Vercel is tailored
+            for frontend frameworks like Next.js, incorporating Vercel
+            Comments into its regular services, so that non-engineering team
+            members have the ability to provide feedback on their team’s
+            deploy previews.
+          </p>
+          <p>
+            Netlify Drawer enhances Netlify’s deploy previews with a feedback
+            toolbar for screenshots, recordings, and comments. The Drawer
+            comment feature allows for synchronizing feedback between the
+            deploy preview and GitHub. Comments can be posted by Netlify
+            Drawer’s bot if the user does not have a GitHub account.. This
+            integration includes the user’s browser metadata in comments,
+            providing context in order to make it easier for developers to
+            recreate and fix any potential bugs.
+          </p>
+          <p>
+            Vercel’s Comments leverage Liveblocks, a third-party real-time
+            collaboration tool, allowing users to attach comments directly to
+            UI elements. This integration improves feedback by allowing more
+            interactive and detailed discussions. Unlike Netlify, Vercel syncs
+            their comments with Slack rather than GitHub.
+          </p>
+          <div class="multiple-images">
+            <p>
+              <img
+                src="images/case-study/vercel-comments.png"
+                alt="Screenshot of Vercel's Comments"
+                data-group="preview-as-a-feature"
+              />
+            </p>
+            <p>
+              <img
+                src="images/case-study/netlify-drawer.png"
+                alt="Client requesting resources using path routing from the application load balancer"
+                data-group="preview-as-a-feature"
+              />
+            </p>
+          </div>
+  
+          <p>
+            These services, while feature-rich, come with the caveat of
+            requiring full application hosting on their platforms, limiting
+            flexibility for teams who prefer independent control over their
+            deployment.
+          </p>
+        </section>
+  
+        <section id="section-3-2-Livecycle" data-section="Livecycle">
+          <h2>3.2 - Livecycle</h2>
+          <p>
+            Livecycle's preview environments are the core of their project
+            offering. Livecycle offers a unique combination of deploy previews
+            and collaborative tools through its products, Preevy and a product
+            also named Livecycle. Preevy manages preview environments via
+            CI/CD workflows or an SDK for external hosting. Livecycle
+            integrates a feedback interface enabling commenting, HTML/CSS
+            suggestions, and visual edit comparisons. Additionally, Livecycle
+            provides debugging tools like screen size adjustments, rudimentary
+            dev tools, and console access. Its session replay feature
+            automatically captures user interactions within the preview
+            environment, offering a replayable video that begins recording
+            from the moment the user visits the deploy preview.
+          </p>
+          <p>
+            <img
+              src="images/case-study/livecycle.png"
+              alt="screenshot of livecycle(cropped)"
+            />
+          </p>
+        </section>
+  
+        <section id="section-3-3-DIY" data-section="DIY">
+          <h2>3.3 - DIY</h2>
+          <p>
+            A custom-built deploy preview solution offers a team complete
+            control over their development and review process. This building
+            process can be divided into two main parts: the deploy preview
+            functionality and the feedback system, together encompassing up to
+            40 steps or more.
+          </p>
+          <p>
+            Implementing such a custom solution requires dedicated teams of
+            engineers, integration with existing tools, and ongoing
+            maintenance. The complexity and resource demands can make it
+            overwhelming and impractical for organizations lacking extensive
+            technical expertise in automating workflows and managing cloud
+            service resources.
+          </p>
+          <p>
+            <img
+              src="images/case-study/05.png"
+              alt="Exhaustive list of steps for DIY"
+            />
+          </p>
+        </section>
+  
+        <section
+          id="section-4-Introducing-Campfire"
+          data-section="Introducing Campfire"
+        >
+          <h1>4 - Introducing Campfire</h1>
+          <p>
+            Campfire removes the trouble of building a DIY solution from
+            scratch while still providing organizations control over their
+            data, and allowing integration into an existing CI/CD pipeline.
+            Our primary goal was to design a feedback interface that
+            integrates seamlessly with the deploy preview, ensuring
+            stakeholders can provide feedback without switching contexts. This
+            interface supports comments and session replays and allows the
+            capture of contextual data to enhance understanding. Although not
+            as feature and integration-rich as solutions like Livecycle,
+            Netlify Drawer, and Vercel, Campfire offers an open-source
+            alternative with comments that sync to a GitHub pull request and
+            the ability to record sessions, providing context-rich feedback
+            directly within the deploy preview.
+          </p>
+          <p>
+            <img
+              src="images/case-study/tradeoffs-table.png"
+              alt="Table comparing existing deploy preview solutions"
+            />
+          </p>
+        </section>
+  
+        <section
+          id="section-4-1-Who-Campfire-is-For"
+          data-section="Who Campfire is For"
+        >
+          <h2>4.1 - Who Campfire is For</h2>
+          <p>
+            Campfire is designed to support front-end applications that meet
+            the following criteria:
+          </p>
+          <ul>
+            <li>Hosted on GitHub</li>
+            <li>Contain a Dockerfile</li>
+            <li>
+              Operate independently of a backend or interact with an external
+              backend via APIs.
+            </li>
+            <li>Targeted towards small or early-stage teams</li>
+          </ul>
+          <p>
+            Campfire is not designed to support the following types of
+            applications:
+          </p>
+          <ul>
+            <li>Hosted on GitLab or other developer platforms</li>
+            <li>
+              Require a container image to be generated from source code
+            </li>
+            <li>Monolithic architecture</li>
+            <li>Multi-container applications</li>
+          </ul>
+        </section>
+  
+        <section
+          id="section-4-2-Campfire-Features"
+          data-section="Campfire Features"
+        >
+          <h2>4.2 - Campfire Features</h2>
+          CLI tool to simplify the installation and configuration of Campfire:
+          <div class="gif">
+            <img
+              src="images/features/campfire-cli-clip.gif"
+              alt="GIF of CLI"
+            />
+          </div>
+          Integration with GitHub automates the creation, update, and
+          dismantling of preview environments:
+          <div class="gif">
+            <img
+              src="images/features/pull-request.gif"
+              alt="GIF of pull request"
+            />
+          </div>
+          Looks Good to Me (LGTM) Button to quickly approve changes with a
+          simple acknowledgment (and confetti):
+          <div class="gif">
+            <img
+              src="images/case-study/LGTM-side-by-side.gif"
+              alt="GIF of LGTM feature with github"
+            />
+          </div>
+          Comments provide feedback directly on the deploy preview and sync
+          with the GitHub pull request:
+          <div class="gif">
+            <img
+              src="images/case-study/comments-side-by-side.gif"
+              alt="GIF of comment feature with github"
+            />
+          </div>
+          Session Replay to capture user interactions in real-time to
+          demonstrate issues:
+          <div class="gif">
+            <img
+              src="images/features/session-replay.gif"
+              alt="GIF of session replay feature"
+            />
+          </div>
+        </section>
+  
+        <section
+          id="section-5-Developing-Campfire"
+          data-section="Developing Campfire"
+        >
+          <h1>5 - Developing Campfire</h1>
+          <p>
+            In order to build Campfire, we identified four components of a
+            collaborative deploy preview solution:
+          </p>
+          <ol>
+            <li>
+              <strong>Automation</strong> - An automated process to generate
+              deploy previews for each new pull request, or new commit to an
+              existing pull-request.
+            </li>
+            <li>
+              <strong>Access</strong> - A reliable and straightforward method
+              for users to access these previews to view and interact with the
+              proposed changes.
+            </li>
+            <li>
+              <strong>Feedback Interface</strong> - An integrated feedback
+              mechanism within the deploy preview to collect and display
+              feedback, allowing stakeholders to comment and discuss directly
+              on the preview.
+            </li>
+            <li>
+              <strong>Data Storage</strong> - A place to store and manage
+              Campfire’s data.
+            </li>
+          </ol>
+          <p>
+            This diagram is an overview of all the responsibilities we
+            described and how they interact with each other:
+          </p>
+          <p>
+            <img
+              src="images/case-study/high-level-overview.png"
+              alt="Campfire architecture by responsibilities"
+            />
+          </p>
+        </section>
+  
+        <section
+          id="section-5-1-Automating-Deploy-Previews"
+          data-section="Automating Deploy Previews"
+        >
+          <h2>5.1 - Automating Deploy Previews</h2>
+          <p>
+            <img
+              src="images/case-study/automation.png"
+              alt="Campfire architecture highlighting automation"
+            />
+          </p>
+          <p>
+            Campfire’s architecture starts with the automatic deployment of
+            deploy previews, which are generated for each pull request and
+            hosted temporarily until the pull request is closed. We faced two
+            primary decisions in this area:
+          </p>
+          <ol>
+            <li>
+              How to automatically trigger a deployment when a pull request is
+              made?
+            </li>
+            <li>How to host the client application once deployed?</li>
+          </ol>
+          <h3>5.1.1 Automatically Triggering Deployment</h3>
+          <p>
+            We initially considered using webhooks to trigger a self-hosted
+            endpoint whenever a pull request was created by the user. However,
+            this required deploying a dedicated service to handle webhook
+            events, which would involve additional resources being provisioned
+            on the user’s AWS account.
+          </p>
+          <p>
+            We opted instead for GitHub Actions, a CI/CD platform that offers
+            the flexibility of using either self-hosted or GitHub-hosted
+            runners to automate workflows. This approach eliminates the need
+            to manage separate resources for webhook responses. GitHub Actions
+            automatically provisions an environment to execute our defined
+            workflows, which handle tasks such as authenticating cloud
+            services, spinning up the necessary resources for the deploy
+            preview, and posting the preview URL back to the pull request.
+          </p>
+          <p>
+            Additionally, GitHub Actions manages the lifecycle of the runners,
+            ensuring they shut down and clean up resources after execution.
+            This efficiency and integration led us to choose GitHub Actions
+            for automating the deployment of deploy previews. Consequently, a
+            fundamental requirement for using Campfire is that the user’s
+            application must be hosted on GitHub; therefore, we are currently
+            unable to support users on other platforms like GitLab.
+          </p>
+          <p>
+            <img
+              src="images/features/pull-request.gif"
+              alt="Trigger deploy preview using GitHub Actions"
+            />
+          </p>
+          <h3>5.1.2 Hosting the Client’s Application</h3>
+          <p>
+            The next step involved selecting a service to temporarily host the
+            client application. To accommodate a diverse range of applications
+            and simplify the deployment process, Campfire chose to support
+            containerized applications. Containerization packages an
+            application with its dependencies and configurations into a
+            standardized unit, or container, ensuring it runs consistently
+            across any environment.
+          </p>
+          <p>
+            Ensuring that the client application behaves the same way locally
+            as it does once deployed minimizes bugs related to cross-platform
+            compatibility issues. By focusing on containerized applications,
+            we enhance the likelihood of successful deployments regardless of
+            the specific setup or technology stack of the application.
+          </p>
+          <p>
+            The use of containers required a way to manage their life cycles –
+            deploying, updating, and terminating containers as pull requests
+            are opened, updated, or closed. Container orchestration services
+            provide many features in addition to managing the lifecycle of
+            containers, including automated scaling and high availability.
+            Without container orchestration services, manual management of
+            container lifecycles and scaling would be required, introducing
+            complexity and potential for error.
+          </p>
+          <p>
+            We selected AWS Elastic Container Service (ECS) because it
+            simplifies container orchestration and easily integrates with
+            other AWS services such as the application load balancer used in
+            Campfire. ECS automates the deployment, scaling, and monitoring of
+            containers, allowing us to deliver stable and consistent deploy
+            previews without the burden of managing the orchestration layer
+            ourselves.
+          </p>
+          <p>
+            While other solutions like Elastic Kubernetes Service (EKS) and
+            Docker Swarm offer more control and flexibility in managing
+            containers, they require deep knowledge of their ecosystems and
+            are feature-rich, which can be excessive for our needs. Given that
+            Campfire requires orchestration for just a single container per
+            pull request, the simpler and less complex ECS is more appropriate
+            than the more powerful but complex alternatives like EKS and
+            Docker Swarm.
+          </p>
+        </section>
+  
+        <section
+          id="section-5-2-Accessing-Deploy-Previews"
+          data-section="Accessing Deploy Previews"
+        >
+          <h2>5.2 - Accessing Deploy Previews</h2>
+          <p>
+            <img
+              src="images/case-study/access.png"
+              alt="Campfire architecture highlighting application load balancer"
+            />
+          </p>
+          <p>
+            Access to each deploy preview was the next step for Campfire.
+            Within our setup with AWS ECS, each deploy preview operates as a
+            separate task. A task is a running instance of a containerized
+            application, specified by its CPU, memory, and network settings in
+            a task definition. Each task is automatically assigned a public IP
+            that can be used to access the running instance. These public IPs
+            can change if a task is restarted due to updates, configuration
+            changes, or scaling operations. To manage the dynamic nature of
+            public IPs, we implemented an application load balancer.
+          </p>
+          <p>
+            Generally, a load balancer distributes incoming network traffic
+            across multiple servers. For Campfire, which hosts a single
+            instance of a client’s application in a container, the load
+            balancer functions more like a router. It efficiently channels
+            incoming traffic to our preview tasks, using listeners to direct
+            traffic according to predefined Campfire rules.
+          </p>
+          <p>
+            The traffic is then routed through these rules to target groups,
+            which are collections that map to specific ECS tasks, regardless
+            of their currently assigned IP addresses. Having an application
+            load balancer means access to Campfire’s deploy previews remains
+            stable and continuous, even when individual tasks undergo IP
+            changes due to restarts.
+          </p>
+          <p>
+            <img
+              src="images/case-study/alb-listener.png"
+              alt="Load balancer routing to target groups that direct traffic to ECS tasks"
+            />
+          </p>
+          <p>
+            When configuring rules for the load balancer’s listener we first
+            experimented with path-based rules for routing – directing traffic
+            to specific services based on URL paths, for example,
+            &quot;/client-app/12&quot; for accessing the preview of pull
+            request #12. However, this approach proved inadequate due to 404
+            errors when browsers requested additional resources not accounted
+            for in the path-based rules.
+          </p>
+          <div class="multiple-images">
+            <p>
+              <img
+                src="images/case-study/path-based-rule-1.png"
+                alt="Client requesting resources using path routing from the application load balancer"
+                data-group="path-based-rule"
+              />
+            </p>
+            <p>
+              <img
+                src="images/case-study/path-based-rule-2.png"
+                alt="Client requesting resources using path routing from the application load balancer"
+                data-group="path-based-rule"
+              />
+            </p>
+          </div>
+          <p>
+            The solution evolved to using host-based routing, where the load
+            balancer would manage requests to a host like
+            &quot;client-app-12.preview.campfire.com&quot; as an example,
+            ensuring all subsequent resource requests for a particular preview
+            consistently reached the correct service.
+          </p>
+          <div class="multiple-images">
+            <p>
+              <img
+                src="images/case-study/host-based-rule-1.png"
+                alt="Client requesting resources using path routing from the application load balancer"
+                data-group="host-based-rule"
+              />
+            </p>
+            <p>
+              <img
+                src="images/case-study/host-based-rule-2.png"
+                alt="Client requesting resources using path routing from the application load balancer"
+                data-group="host-based-rule"
+              />
+            </p>
+          </div>
+          <p>
+            This method eliminated the 404 issue as the host-based approach
+            accurately directed all related traffic to the appropriate deploy
+            preview environment, regardless of the specific resource being
+            requested.
+          </p>
+        </section>
+  
+        <section
+          id="section-5-3-Feedback-Interface"
+          data-section="Feedback Interface"
+        >
+          <h2>5.3 - Feedback Interface</h2>
+          <p>
+            <img
+              src="images/case-study/feedback-interface.png"
+              alt="Campfire architecture with feedback interface and ALB highlighted"
+            />
+          </p>
+          <p>
+            Campfire wanted to design a feedback interface that accomplishes a
+            few things:
+          </p>
+          <ul>
+            <li>
+              integrates with the deploy preview, so that stakeholders don’t
+              need to switch contexts to add feedback
+            </li>
+            <li>
+              handles comments, since this is the main way stakeholders can
+              leave feedback
+            </li>
+            <li>
+              allows the user to capture context, for when text comments alone
+              aren’t enough
+            </li>
+          </ul>
+          <p>
+            We’ll be talking more about why and how we implemented these in
+            the next few sections, as well as a few challenges we encountered
+            along the way. Finally, we’ll end with a brief section on our
+            backend infrastructure.
+          </p>
+          <h3>
+            5.3.1 - Integrating the Deploy Preview with the Feedback Interface
+          </h3>
+          <p>
+            <img
+              src="images/case-study/integrating-fi.gif"
+              alt="GIF of feedback interface and deploy preview coming together"
+            />
+          </p>
+          <p>
+            When it came to integrating our feedback interface with our deploy
+            preview, we had two options:
+          </p>
+          <ol>
+            <li>
+              Inject or ask the user to add the feedback interface to their
+              application – perhaps as a custom web component, script, or
+              using an iframe.
+            </li>
+            <li>
+              Create a feedback interface application that embeds the deploy
+              preview within it using an iframe.
+            </li>
+          </ol>
+          <p>
+            <img
+              src="images/case-study/integration-options.png"
+              alt="Feedback interface in deploy preview vs deploy preview in feedback interface"
+            />
+          </p>
+          <p>
+            The first option involves running a single task, the deploy
+            preview, with the feedback interface integrated directly into it.
+            This approach could reduce costs because no additional components
+            are active when there are no deploy previews. However, it
+            complicates the user experience by adding an extra step, and may
+            restrict the types of applications we can support due to the need
+            to ensure compatibility with various frontend frameworks.
+          </p>
+          <p>
+            Since the second option would not require any additional work on
+            the user’s part and would maximize on application compatibility,
+            we decided to create a separate feedback interface that would
+            embed the deploy preview. We built a React application with an
+            iframe that points to the deploy preview.
+          </p>
+          <p>
+            We opted for the second option, which requires no additional
+            effort from the user and maximizes application compatibility. To
+            achieve this, we developed a separate feedback interface,
+            embedding the deploy preview within an iframe in a React
+            application.
+          </p>
+          <table>
+            <tr>
+              <td><strong>Component</strong></td>
+              <td><strong>URL</strong></td>
+            </tr>
+            <tr>
+              <td>Deploy Preview</td>
+              <td>client-app-12.preview.campfire.com</td>
+            </tr>
+            <tr>
+              <td>Feedback Interface</td>
+              <td>feedback-interface.campfire.com/client-app/12</td>
+            </tr>
+          </table>
+          <p>
+            The user would be given the URL that pointed to the feedback
+            interface, while the URL generated for the deploy preview would be
+            used internally by the feedback interface application.
+          </p>
+  
+          <h3>5.3.2 - Comments</h3>
+          <p>
+            Comments allow all stakeholders, including those without technical
+            expertise or a GitHub account, to actively participate in the
+            deployment review process enabling detailed feedback and
+            discussions directly within deploy previews. Comments allow teams
+            to discuss issues and suggest improvements, fostering an
+            interactive and collaborative review environment.
+          </p>
+          <p>
+            We designed Campfire to aggregate comments in both the GitHub
+            interface and within the deploy preview itself. This dual
+            visibility ensures that feedback is not lost across platforms and
+            supports a unified discussion thread that all team members can
+            follow and contribute to, regardless of where they choose to
+            interact.
+          </p>
+          <p>
+            To accomplish this, we needed to retrieve existing comments from
+            GitHub pull requests and also enable the posting of new comments
+            from within Campfire. The implementation of this commenting
+            functionality involved use of GitHub’s API.
+          </p>
+          <p>
+            GitHub has three options to authorize API requests, although this
+            can be reduced to less than three depending on the API resource
+            being accessed. For Campfire to obtain the necessary authorization
+            in order to push comments from Campfire back to the GitHub pull
+            request we could use:
+          </p>
+          <ul>
+            <li>Personal Access Token (requires GitHub account),</li>
+            <li>User Access Token (requires GitHub account)</li>
+            <li>App Installation Token</li>
+          </ul>
+          <p>
+            Recognizing that not all Campfire users would have a GitHub
+            account, we chose to utilize GitHub’s App Installation Token for
+            authorization. This approach enables Campfire to post comments on
+            behalf of users, allowing feedback added in Campfire to sync with
+            the pull request. It also permits users who are not registered on
+            GitHub to contribute their own feedback.
+          </p>
+          <p>
+            <img
+              src="images/case-study/github-authentication.png"
+              alt="types of github authentication"
+            />
+          </p>
+          <p>
+            Generating the App Installation Token requires the user or
+            organization using Campfire to register and install a GitHub App
+            with configured permissions. Once the app is installed, Campfire
+            is able to generate the required authorization through its
+            credentials and cross-post any comments made in Campfire directly
+            to the pull request.
+          </p>
+          <p>
+            To avoid exposing sensitive data from the feedback interface, the
+            GitHub App’s credentials are stored in AWS Secrets Manager. Any
+            GitHub-related actions taken requires retrieving these credentials
+            beforehand to authenticate the GitHub App. The following diagram
+            shows the flow for posting comments:
+          </p>
+          <p>
+            <img
+              src="images/case-study/comments-flow.png"
+              alt="Architecture/flow for posting comment"
+            />
+          </p>
+          <p>
+            Adding authorization to our requests also benefited our GET
+            requests by increasing the rate limits and allowing GET requests
+            to private repos.
+          </p>
+          <p>
+            Using our GitHub app to authorize POST requests to the API,
+            however, also meant that all Campfire user’s comments would be
+            attributed to the App and not the individuals themselves who were
+            leaving feedback:
+          </p>
+          <p>
+            <img
+              src="images/case-study/campfire-bot-comment.png"
+              alt="GitHub Bot commenting 'This looks great&quot;!'"
+            />
+          </p>
+          <p>
+            To get around this issue, Campfire displays a welcome screen for
+            first time users before they are able to view the deploy preview.
+            The name the user enters is then stored in their browser’s local
+            storage, ready for use on subsequent visits. The user’s name is
+            also displayed in the top right corner of the feedback interface
+            and prefixed to any comments they make through Campfire.
+          </p>
+          <div>
+            <img
+              src="images/case-study/welcome-name.png"
+              alt="Prompt the user for name"
+            />
+            <p>
+              The welcome screen asks the user for their name before they can
+              interact with the deploy preview.
+            </p>
+          </div>
+          <div class="multiple-images">
+            <div>
+              <img
+                src="images/case-study/name-banner.png"
+                alt="Name banner in feedback interface"
+              />
+              <p>
+                Once they enter their name it’s displayed in the top right.
+              </p>
+            </div>
+            <div>
+              <img
+                src="images/case-study/name-banner-collapsed.png"
+                alt="Name banner in feedback interface hidden"
+              />
+              <p>The tab is collapsible so it’s not in the way.</p>
+            </div>
+          </div>
+  
+          <p>
+            Comments can now be attributed to the right user:
+            <img
+              src="images/case-study/comment-with-name.png"
+              alt="GitHub comment in pull request with user's name"
+            />
+          </p>
+          <p>
+            Other context Campfire provides includes some basic information on
+            the user’s operating system, browser, and screen-size appended to
+            comments. It may be the case that the UI breaks in certain
+            browsers, but not others, or when viewed at certain dimensions.
+            Having the user’s browser stack info enables the engineering team
+            to more easily replicate the conditions that lead to issues,
+            thereby fixing any bugs much faster.
+          </p>
+          <h3>5.3.3 - Exploring Screen Capture Solutions</h3>
+          <p>
+            Our team investigated enhancing the Campfire feedback interface
+            with screen capture functionality to provide richer context for
+            debugging and user support. The goal was to record interactions to
+            quickly identify and address issues encountered by developers or
+            users.
+          </p>
+          <p>
+            There are a few different approaches to capturing user
+            interactions:
+          </p>
+          <ul>
+            <li>
+              <strong>Screenshots</strong> - Capture a single moment, useful
+              for documenting specific issues.
+            </li>
+            <li>
+              <strong>Screen recordings</strong> - Record a sequence of
+              actions, providing a video-like overview of user interactions.
+            </li>
+            <li>
+              <strong>Session replay</strong> - Record all DOM events to
+              create a detailed playback of user interactions, offering
+              comprehensive insights into user behaviors and issues.
+            </li>
+          </ul>
+          <p>
+            Initially, we researched the SDKs of third-party tools such as
+            Loom and Zight, which offer screen recording and screenshot
+            capabilities. We decided to not use these solutions given that
+            they’re not open-source or self-hosted, which doesn’t align with
+            Campfire’s open-source design.
+          </p>
+          <p>
+            Although screenshots and screen-recording provide visual context,
+            we sought a more detailed capture of user interactions. Ideally
+            any captured data should be useful for developers seeking to
+            understand and accurately replicate issues users face. This led us
+            to prioritizing implementing a session replay feature, which
+            records DOM events in detail, facilitating a deeper analysis and
+            easier replication of issues by developers.
+          </p>
+          <p>
+            Session replay captures DOM events such as mouse movements,
+            clicks, scrolls, keystrokes, and changes within the DOM. These
+            events are stored in an array, and replay involves reconstructing
+            the user session from these events. This method not only allows
+            skipping periods of inactivity, enhancing storage efficiency, but
+            also structures data in a way conducive to further analytics.
+          </p>
+          <p>
+            <img
+              src="images/case-study/events-array.png"
+              alt="array of session replay events"
+            />
+          </p>
+          <p>
+            Conversely, screen recordings provide a continuous video capture
+            of the user's screen, which can include elements outside the
+            webpage context, like video streams and browser extensions. Screen
+            recordings can also effortlessly capture content within iframes, a
+            task challenging for session replay due to security and technical
+            limitations.
+          </p>
+          <p>
+            While screen recordings capture more visual information, they lack
+            the parsability and storage efficiency of session replays. Session
+            replays, recording only meaningful DOM interactions, avoid
+            unnecessary data accumulation during inactivity and structure data
+            for potential analytical use, unlike the less-structured nature of
+            video files.
+          </p>
+          <p>
+            After evaluating these options, we concluded that session replay
+            offered the most advantages for Campfire's needs, aligning with
+            our goal of providing actionable insights into user behavior while
+            maintaining efficient data management.
+          </p>
+          <h3>5.3.4 - Implementing Session Replay and SDK</h3>
+          <p>
+            Choosing to implement a session replay feature was not without its
+            complications. Because a session replay is by default not able to
+            record events occurring within an iframe, we had some additional
+            work ahead of us.
+          </p>
+          <p>
+            We chose the rrweb library to implement this feature due to its
+            ease of use and open-source nature. Cross-origin policies and
+            browser security measures prohibit session replay libraries such
+            as rrweb from accessing the contents of an iframe that are hosted
+            on different domains. For Campfire, this meant we were unable to
+            record interactions from the client’s application because the
+            deploy preview domain and feedback interface domain were not the
+            same.
+          </p>
+          <p>The following gif shows the blank screen that would result:</p>
+          <p>
+            <img
+              src="images/case-study/blank-screen-recording.gif"
+              alt="GIF of session replay being blank"
+            />
+          </p>
+          <p>
+            In situations where developers have ownership of both the parent
+            application and the child application, rrweb recommends embedding
+            their library components into both applications. All recorded user
+            interactions in the child application can then be sent to the
+            parent application.
+          </p>
+          <p>
+            The diagram below illustrates this solution in terms of Campfire’s
+            use-case. Here the feedback interface is the parent application
+            and the deploy preview (preview app) is the child application.
+          </p>
+          <p>
+            <img
+              src="images/case-study/embedding-rrweb.png"
+              alt="rrweb in client app communicating with rrweb in feedback interface"
+            />
+          </p>
+          <p>
+            Implementing rrweb's solution to successfully display iframes in
+            recordings required having rrweb’s component embedded in the
+            client application. This presented an additional prerequisite for
+            the user: the rrweb component (or an SDK) must be embedded into
+            the application in order for the session replay feature to
+            function properly. We initially dismissed this option as one of
+            our priorities in developing Campfire was to have as few
+            prerequisites for our users as possible.
+          </p>
+          <p>
+            The second option to rrweb’s solution was to programmatically
+            inject the rrweb component into the embedded application. This
+            removed the prerequisite for users to manually embed the component
+            themselves. However, this idea was later deemed unviable due to
+            security measures enforced by browsers. The same cross-origin
+            policies that restricted rrweb from directly recording iframes
+            also restricted the parent application from accessing the contents
+            of the iframe.This meant the feedback interface could not
+            manipulate the DOM of the iframe and inject the rrweb component.
+          </p>
+  
+          <p>
+            <img
+              src="images/case-study/feedback-interface-blocked.png"
+              alt="rrweb in client app communicating with rrweb in feedback interface"
+            />
+          </p>
+  
+          <p>
+            The third option was for the client application to use special
+            response headers when being retrieved from the feedback interface.
+            In the HTTP request/response lifecycle, the
+            Content-Security-Policy response header can be used to authorize
+            certain origins to access the requested resource, in this case the
+            client application, within iframes. This meant the feedback
+            interface could be whitelisted and allowed to manipulate the DOM
+            of the embedded client application.
+          </p>
+          <p>
+            While this approach appeared to be a practical solution, using
+            special response headers would require additional AWS services to
+            append the response heads to resources. AWS’s Application Load
+            Balancer does not provide a mechanism for adding response headers.
+            AWS Cloudfront, on the other hand, provides the capabilities to do
+            so. To avoid adding additional complexity to our AWS
+            infrastructure, we did not choose this approach.
+          </p>
+          <p>
+            After considering our possible solutions and their tradeoffs, we
+            decided the simplest approach would be to create our own SDK and
+            require clients to embed the SDK into their applications. The SDK
+            abstracts away the rrweb library component and is responsible for
+            transmitting recorded user interactions back to the feedback
+            interface.
+          </p>
+          <p>
+            <img
+              src="images/case-study/rrweb-sdk.png"
+              alt="Feedback interface communicating with embedded Campfire SDK"
+            />
+          </p>
+          <p>
+            Although the SDK adds an additional prerequisite for our users, we
+            believed it was the most straightforward option for our first
+            iteration of Campfire. An advantage of building an SDK is we can
+            continue to build onto the SDK in the future to add new features
+            to the feedback interface. Features that we had previously decided
+            against due to the lack of inter-iframe communication can now be
+            implemented with the addition of the SDK.
+          </p>
+          <h3>5.3.6 - Handling Ad Blocker Interference</h3>
+          <p>
+            After incorporating the rrweb library for session replay into our
+            Campfire application, we encountered another issue: the entire
+            Campfire app failed to load for users with ad-blocking extensions
+            active in their browsers. This problem was traced back to rrweb
+            being integrated into several of our React components, which are
+            interconnected. When rrweb was blocked by an ad blocker, it led to
+            a cascading failure, preventing the entire application from
+            loading, not just the session replay feature.
+          </p>
+          <p>
+            <img
+              src="images/case-study/adblocker_blocking_campfire.png"
+              alt="Campfire blocked by an ad blocking extension"
+            />
+          </p>
+          <p>
+            To address this, instead of identifying and managing individual
+            ad-blocking extensions, we focused on detecting whether the rrweb
+            functionality was obstructed. If rrweb failed to load, we
+            implemented a system to inform the user through a notification
+            banner, advising them to disable their ad blocker to access
+            Campfire.
+          </p>
+          <p>
+            <img
+              src="images/case-study/dynamic-loading-flowchart.png"
+              alt="Dynamic loading of rrweb library and React components"
+            />
+          </p>
+          <p>
+            Implementing this solution involved exploring dynamic component
+            and module loading in React. By adopting dynamic imports, we were
+            able to conditionally load rrweb components, ensuring that even if
+            these components failed to load due to an ad blocker, the rest of
+            the application would remain functional. This approach also
+            allowed us to display a banner alerting users of the need to
+            disable their ad blockers.
+          </p>
+          <h3>5.3.7 - Serverless Backend</h3>
+          <p>
+            At this point, Campfire needed a backend to use GitHub’s API and
+            to use the AWS SDK. Authenticated calls to GitHub's API were for
+            retrieving and posting comments to pull requests, while the AWS
+            SDK was needed to store user generated session replay data.
+          </p>
+          <p>
+            Initially two approaches were considered for our backend
+            infrastructure:
+          </p>
+          <ul>
+            <li>traditional server-based backend</li>
+            <li>a serverless architecture</li>
+          </ul>
+          <p>
+            A traditional backend setup would involve using a server, for
+            example an Express application, paired with a web server, like
+            Nginx, to manage API routing. This type of set-up would have the
+            benefit of avoiding cold starts that are the result of using a
+            serverless architecture. The trade-off is that the user would have
+            to pay the costs of having a server running continuously, even if
+            there are little to no requests being handled. Since deploy
+            previews don’t necessarily need the speed that comes with avoiding
+            cold starts, we thought it best to maximize cost-efficiency.
+          </p>
+          <p>
+            We opted for a serverless approach using AWS Lambda, a computing
+            service that allows you to execute code without provisioning or
+            managing servers. Using an API Gateway with Lambda integration did
+            not require an additional service to be hosted for the backend.
+            However, it did require the incorporation of several new
+            resources, primarily the API Gateway and Lambda functions. While
+            this choice added additional complexity to Campfire’s
+            architecture, the services we chose to use are far less expensive
+            than having multiple ECS services running on a cluster on the
+            user’s account.
+          </p>
+        </section>
+  
+        <section id="section-5-4-Data-Storage" data-section="Data Storage">
+          <h2>5.4 - Data Storage</h2>
+          <p>
+            <img
+              src="images/case-study/storage.png"
+              alt="Campfire's architecture with S3 highlighted"
+            />
+          </p>
+          <p>
+            The primary data that Campfire needed to store was session replay
+            data, which took the form of arrays of event objects. For storage,
+            we considered AWS Elastic File System (EFS) and AWS S3 buckets
+            (S3), both accessible via lambdas and capable of being shared
+            across all containers if needed.
+          </p>
+          <p>
+            Although both EFS and S3 would be able to support this data, they
+            have slightly different use cases. EFS is meant to be a shared
+            file system among multiple containers, and works well for when you
+            need to structure your data in a hierarchical manner with nested
+            folders and files. It’s primarily meant to be used internally by
+            those instances.
+          </p>
+          <p>
+            S3 is an object storage system that allows you store any type of
+            data in an unstructured way, and lets you retrieve it using a
+            unique identifier. It’s useful as a data store for objects that
+            need to be accessed over the internet. With S3, access to stored
+            objects could be available outside the containerized instances.
+          </p>
+          <p>
+            Since Campfire didn’t necessarily need a shared file system, but
+            rather a place to store discrete pieces of data to be retrieved
+            later, S3 seemed a better fit. It also gave two more advantages:
+          </p>
+          <ul>
+            <li>
+              We could store our files for our Lambda functions in the S3
+              bucket, which Cloud Formation could then pull from during set-up
+            </li>
+            <li>
+              Opens up possibility for later storing user uploaded
+              screenshots, which, because of the external nature of S3 items,
+              would make the images available not just within the feedback
+              interface, but also on GitHub pull-requests
+            </li>
+          </ul>
+          <p>
+            The following diagram shows our architecture as a whole:
+            <img
+              src="images/case-study/whole-architecture.png"
+              alt="Campfire's overall architecture"
+            />
+          </p>
+        </section>
+  
+        <section id="section-7-Future-Work" data-section="Future Work">
+          <h1>6 - Future Work</h1>
+          <h3>6.1 - CSS Editor</h3>
+          <p>
+            Integrating a CSS Editor into Campfire’s feedback interface would
+            allow users to suggest CSS modifications directly within the
+            preview environment. This feature would enable more detailed
+            visual collaboration on styling changes and improve the process of
+            refining the UI/UX. Proposed CSS changes could then be
+            automatically formatted into code snippets and attached to the
+            corresponding pull request, facilitating a smoother review and
+            integration workflow.
+          </p>
+          <h3>6.2 - Screenshots</h3>
+          <p>
+            Introducing a screenshot feature would enable users to capture and
+            share specific moments or layouts from their deploy preview
+            without having to record an entire session replay. This would be
+            particularly useful for visually documenting issues or
+            highlighting design elements, providing a quick and clear
+            reference point in discussions. Additionally, images can be posted
+            to GitHub discussions directly instead of having a session replay
+            link that takes users back to their deploy preview. .
+          </p>
+          <h3>6.3 - GitHub User Authorization</h3>
+          <p>
+            Enhancing Campfire with optional GitHub user authorization would
+            allow users to interact with the feedback interface directly. This
+            would ensure that comments and feedback are accurately attributed,
+            enhancing traceability and accountability in the collaboration
+            process.
+          </p>
+          <h3>6.4 - Reduce Costs</h3>
+          <p>
+            In the future, we also want to explore ways to cut costs, possibly
+            using web components or other techniques. Our current setup has
+            the client app and feedback interface on separate clusters, which
+            can be inefficient. For example, the feedback interface's cluster
+            runs non-stop, costing money even without active deploy previews.
+            A better approach might be to merge the feedback interface with
+            the client app before deployment. This could be done by injecting
+            code or using web components, which would allow both parts to run
+            on the same cluster, saving resources and money.
+          </p>
+          <p>
+            Additionally, we may consider implementing a scaling strategy
+            where the system could automatically scale down to zero in periods
+            of inactivity. This approach would reduce the cluster to minimal
+            operational status, effectively cutting costs by not running
+            unnecessary resources.
+          </p>
+        </section>
+  
+        <section id="section-8-References" data-section="References">
+          <h1>7 - References</h1>
+          <ol>
+            <li>
+              <a
+                href="https://livecycle.io/blogs/history-of-preview-environments/"
+                >The History of Preview Environments in Development
+                Workflows</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://tarynwritescode.hashnode.dev/a-history-of-version-control"
+                >A History of Version Control</a
+              >
+            </li>
+            <li>
+              <a href="https://release.com/staging-environments"
+                >What is a staging Environment?</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.bunnyshell.com/blog/what-are-ephemeral-environment"
+                >What Are Ephemeral Environments? + How to Deploy and Use Them
+                Efficiently</a
+              >
+            </li>
+            <li>
+              <a href="https://shipyard.build/ephemeral-environments/"
+                >What Are Ephemeral Environments?</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.qovery.com/blog/overcoming-shared-environment-bottlenecks/"
+                >Overcoming Shared Environment Bottlenecks</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://thenewstack.io/netlify-brings-collaboration-to-deploy-previews-with-featurepeek-acquisition/"
+                >Netlify Brings Collaboration to Deploy Previews with
+                FeaturePeek Acquisition</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://pipelinedriven.org/article/the-four-biggest-issues-with-having-static-environments"
+                >The Four Biggest Issues With Having Static Environments</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://livecycle.io/blogs/ephemeral-environments-2022/"
+                >The Ephemeral Environment Landscape</a
+              >
+            </li>
+          </ol>
+        </section>
+      </article>
+      
+    </div>
+  </section>
 
-  <main class="case-study-content">
-    <section>
-      <div set:html={caseStudyHtml} />
-    </section>
-  </main>
-</div>
 
-<style global>
-body {
-  font-family: 'Roboto', sans-serif;
+<script>
+  /*code for the toc and case study*/
+const caseStudy = document.getElementById("case-study");
+const toc = document.getElementById("toc");
+const tocLinks = document.querySelectorAll("#toc a");
+const tocLinksCount = tocLinks.length;
+
+
+function handleTOCSelection() {
+  const clearSelectedToc = () => {
+    const selectedTocItems = document.querySelectorAll("#toc .selected");
+    const subItems = document.querySelectorAll(`li.subitem.show`);
+
+    //hide any open subitems
+    subItems.forEach((subItem) => {
+      subItem.classList.remove("show");
+    });
+
+    //remove the selected items
+    selectedTocItems.forEach((selectedTocItem) => {
+      selectedTocItem.classList.remove("selected");
+    });
+  };
+
+  const selectTocItem = (link) => {
+    const tocItem = link.closest("li");
+    const dataSection = tocItem.dataset.section;
+    const subItems = document.querySelectorAll(
+      `li.subitem[data-section="${dataSection}"]`
+    );
+
+    subItems.forEach((subItem) => {
+      subItem.classList.add("show");
+    });
+
+    tocItem.classList.add("selected");
+  };
+
+  //do nothing if we don't want to show the toc
+  if (!toc.classList.contains("show")) return;
+
+  //for each link in the toc
+  for (let i = tocLinksCount - 1; i >= 0; i--) {
+    const link = tocLinks[i];
+    //link.hash is the place the anchor links to.
+    if (!link.hash) continue;
+    const target = document.querySelector(link.hash);
+
+    //if the target exists and its reasonable far away
+    if (!!target && target.offsetTop <= window.scrollY + 16 * 2) {
+      clearSelectedToc();
+      selectTocItem(link, target);
+
+      break;
+    }
+  }
 }
 
-.case-study-container {
+
+
+// Helpers
+function throttle(callback, wait) {
+  let prevent = false;
+
+  return function (event) {
+    if (!prevent) {
+      callback(event);
+      prevent = true;
+      setTimeout(function () {
+        prevent = false;
+      }, wait);
+    }
+  };
+}
+
+function handlePageLoad() {
+  handleTOCSelection();
+}
+
+function handleScroll() {
+  handleTOCSelection();
+}
+
+//events
+document.addEventListener("DOMContentLoaded", handlePageLoad);
+document.addEventListener("scroll", throttle(handleScroll, 16));
+</script>
+
+<style>
+:root {
+  --darker-blue: #13161d;
+  --dark-blue: #272f3f;
+  --blue: #363f54;
+  --red: #e2554f;
+  --darker-red: #ca4944;
+  --orange: #ed6b2c;
+  --light-orange: #ed9837;
+  --yellow: #efbe43;
+  --off-white: #f2f1ea;
+  --gray: #d3d2cc;
+  --toc-width: 320px;
+
+  font-family: "proxima-nova", sans-serif;
+  /* font-family: "futura", sans-serif; */
+  scroll-behavior: smooth;
+
+  --campfire-gradient: linear-gradient(
+    319deg,
+    rgba(239, 190, 67, 1) 12%,
+    rgba(237, 152, 55, 1) 32%,
+    rgba(237, 107, 44, 1) 49%,
+    rgba(226, 85, 79, 1) 80%,
+    rgba(39, 47, 63, 1) 100%
+  );
+}
+
+/* CASE STUDY SECTION */
+
+#case-study {
+  background-color: white;
+  padding: 70px;
+  padding-top: 100px;
+  color: black;
+}
+
+/* article wraps case study content */
+#case-study article {
   display: flex;
-  max-width: 1500px;
-  margin: 0 auto;
-  gap: 2rem;
-  padding: 0 1rem;
+  flex-direction: column;
+  gap: 50px;
+  /* margin-left: var(--toc-width); */
+  max-width: 700px;
+  line-height: 2rem;
 }
 
-.table-of-contents {
-  position: sticky;
-  top: 6rem;
-  align-self: start;
-  width: 250px;
-  padding: 1rem 1.5rem 1rem 0;
-  background-color: transparent;
-  border-right: 1px solid #e0e0e0;
-  height: fit-content;
-  margin-right: 2rem;
+#case-study article > section {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
 
-.table-of-contents h2 {
-  margin-bottom: 1rem;
-  font-size: 0.7rem;
-  padding-bottom: 0.5rem;
-  color: #333;
-  font-weight: 500;
-}
-
-.table-of-contents ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.table-of-contents a {
-  display: block;
-  text-decoration: none;
-  color: #333;
-  transition: background 0.3s ease, color 0.3s ease;
-  font-weight: 400;
-  padding-bottom: 0.5rem;
-}
-
-.table-of-contents a:hover {
-  color: #f5b895;
-}
-
-.table-of-contents .level-2 {
-  font-size: 0.85rem;
-}
-
-.table-of-contents .level-3 {
-  margin-left: 0.75rem; /* Add more indentation for level-3 items */
-  font-size: 0.75rem; /* Optionally adjust font size to visually indicate the hierarchy */
-}
-
-.case-study-content {
-  flex-grow: 1;
-  max-width: 1000px;
-  padding-left: 2rem;
-}
-
-.case-study-content section {
-  margin-bottom: 2rem;
-  padding: 0;
-}
-
-.case-study-content h1,
-.case-study-content h2,
-.case-study-content h3,
-.case-study-content h4,
-.case-study-content h5 {
-  line-height: 1.3;
-  color: #FD7854;
-}
-
-.case-study-content h1 {
-  padding-bottom: 0.5rem;
-  margin-bottom: 1rem;
-  font-size: 2.5rem;
-  font-weight: 500;
-}
-
-.case-study-content h2 {
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  font-size: 1.8rem;
-  font-weight: 500;
-}
-
-.case-study-content h3 {
-  margin-top: 1.5rem;
-  margin-bottom: 0.75rem;
-  font-size: 1.2rem;
-  font-weight: 500;
-}
-
-.case-study-content h4 {
-  margin-top: 1.5rem;
-  margin-bottom: 0.75rem;
-  font-size: 1rem;
-  font-weight: 500;
-}
-
-.case-study-content h5 {
-  margin-top: 1.5rem;
-  margin-bottom: 0.75rem;
-  font-size: 0.75rem;
-  font-weight: 500;
-}
-
-.case-study-content p {
+#case-study p,
+#case-study ul,
+#case-study ol {
+  color: black;
   font-weight: 300;
-  line-height: 1.6;
-  font-size: 1rem;
-  margin-top: 1.5rem;
+  font-size: 1.1rem;
 }
 
-.case-study-content ul {
-  list-style-type: disc; /* Default bullet style */
-  margin-left: 1.5rem;
-  padding-left: 1.2rem;
+#case-study td,
+#case-study th {
+  text-align: left;
+  vertical-align: top;
 }
 
-.case-study-content li {
-  font-size: 1rem;
-  line-height: 1.6;
-  font-weight: 300;
-}
-
-.case-study-content ul ul {
-  list-style-type: circle; /* Nested bullets get a circle style */
-}
-
-.case-study-content ul ul li {
-  font-size: 0.95rem; /* Optionally adjust the font size for nested items */
-}
-
-.table-of-contents a.active {
-  /* Apply gradient to the background of the text */
-  background: linear-gradient(45deg, #f5b895, #ff6a13, #ff4500);
-  -webkit-background-clip: text; /* Safari */
-  background-clip: text; /* For other browsers */
-  color: transparent; /* Make the text color transparent to show the gradient */
-  font-weight: bold;
-  transition: background 0.3s ease; /* Transition only the background gradient */
-}
-
-.markdown-image {
-  max-width: 100%;
-  height: auto;
-  display: block; /* Ensures the image is displayed as a block element */
-  margin-left: auto;
-  margin-right: auto;
-}
-
-figure {
-  display: block;
-  text-align: center;
+#case-study img {
+  margin: auto;
   width: 100%;
 }
 
-figcaption {
-  margin-top: 2rem; /* Adjust this value to control the space between the image and caption */
-  font-style: italic; /* Optional: keep the italicized caption */
-  font-size: 0.75rem; /* Optional: adjust the font size of the caption */
+#case-study > h1 {
+  display: inline-block;
+  border-top: 2px solid var(--darker-red);
+  padding-right: 10px;
+  padding-top: 10px;
+  margin-bottom: 70px;
+}
+
+#case-study h1,
+#case-study h2,
+#case-study h3 {
+  font-family: "futura", sans-serif;
+  color: #F58549;
+}
+#case-study h1 {
+  font-size: 2rem;
+}
+
+#case-study h2 {
+  font-size: 1.5rem;
+}
+
+#case-study h3 {
+  font-size: 1.2rem;
+}
+
+#case-study article a {
+  color: black;
+  font-family: "Bodoni Moda", "Times New Roman", Times, serif;
+  font-style: italic;
+}
+
+#case-study a:hover {
+  color: var(--red);
+}
+
+#case-study article ul li {
+  list-style-type: disc;
+  list-style: outside;
+  padding: 5px;
+}
+
+#section-4-2-Campfire-Features li:nth-child(even) {
+  list-style: none;
+  padding: 5px;
+}
+
+#case-study article ol li {
+  list-style: outside;
+  padding: 5px;
+  list-style-type: decimal;
+}
+
+#case-study article ol,
+#case-study article ul {
+  margin-left: 45px;
+}
+
+#case-study a.reference {
+  font-size: 0.75rem;
+  color: var(--yellow);
+  text-decoration: none;
+  padding: 2px;
+}
+
+#case-study a.reference:hover {
+  color: var(--light-orange);
+}
+
+#case-study a.reference::before {
+  content: "(";
+}
+
+#case-study a.reference::after {
+  content: ")";
+}
+
+#case-study .multiple-images {
+  display: flex;
+  gap: 10px;
+}
+
+#case-study .multiple-images p {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+#case-study-content {
+  display: flex;
+  gap: 0;
+  justify-content: center;
+}
+
+/* CASE STUDY TABLE OF CONTENTS */
+
+#toc {
+  width: var(--toc-width);
+  position: fixed;
+  top: 10rem;
+  transition: opacity 0.5s ease;
+  opacity: 1;
+  margin-right: 72rem;
+
+  
+
+  a {
+    display: flex;
+    padding: 10px;
+    color: black;
+    text-decoration: none;
+  }
+
+  li.subitem {
+    display: none;
+  }
+
+  li,
+  li.subitem.show {
+    display: flex;
+    align-items: center;
+  }
+
+  li.selected::before {
+    display: block;
+    border: 4px solid var(--red);
+    content: " ";
+    border-radius: 50%;
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: var(--blue);
+  }
+
+  li::before {
+    display: block;
+    content: " ";
+    border-radius: 50%;
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: var(--blue);
+  }
+
+  .subitem {
+    padding-left: 30px;
+  }
+}
+
+#toc.show {
+  opacity: 1;
+}
+
+
+
+/* MOBILE SETTINGS */
+/* hero */
+@media (min-width: 1215px) {
+  #landing h1 {
+    font-size: 5vw;
+  }
+
+  #landing-video img {
+    width: 38vw !important;
+  }
+}
+
+@media (max-width: 990px) {
+  #landing {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  #landing h1 {
+    font-size: 8vw;
+  }
+
+  #landing-title {
+    position: relative;
+    transform: none;
+    text-align: center;
+  }
+
+  #landing-video {
+    transform: none;
+  }
+
+  #landing-video img {
+    width: 80vw;
+  }
+
+  #landing-video svg {
+    width: 30vw;
+  }
+}
+
+@media (max-width: 750px) {
+  #rock-wrapper {
+    margin-top: -400px;
+  }
+}
+
+@media (max-width: 590px) {
+  #rock-wrapper {
+    margin-top: -300px;
+  }
+}
+
+@media (min-width: 800px) {
+  /* CSS code for the breakpoint of 800px wide */
+
+  .feature {
+    flex-direction: row;
+    align-items: center;
+    gap: 50px;
+  }
+
+  .feature .gif {
+    min-width: 300px;
+  }
+
+  .right {
+    order: 2;
+  }
+}
+
+@media (max-width: 950px) {
+  #toc {
+    display: none;
+  }
+
+  #case-study article {
+    margin-left: 0 !important;
+  }
+}
+
+@media (max-width: 530px) {
+  #case-study {
+    padding: 35px !important;
+  }
 }
 
 </style>
-
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    // Select all sections (h2 and h3) and links
-    const sections = document.querySelectorAll('.case-study-content h2, .case-study-content h3');
-    const links = document.querySelectorAll('.table-of-contents a');
-
-    // Function to update the active link in the TOC
-    function updateTOC() {
-      let currentSection = null;
-
-      // Loop through sections and check if any part is visible in the viewport
-      sections.forEach((section) => {
-        const rect = section.getBoundingClientRect();
-
-        // Check if any part of the section is in the viewport (i.e., rect.top >= 0)
-        if (rect.top >= 0 && rect.top < window.innerHeight) {
-          // If we don't have a "currentSection", or this section is further down than the previous visible one
-          if (!currentSection || rect.top < currentSection.getBoundingClientRect().top) {
-            currentSection = section; // Update to the first visible section (the top-most one)
-          }
-        }
-      });
-
-      // Highlight the corresponding link in the TOC
-      links.forEach(link => link.classList.remove('active')); // Remove active class from all
-      if (currentSection) {
-        const id = currentSection.id;
-        const activeLink = document.querySelector(`.table-of-contents a[href="#${id}"]`);
-        if (activeLink) {
-          activeLink.classList.add('active'); // Add active class to the current link
-        }
-      }
-    }
-
-    // Listen to the scroll event and update the TOC
-    window.addEventListener('scroll', updateTOC);
-
-    // Initial update when the page is loaded (for the case when the page is already scrolled)
-    updateTOC();
-  });
-
-  document.addEventListener("DOMContentLoaded", () => {
-    // Select all links in the Table of Contents
-    const tocLinks = document.querySelectorAll('.table-of-contents a');
-
-    // Offset scrolling for the Table of Contents links
-    tocLinks.forEach(link => {
-      link.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent default behavior (instant jump)
-        
-        const targetId = this.getAttribute('href').slice(1); // Get the target section ID
-        const targetElement = document.getElementById(targetId);
-        
-        if (targetElement) {
-          window.scrollTo({
-            top: targetElement.offsetTop - 120, // Offset by 120px to account for the header (adjust as needed)
-            behavior: 'smooth' // Smooth scroll
-          });
-        }
-      });
-    });
-  });
-
-</script>
