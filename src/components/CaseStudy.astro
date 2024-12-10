@@ -1,1542 +1,2138 @@
 ---
 
 ---
+<body>
+  
+  <div id="case-study-container">
+    <aside id="toc" >
+    <ul>
+      <!-- Section 1 -->
+      <li data-section="section-1" class="selected">
+        <a href="#section-1">
+          <div>
+            <div class="bullet"><div></div></div>
+            <p>Ekko 101</p>
+          </div>
+        </a>
+      </li>
+      <!-- Section 2 -->
+      <li data-section="section-2">
+        <a href="#section-2">
+          <div>
+            <div class="bullet"><div></div></div>
+            <p>Realtime Web Applications</p>
+          </div>
+        </a>
+      </li>
+      <li data-section="section-2" class="subitem">
+        <a href="#section-2-1">
+          <div>
+            <div class="bullet"><div></div></div>
+            <p>Realtime Applications are Everywhere</p>
+          </div>
+        </a>
+      </li>
+      <li data-section="section-2" class="subitem">
+        <a href="#section-2-2">
+          <div>
+            <div class="bullet"><div></div></div>
+            <p>Perceived as Instantaneous</p>
+          </div>
+        </a>
+      </li>
+      <!-- Section 3 -->
+      <li data-section="section-3">
+        <a href="#section-3">
+          <div>
+            <div class="bullet"><div></div></div>
+            <p>How is Realtime Implemented</p>
+          </div>
+        </a>
+      </li>
+      <li data-section="section-3" class="subitem">
+        <a href="#section-3-1">
+          <div>
+            <div class="bullet"><div></div></div>
+            <p>Data Transfer Patterns: Pulling Data</p>
+          </div>
+        </a>
+      </li>
+      <li data-section="section-3" class="subitem">
+        <a href="#section-3-2">
+          <div>
+            <div class="bullet"><div></div></div>
+            <p>Data Transfer Patterns: Pushing Data</p>
+          </div>
+        </a>
+      </li>
+      <li data-section="section-3" class="subitem">
+        <a href="#section-3-3">
+          <div>
+            <div class="bullet"><div></div></div>
+            <p>Messaging Pattern: 1:1 Pub/Sub</p>
+          </div>
+        </a>
+      </li>
+      <li data-section="section-3" class="subitem">
+        <a href="#section-3-4">
+          <div>
+            <div class="bullet"><div></div></div>
+            <p>Messaging Pattern: 1:M Pub/Sub</p>
+          </div>
+        </a>
+      </li>
+      <li data-section="section-3" class="subitem">
+        <a href="#section-3-5">
+          <div>
+            <div class="bullet"><div></div></div>
+            <p>Messaging Pattern: M:M Pub/Sub</p>
+          </div>
+        </a>
+      </li>
+      <li data-section="section-3" class="subitem">
+        <a href="#section-3-6">
+          <div>
+            <div class="bullet"><div></div></div>
+            <p>Messaging Pattern: Pub/Sub Hub</p>
+          </div>
+        </a>
+      </li>
+      <li data-section="section-3" class="subitem">
+        <a href="#section-3-7">
+          <div>
+            <div class="bullet"><div></div></div>
+            <p>Messaging Pattern: Bi-directional Pub/Sub</p>
+          </div>
+        </a>
+      </li>
+      <li data-section="section-3" class="subitem">
+        <a href="#section-3-8">
+          <div>
+            <div class="bullet"><div></div></div>
+            <p>WebSockets</p>
+          </div>
+        </a>
+      </li>
+      <!-- Section 4 -->
+      <li data-section="section-4">
+        <a href="#section-4">
+          <div>
+            <div class="bullet"><div></div></div>
+            <p>Dedicated Infrastructure for Realtime</p>
+          </div>
+        </a>
+      </li>
+      <li data-section="section-4" class="subitem">
+        <a href="#section-4-1">
+          <div>
+            <div class="bullet"><div></div></div>
+            <p>Existing Solutions</p>
+          </div>
+        </a>
+      </li>
+      <!-- Section 5 -->
+      <li data-section="section-5">
+        <a href="#section-5">
+          <div>
+            <div class="bullet"><div></div></div>
+            <p>Realtime Middleware</p>
+          </div>
+        </a>
+      </li>
+      <li data-section="section-5" class="subitem">
+        <a href="#section-5-1">
+          <div>
+            <div class="bullet"><div></div></div>
+            <p>Realtime Middleware is Everywhere</p>
+          </div>
+        </a>
+      </li>
+      <li data-section="section-5" class="subitem">
+        <a href="#section-5-2">
+          <div>
+            <div class="bullet"><div></div></div>
+            <p>The Realtime Middleware Antipattern</p>
+          </div>
+        </a>
+      </li>
+      <li data-section="section-5" class="subitem">
+        <a href="#section-5-3">
+          <div>
+            <div class="bullet"><div></div></div>
+            <p>Existing Solutions</p>
+          </div>
+        </a>
+      </li>
+      <!-- Section 6 -->
+      <li data-section="section-6">
+        <a href="#section-6">
+          <div>
+            <div class="bullet"><div></div></div>
+            <p>Why We Built Ekko</p>
+          </div>
+        </a>
+      </li>
+      <!-- Section 7 -->
+      <li data-section="section-7">
+        <a href="#section-7">
+          <div>
+            <div class="bullet"><div></div></div>
+            <p>Using Ekko</p>
+          </div>
+        </a>
+      </li>
+      <li data-section="section-7" class="subitem">
+        <a href="#section-7-1">
+          <div>
+            <div class="bullet"><div></div></div>
+            <p>Deploying Ekko</p>
+          </div>
+        </a>
+      </li>
+      <li data-section="section-7" class="subitem">
+        <a href="#section-7-2">
+          <div>
+            <div class="bullet"><div></div></div>
+            <p>Ekko Infrastructure</p>
+          </div>
+        </a>
+      </li>
+      <li data-section="section-7" class="subitem">
+        <a href="#section-7-3">
+          <div>
+            <div class="bullet"><div></div></div>
+            <p>Connecting an Application to Ekko Server</p>
+          </div>
+        </a>
+      </li>
+      <li data-section="section-7" class="subitem">
+        <a href="#section-7-4">
+          <div>
+            <div class="bullet"><div></div></div>
+            <p>Deploying Ekko Functions</p>
+          </div>
+        </a>
+      </li>
+      <li data-section="section-7" class="subitem">
+        <a href="#section-7-5">
+          <div>
+            <div class="bullet"><div></div></div>
+            <p>Transforming Messages in Realtime</p>
+          </div>
+        </a>
+      </li>
+      <!-- Section 8 -->
+      <li data-section="section-8">
+        <a href="#section-8">
+          <div>
+            <div class="bullet"><div></div></div>
+            <p>Engineering Challenges</p>
+          </div>
+        </a>
+      </li>
+      <li data-section="section-8" class="subitem">
+        <a href="#section-8-1">
+          <div>
+            <div class="bullet"><div></div></div>
+            <p>Authenticating Clients</p>
+          </div>
+        </a>
+      </li>
+      <li data-section="section-8" class="subitem">
+        <a href="#section-8-2">
+          <div>
+            <div class="bullet"><div></div></div>
+            <p>Ekko Function Management</p>
+          </div>
+        </a>
+      </li>
+      <li data-section="section-8" class="subitem">
+        <a href="#section-8-3">
+          <div>
+            <div class="bullet"><div></div></div>
+            <p>Scaling Ekko</p>
+          </div>
+        </a>
+      </li>
+      <!-- Section 9 -->
+      <li data-section="section-9">
+        <a href="#section-9">
+          <div>
+            <div class="bullet"><div></div></div>
+            <p>Load Testing Ekko</p>
+          </div>
+        </a>
+      </li>
+      <!-- Section 10 -->
+      <li data-section="section-10">
+        <a href="#section-10">
+          <div>
+            <div class="bullet"><div></div></div>
+            <p>Future Work</p>
+          </div>
+        </a>
+      </li>
+      <li data-section="section-10" class="subitem">
+        <a href="#section-10-1">
+          <div>
+            <div class="bullet"><div></div></div>
+            <p>Message Persistence</p>
+          </div>
+        </a>
+      </li>
+      <li data-section="section-10" class="subitem">
+        <a href="#section-10-2">
+          <div>
+            <div class="bullet"><div></div></div>
+            <p>Message Encryption</p>
+          </div>
+        </a>
+      </li>
+      <li data-section="section-10" class="subitem">
+        <a href="#section-10-3">
+          <div>
+            <div class="bullet"><div></div></div>
+            <p>In-order Delivery of Messages</p>
+          </div>
+        </a>
+      </li>
+      <!-- Section 11 -->
+      <li data-section="section-11">
+        <a href="#section-11">
+          <div>
+            <div class="bullet"><div></div></div>
+            <p>Conclusion</p>
+          </div>
+        </a>
+      </li>
+    </ul>
+    </aside>
 
-
-  <section id="case-study">
-
-    <!-- CASE STUDY TOC -->
+    
     <div id="case-study-content">
-      
-      <aside id="toc" class="show">
+      <div class="prose">
+        <h1>Case Study</h1>
+        <!-- Section 1 -->
+        <h2 id="section-1">1. Ekko 101</h2>
+        <p>
+          Ekko is an open-source framework that allows developers to easily
+          deploy realtime infrastructure for their applications. Custom
+          serverless functions provide a flexible, modular way to process
+          messages as they pass through the realtime system. It is easy to use
+          our command-line tool to spin up Ekko’s infrastructure, as is
+          deploying serverless functions to process any messages that pass
+          through the realtime system.
+        </p>
+        <p>
+          In this case study, we describe the engineering problem that Ekko
+          solves, that of realtime in-transit message processing. We
+          demonstrate how Ekko works and explain some of the key technical
+          challenges we encountered. Before we get into those details, we want
+          to explain the problem that we sought to address.
+        </p>
+
+        <!-- Section 2 -->
+        <h2 id="section-2">2. Realtime Web Applications</h2>
+        <h3 id="section-2-1">2.1 Realtime Applications are Everywhere</h3>
+        <p>
+          Realtime web applications, or realtime components within bigger
+          monolithic applications, are everywhere.
+        </p>
+        <img
+          class="lazy"
+          data-src="images/diagrams/realtime-is-everywhere.png"
+        />
+        <p>
+          Any live data dashboards, such as stock prices ticking up and down
+          on a website, are examples of realtime web applications. The same
+          applies if you open the Uber app and you see your driver’s car
+          location moving around on the screen, or to simple chat applications
+          where you’re talking back and forth and you see messages as soon as
+          they’re sent to you.
+        </p>
+        <p>
+          These are all very common examples of realtime applications that we
+          see and use every day. In short, users want to automatically get
+          information updates (like messages or geo-locations) without
+          requesting those updates. We see more dynamic and responsive
+          applications being created with the use of these realtime
+          technologies, and alongside that we see application users
+          increasingly expecting realtime data.
+        </p>
+        <h3 id="section-2-2">2.2 Perceived as Instantaneous</h3>
+        <p>
+          In the context of web applications, realtime relates to what the
+          user perceives as happening ‘in real time’.
+        </p>
+        <p>
+          How fast do interactions need to be in order to be perceived as
+          realtime? "Anything under 100 milliseconds," and "anything within a
+          few hundred milliseconds," are the most common statements you'll
+          find when looking into realtime within the context of web
+          applications. (Both of these statements stem from
+          <a
+            href="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6938f6eb-d1de-4d66-8e89-f4e8b80b5222/Miller1968.pdf"
+            target="_blank"
+            >Robert Miller’s 1968 paper</a
+          >, "Response time in man-computer conversational transactions”.)
+        </p>
+
+        <video autoplay loop muted playsinline>
+          <source
+            src="images/diagrams/what-is-realtime.mp4"
+            type="video/mp4"
+          />
+        </video>
+        <p>
+          As one of the leading service providers in the realtime space,
+          PubNub,
+          <a
+            href="https://www.pubnub.com/blog/comprehensive-guide-realtime-tech-stack/"
+            target="_blank"
+            >has stated</a
+          >:
+        </p>
+        <blockquote>
+          “In almost all cases, a realtime interaction has a human angle,
+          because one of the collaborators in any realtime data exchange is
+          always a human. Even in a machine to machine interaction, there is a
+          human sitting at the back, receiving feedback. Hence the human
+          perception of a realtime event is very important.”
+        </blockquote>
+        <p>
+          The meaning of realtime is different in industries such as
+          healthcare and aerospace -- so-called ‘hard’ realtime -- where it is
+          specifically used to refer to systems that human lives can depend
+          on. This is not the type of realtime that we are addressing.
+          Instead, we are focusing on realtime web applications which are
+          specifically concerned with the user’s perception of
+          “instantaneous.”
+        </p>
+        <p>
+          Next, let's consider some of the most common communication patterns
+          for realtime web applications.
+        </p>
+
+        <!-- Section 3 -->
+        <h2 id="section-3">3. How is Realtime Implemented</h2>
+        <p>
+          There are many ways to implement realtime in an application. In this
+          section, we will explore a common way to achieve realtime
+          functionality for an app with many publishers and many subscribers.
+        </p>
+
+        <h3 id="section-3-1">3.1 Data Transfer Patterns: Pulling Data</h3>
+        <p>
+          At the bedrock of web communication we have traditional HTTP request
+          response cycles, and along with it the idea of pulling data.
+        </p>
+
+        <video autoplay loop muted playsinline>
+          <source src="images/diagrams/data-pull.mp4" type="video/mp4" />
+        </video>
+        <p>
+          When you pull data, you have data that lives in a database
+          somewhere. This data isn’t retrieved until a client explicitly makes
+          a request for the data, at which point the server responds.
+        </p>
+        <p>
+          As we mentioned before, realtime applications automatically update
+          users, without the user requesting the update. So, realtime apps
+          tend not to use a data pull pattern.
+        </p>
+
+        <h3 id="section-3-2">3.2 Data Transfer Patterns: Pushing Data</h3>
+        <p>The pull pattern is distinct from the push pattern.</p>
+
+        <video autoplay loop muted playsinline>
+          <source src="images/diagrams/data-push.mp4" type="video/mp4" />
+        </video>
+        <p>
+          In the data push pattern, the client often starts with an initial
+          request but it keeps that connection open. Now whenever new data is
+          generated, it is immediately sent, or “pushed”, to the client over
+          the open connection.
+        </p>
+        <p>
+          This is the data transfer pattern that realtime applications use:
+          users receive updates automatically, without requesting them.
+        </p>
+        <p>
+          The Pub/Sub model is commonly used to describe the broad set of
+          behaviors associated with this data push pattern.
+        </p>
+
+        <h3 id="section-3-3">3.3 Messaging Pattern: 1:1 Pub/Sub</h3>
+        <p>
+          Within the Pub/Sub pattern, you will see that we no longer model
+          things in terms of servers and clients. We now have ‘publishers’ and
+          ‘subscribers’, and the pattern is focused specifically on their
+          actual roles in the interaction.
+        </p>
+
+        <video autoplay loop muted playsinline>
+          <source src="images/diagrams/pubsub-1.mp4" type="video/mp4" />
+        </video>
+        <p>
+          We represent them both as browsers on iPads, but the actual hardware
+          doesn’t really matter. Anything that was traditionally a server or a
+          client can act as a publisher or a subscriber.
+        </p>
+        <p>
+          Within the Pub/Sub model we no longer talk about data being stored
+          or data being sent. Instead we think about data in terms of messages
+          being sent from publishers to subscribers. Those messages, in turn,
+          are sent or published to ‘channels’; in some contexts these are
+          referred to as ‘topics’, ‘queues’, or ‘rooms’.
+        </p>
+        <p>
+          Above is an example of a one-to-one Pub/Sub pattern. We have a
+          single publisher generating messages and sending them to a single
+          subscriber. If we take this example one step further, we can see
+          that the Pub/Sub model can also be used for one to many messaging.
+        </p>
+        <h3 id="section-3-4">3.4 Messaging Pattern: 1:M Pub/Sub</h3>
+
+        <video autoplay loop muted playsinline>
+          <source src="images/diagrams/pubsub-2.mp4" type="video/mp4" />
+        </video>
+        <p>
+          With this new pattern, we still have a single publisher on the left,
+          but now we have three subscribers on the right. Whenever the
+          publisher generates new messages, it sends them over to the
+          subscribers.
+        </p>
+        <p>
+          We can take this pattern even further, with a many-to-many Pub/Sub
+          messaging pattern.
+        </p>
+        <h3 id="section-3-5">3.5 Messaging Pattern: M:M Pub/Sub</h3>
+        <img class="lazy" data-src="images/diagrams/pubsub-3.png" />
+        <p>
+          Looking at this diagram, it is easy to see how things can get
+          complicated very quickly. There are peer-to-peer protocols that are
+          specifically designed to support this many-to-many Pub/Sub pattern.
+          However, a centralized hub is the most common way to manage
+          connections for realtime applications with many publishers and
+          subscribers.
+        </p>
+        <h3 id="section-3-6">3.6 Messaging Pattern: Pub/Sub Hub</h3>
+        <p>
+          With this pattern, each of the publishers and subscribers have a
+          single realtime connection to the central hub.
+        </p>
+
+        <video autoplay loop muted playsinline>
+          <source src="images/diagrams/pubsub-4.mp4" type="video/mp4" />
+        </video>
+        <p>
+          When a publisher sends a message it goes to the hub and then it is
+          emitted to all relevant subscribers.
+        </p>
+        <p>
+          There is one final pattern that we commonly find in the world of
+          Pub/Sub: bi-directional communication.
+        </p>
+        <h3 id="section-3-7">
+          3.7 Messaging Pattern: Bi-directional Pub/Sub
+        </h3>
+        <p>
+          So far we have only seen examples of clients being a publisher
+          <em>or</em> a subscriber, but within realtime web applications it is
+          very common for devices to be <em>both</em> publishers and
+          subscribers.
+        </p>
+
+        <video autoplay loop muted playsinline>
+          <source src="images/diagrams/pubsub-5.mp4" type="video/mp4" />
+        </video>
+        <p>
+          If we take the common use case of a chat application, a user is a
+          publisher whenever they send messages, and a subscriber when they
+          receive them. In the above example we show various devices
+          publishing messages. These messages go to the central hub and are
+          then emitted to all relevant subscribers.
+        </p>
+        <p>
+          Now, we’ll look at why Websockets is the protocol of choice for a
+          realtime applications that use a Pub/Sub hub.
+        </p>
+        <h3 id="section-3-8">3.8 WebSockets</h3>
+        <p>
+          There are a number of communication protocols that can be used to
+          build a real time application including HTTP derivatives, WebRTC,
+          WebTransport, and WebSockets. But for our use case, realtime
+          applications that have a hub which manages the realtime messages of
+          many publishers and subscribers, WebSockets is the logical, and most
+          common choice.
+        </p>
+        <img class="lazy" data-src="images/diagrams/protocols.png" />
+        <p>
+          The need for bi-directional communication rules out the HTTP
+          options; there are some (hacky) workarounds to get these to simulate
+          bi-directional communication, but it would not be considered a
+          typical implementation. WebRTC is a peer-to-peer protocol but isn’t
+          used for a central hub. WebTransport could work, but as of the time
+          of this writing, it is still an emerging technology that is not
+          typically used in production applications.
+        </p>
+        <p>
+          WebSockets, on the other hand, handle all of the above requirements.
+          This protocol is now supported in essentially
+          <a href="https://caniuse.com/websockets" target="_blank"
+            >every modern browser</a
+          >
+          and there are solid open-source libraries that exist to handle
+          common use cases like
+          <a href="https://socket.io" target="_blank">SocketIO</a>.
+        </p>
+        <p>
+          The Pub/Sub hub outlined above has the complicated task of managing
+          WebSocket connections and messages for many publishers and
+          subscribers. In the next section, we will explain why this Pub/Sub
+          hub should be treated as a separate service that is often provided
+          by a third party.
+        </p>
+
+        <!-- Section 4 -->
+        <h2 id="section-4">4. Dedicated Infrastructure for Realtime</h2>
+        <p>
+          At first glance, implementing realtime functionality for an
+          application is fairly simple. A library (like
+          <a href="https://socket.io" target="_blank">SocketIO</a>) can be
+          installed to manage Websocket connections and realtime messages.
+          This works well for a small application, with a small number of
+          publishers and subscribers. But eventually, coupling application
+          code with realtime management code (all on the same server) becomes
+          problematic.
+        </p>
+        <p>
+          As a realtime application becomes popular, the app server will need
+          to manage an increasing volume of realtime messages. Eventually, the
+          message load will become too great and (potentially) cause the app
+          server to crash.
+        </p>
+
+        <video autoplay loop muted playsinline style="width: 270px">
+          <source
+            src="images/diagrams/separate-realtime-1.mp4"
+            type="video/mp4"
+          />
+        </video>
+
+        <p>
+          The initial response might be to vertically scale, adding more
+          compute power to the app server. This works, up to a point, but it
+          eventually becomes evident that these two components -- the app code
+          and the realtime management code -- have different scaling needs.
+          Therefore, they should be treated as two separate services -- with
+          different compute needs -- that exist on two different servers.
+        </p>
+
+        <video autoplay loop muted playsinline style="width: 570px">
+          <source
+            src="images/diagrams/separate-realtime-2.mp4"
+            type="video/mp4"
+          />
+        </video>
+
+        <p>
+          Treating realtime as a separate service becomes increasingly
+          important when building multiple realtime applications. If realtime
+          management is not a separate service, both applications will contain
+          a redundant realtime management component. A separate realtime
+          service on the other hand, can manage the realtime messages for both
+          applications, without the need for redundant code.
+        </p>
+        <img class="lazy" data-src="images/diagrams/realtime-service.png" />
+        <p>
+          When realtime applications become more popular, the realtime
+          management component may need to scale at a different rate than the
+          rest of the application. A separate realtime service can scale
+          independently from the applications themselves, eliminating the need
+          to scale up an entire monolithic application.
+        </p>
+        <p>
+          At first, a realtime service can be scaled vertically, adding more
+          compute power to the existing server. But, at a certain point,
+          vertical scaling reaches a limit and becomes financially infeasible.
+          Now, the only option is to horizontally scale the realtime service.
+        </p>
+        <p>
+          A horizontally-scaled realtime service introduces new problems as a
+          result of WebSocket connections now being distributed across
+          multiple server instances. (We will explain more about these
+          challenges later.)
+        </p>
+        <p>
+          It’s at this point that developers often not only need a separate
+          realtime service, but a realtime infrastructure-as-a-service
+          provider. This way, developers can focus on building their realtime
+          applications rather than managing realtime infrastructure.
+        </p>
+        <p>
+          To summarise, having dedicated infrastructure for realtime offers:
+        </p>
         <ul>
-          <li data-section="Introduction">
-            <a href="#section-1-Introduction">Introduction</a>
+          <li>
+            <strong>Flexibility</strong> (by decoupling the realtime needs
+            from that of the application, you can scale each part up and down
+            as needed)
           </li>
-  
-          <li class="subitem" data-section="Introduction">
-            <a href="#section-1-1-Terms">Terms</a>
+          <li>
+            <strong>Less Complexity</strong> (separating out the services
+            means that you have a better sense of what each part is doing;
+            developers can focus on their applications instead of
+            infrastructure)
           </li>
-  
-          <li data-section="The Problem">
-            <a href="#section-2-The-Problem">The Problem</a>
-          </li>
-  
-          <li class="subitem" data-section="The Problem">
-            <a href="#section-2-1-Deploy-Previews">Deploy Previews</a>
-          </li>
-  
-          <li class="subitem" data-section="The Problem">
-            <a href="#section-2-2-Limitations-of-Deploy-Previews"
-              >Limitations of Deploy Previews</a
-            >
-          </li>
-  
-          <li data-section="Existing Solutions">
-            <a href="#section-3-Existing-Solutions">Existing Solutions</a>
-          </li>
-  
-          <li class="subitem" data-section="Existing Solutions">
-            <a href="#section-3-1-Deploy-Previews-as-a-Feature"
-              >Deploy Previews as a Feature</a
-            >
-          </li>
-  
-          <li class="subitem" data-section="Existing Solutions">
-            <a href="#section-3-2-Livecycle">Livecycle</a>
-          </li>
-  
-          <li class="subitem" data-section="Existing Solutions">
-            <a href="#section-3-3-DIY">DIY</a>
-          </li>
-  
-          <li data-section="Introducing Campfire">
-            <a href="#section-4-Introducing-Campfire">Introducing Campfire</a>
-          </li>
-  
-          <li class="subitem" data-section="Introducing Campfire">
-            <a href="#section-4-1-Who-Campfire-is-For">Who Campfire is For</a>
-          </li>
-  
-          <li class="subitem" data-section="Introducing Campfire">
-            <a href="#section-4-2-Campfire-Features">Campfire Features</a>
-          </li>
-  
-          <li data-section="Developing Campfire">
-            <a href="#section-5-Developing-Campfire">Developing Campfire</a>
-          </li>
-  
-          <li class="subitem" data-section="Developing Campfire">
-            <a href="#section-5-1-Automating-Deploy-Previews"
-              >Automating Deploy Previews</a
-            >
-          </li>
-  
-          <li class="subitem" data-section="Developing Campfire">
-            <a href="#section-5-2-Accessing-Deploy-Previews"
-              >Accessing Deploy Previews</a
-            >
-          </li>
-  
-          <li class="subitem" data-section="Developing Campfire">
-            <a href="#section-5-3-Feedback-Interface">Feedback Interface</a>
-          </li>
-  
-          <li class="subitem" data-section="Developing Campfire">
-            <a href="#section-5-4-Data-Storage">Data Storage</a>
-          </li>
-  
-          <li data-section="Future Work">
-            <a href="#section-7-Future-Work">Future Work</a>
-          </li>
-  
-          <li data-section="References">
-            <a href="#section-8-References">References</a>
+          <li>
+            <strong>Specialization Benefits</strong> (each part is able to do
+            what it does best, without interference from anything else, and
+            you can optimise for each particular service)
           </li>
         </ul>
-      </aside>
-      <!-- CASE STUDY SECTIONS -->
-      <article>
-        <section id="section-1-Introduction" data-section="Introduction">
-          <h1>1 - Introduction</h1>
-          <p>
-            Campfire is an open-source, self-hosted, collaborative
-            deploy-preview solution for containerized, headless frontends.
-            Much like the way an actual campfire brings people together to
-            trade stories, Campfire aims to be a central place for
-            cross-functional teams to visually review and discuss proposed
-            code changes or bug fixes early in the software development cycle.
-          </p>
-          <p>
-            <img
-              src="images/case-study/01.png"
-              alt="Campfire brings teams together"
-            />
-          </p>
-          <p>
-            Campfire generates a deploy preview for each pull request,
-            showcasing the latest commit with the proposed changes, which can
-            be accessed through a public URL. The URL directs users to their
-            deploy preview, equipped with Campfire's suite of comprehensive
-            feedback tools.
-          </p>
-          <p>
-            Integrating a feedback interface directly into the deploy preview
-            simplifies collaboration between teams and addresses common
-            bottlenecks that delay project timelines.
-          </p>
-        </section>
-  
-        <section id="section-1-1-Terms" data-section="Terms">
-          <h2>1.1 - Terms</h2>
-          <p>
-            In this case study, we'll frequently reference the following
-            technical terms:
-          </p>
-          <ul>
-            <li>
-              <strong>Client App</strong> - The codebase of the user,
-              retrieved from the repository when initiating a new pull request
-              or when a new commit is made to the same pull request.
-            </li>
-            <li>
-              <p>
-                <strong>Deploy Preview</strong> - The ephemeral infrastructure
-                provisioned to host a live preview of the Client App for each
-                pull request. Also known as ephemeral environments, preview
-                environments, or preview apps.
-              </p>
-            </li>
-            <li>
-              <p>
-                <strong>Feedback Interface</strong> - A relatively new
-                component of some deploy preview solutions, which provides an
-                overlay for user collaboration and feedback on the previewed
-                changes.
-              </p>
-            </li>
-          </ul>
-        </section>
-  
-        <section id="section-2-The-Problem" data-section="The Problem">
-          <h1>2 - The Problem</h1>
-          <p>
-            In the early days of web development, software engineers often
-            made live changes directly on production servers, a risky practice
-            that could easily break the website or service.
-          </p>
-          <p>
-            As the industry matured, developers began adopting version control
-            systems like Git and SVN to better manage and track code changes.
-            However, these systems did not solve the problem of testing
-            changes in a controlled environment before production deployment.
-            <br />
-            <a class="reference" href="#section-8-References">1</a>
-            <a class="reference" href="#section-8-References">2</a>
-          </p>
-          <p>
-            The rise of agile development and continuous
-            integration/continuous deployment (CI/CD) practices led to the
-            adoption of staging environments. These environments allowed teams
-            to test code in settings that closely mirrored their production
-            environment, enabling them to identify and fix bugs without
-            affecting the live application. Despite the benefits, staging
-            environments introduced significant bottlenecks. Multiple
-            developers often pushed their changes to a single staging
-            environment simultaneously, leading to conflicts and resource
-            contention. This not only caused delays and increased security
-            risks but also led to bugs and higher operational costs.
-            <a class="reference" href="#section-8-References">3</a>
-          </p>
-          <p>
-            <img
-              src="images/case-study/staging-blocked.png"
-              alt="Bottleneck"
-            />
-          </p>
-          <p>
-            The process of resolving bugs found in staging involves several
-            structured steps, especially when using tools like GitHub:
-          </p>
-          <ol>
-            <li>
-              <strong>Branch Creation</strong> - Developers create a new
-              branch from the main codebase, allowing them to address bugs
-              without impacting the stable production version.
-            </li>
-            <li>
-              <strong>Commit Changes</strong> - Necessary fixes are made and
-              committed to the branch, with detailed commit messages
-              explaining the changes.
-            </li>
-            <li>
-              <strong>Push to Repository</strong> - The branch is then pushed
-              to the remote repository on GitHub.
-            </li>
-            <li>
-              <strong>Create Pull Request</strong> - A pull request is opened
-              against the main branch for merging the fixes and facilitating
-              code review.
-            </li>
-            <li>
-              <strong>Code Review and Approval</strong> - The pull request is
-              reviewed by team members who may suggest or request changes.
-            </li>
-            <li>
-              <strong>Merge and Deploy to Staging</strong> - After approval,
-              the changes are merged and deployed to the staging environment
-              to verify the bug fix.
-            </li>
-            <li>
-              <strong>Testing in Staging</strong> - The application is tested
-              in staging to ensure the fix is effective and no new issues have
-              arisen.
-            </li>
-            <li>
-              <strong>Push to Production</strong> - Once confirmed, the
-              changes are deployed to production.
-            </li>
-            <li>
-              <strong>Monitoring</strong> - Post-deployment the application is
-              monitored for any unexpected issues.
-            </li>
-          </ol>
-          <p>
-            If bugs are detected during staging tests, the process from branch
-            creation to staging deployment may need to be repeated to ensure
-            all issues are thoroughly addressed.
-            <br />
-            <a class="reference" href="#section-8-References">4</a
-            ><a class="reference" href="#section-8-References">5</a
-            ><a class="reference" href="#section-8-References">6</a>
-          </p>
-          <p>
-            Historically, non-engineering team members such as UI designers,
-            QA testers, marketers, and product managers had limited
-            opportunities to view and provide feedback on proposed changes
-            until late in the development process. Often, they only saw these
-            changes when they were moved to the staging or production
-            environments.
-          </p>
-          <p>
-            This delay not only prevented timely feedback that could influence
-            design and functionality but also excluded these key stakeholders
-            from early stages of project discussions. Additionally, the lack
-            of a dedicated feedback mechanism in earlier development stages
-            meant that their insights, which could significantly impact user
-            experience and product success, were often underutilized or
-            solicited too late to make meaningful adjustments without
-            time-consuming revisions.
-            <a class="reference" href="#section-8-References">7</a>
-          </p>
-          <p>
-            <img
-              src="images/case-study/02.png"
-              alt="Before deploy previews dev cycle"
-            />
-          </p>
-        </section>
-  
-        <section
-          id="section-2-1-Deploy-Previews"
-          data-section="Deploy Previews"
+        <h3 id="section-4-1">4.1 Existing Solutions</h3>
+        <img class="lazy" data-src="images/diagrams/brands.png" />
+        <p>
+          Companies like
+          <a href="https://www.pubnub.com" target="_blank">PubNub</a>,
+          <a href="https://ably.com" target="_blank">Ably</a> and
+          <a href="https://pusher.com" target="_blank">Pusher</a>, three of
+          the major providers of realtime infrastructure-as-a-service, cater
+          to this need for a managed realtime infrastructure. They
+          <a href="https://www.pubnub.com/company/" target="_blank"
+            >advocate</a
+          >
+          decoupling realtime infrastructure from your application code “so
+          that product development teams can focus on innovation instead of
+          infrastructure.”
+        </p>
+        <blockquote>
+          “so that product development teams can focus on innovation instead
+          of infrastructure.” - PubNub
+        </blockquote>
+        <p>
+          These services host all required infrastructure needed for realtime
+          functionality, managing scaling and all the other concerns that take
+          developers away from focusing on their realtime apps. Developers
+          simply connect to their API endpoints and route all realtime data
+          through that service.
+        </p>
+        <p>
+          There are also self-deployable options for realtime infrastructure
+          which accordingly offer more control, albeit at the potential
+          expense of more configuration and deployment issues.
+        </p>
+
+        <!-- Section 5 -->
+        <h2 id="section-5">5. Realtime Middleware</h2>
+        <p>
+          There’s one last important component of realtime that has not been
+          mentioned. Realtime messages often require in-transit message
+          processing. When a message is published, it might need to undergo
+          some type of analysis or transformation before being received by
+          subscribed clients.
+        </p>
+        <h3 id="section-5-1">5.1 Realtime Middleware is Everywhere</h3>
+        <p>
+          The general pattern of performing some kind of computation on
+          realtime messages is widespread.
+        </p>
+        <p>Here are some examples of common realtime middleware uses:</p>
+        <ul>
+          <li>Filtering profanity out of chat messages</li>
+          <li>
+            Enriching latitude/longitude coordinates with the demographic
+            information of that area
+          </li>
+          <li>Translating a message in a chat app to a different language</li>
+          <li>Performing sentiment analysis on text with machine learning</li>
+          <li>Routing payment information to third parties such as Stripe</li>
+          <li>Responding to messages with chat bots</li>
+          <li>Sending alerts, given a particular trigger / condition</li>
+        </ul>
+        <img
+          class="lazy"
+          data-src="images/diagrams/realtime-categories.png"
+        />
+        <p>
+          Some real-world examples of this middleware being used for specific
+          services include:
+        </p>
+        <ul>
+          <li>
+            <a
+              href="https://www.youtube.com/watch?v=BCpReEEV9i8"
+              target="_blank"
+              >A large beverage company</a
+            >
+            that made a chat app for a big sporting event. They wanted to
+            filter any mention of their competitor out of the chat. So they
+            sent every message down to their servers which they had to spin up
+            and scale, strip out the name of their competitor, replace it with
+            their name, and republish the message back out.
+          </li>
+          <li>
+            <a href="https://ably.com/case-studies/guild" target="_blank"
+              >Guild</a
+            >, a professional messaging/chat app, uses realtime middleware to
+            handle event-based triggers for their users
+          </li>
+          <li>
+            <a href="https://ably.com/case-studies/onedio" target="_blank"
+              >Onedio</a
+            >, an HQ-trivia app for 1 million players, uses realtime
+            middleware to route messages to AWS’ SQS with extremely low
+            latency, something they likely wouldn’t have been able to support
+            without it.
+          </li>
+        </ul>
+        <p>
+          This need for realtime middleware was recognized by both of the
+          major realtime infrastructure-as-a-service providers, PubNub and
+          Ably. Both companies observed that their customers often needed to
+          perform a small bit of processing on their realtime messages.
+        </p>
+        <blockquote>
+          “A common requirement in realtime messaging applications is to be
+          able to insert some business logic into a message processing
+          pipeline.” -<a
+            href="https://ably.com/blog/why-we-dont-offer-functions"
+            target="_blank"
+            >Ably</a
+          >
+        </blockquote>
+        <h3 id="section-5-2">5.2 The Realtime Middleware Antipattern</h3>
+        <p>
+          PubNub and Ably recognized the need for realtime middleware when
+          they noticed
+          <a
+            href="https://www.youtube.com/watch?v=BCpReEEV9i8&ab_channel=PubNub"
+            target="_blank"
+            >an interesting anti-pattern</a
+          >
+          emerge with how their customers were using their services.
+        </p>
+
+        <video autoplay loop muted playsinline>
+          <source
+            src="images/diagrams/recognized-need.mp4"
+            type="video/mp4"
+          />
+        </video>
+        <p>
+          Recall that PubNub and Ably’s services allow customers to decouple
+          their application infrastructure from their realtime infrastructure
+          as described above. However, they observed the users of their
+          services were sending every single message down to their own app
+          servers to perform some kind of processing or compute on those
+          messages. This reintroduced a lot of the same problems that existed
+          when things were tightly coupled. Now their customers found they had
+          to pay closer attention to the scaling needs of their service as it
+          became overburdened with this increased load.
+        </p>
+        <blockquote>
+          "You see everyone publishing down to their servers doing a small
+          little bit of processing and then publishing the message right back
+          out... It doesn't make sense to be funneling all of your data back
+          down to a small number of servers, scale those out as needed,
+          process and then republish back out... so, this [PubNub Functions]
+          is absolutely required." (PubNub CEO, Todd Greene)
+        </blockquote>
+        <h3 id="section-5-3">5.3 Existing Solutions</h3>
+        <p>
+          PubNub and Ably set out to solve this problem by offering realtime
+          middleware as part of their real time infrastructure-as-a-service.
+          To understand the solution that both companies landed on, it helps
+          to understand the requirements that this realtime middleware has.
+        </p>
+        <ol>
+          <li>It needs to be easy for developers to use and update</li>
+          <li>It needs to exist in a secure environment</li>
+          <li>
+            Each piece of middleware needs to be modular, reusable, and
+            independently scalable
+          </li>
+        </ol>
+        <p>
+          The reasons for these requirements can be easily understood with an
+          example.
+        </p>
+        <p>
+          Imagine that a developer is building multiple realtime apps that are
+          completely unrelated, for example a chat app that filters out
+          profanity from all its messages and a geolocation app that
+          transforms GPS coordinates to directions. Later, they find that they
+          have European users and want to translate messages from both apps to
+          several European languages. This developer also plans on building
+          more realtime apps in the future, with either completely new
+          features and/or possibly reusing previously-created middleware.
+        </p>
+
+        <video autoplay loop muted playsinline>
+          <source
+            src="images/diagrams/middleware-reuse.mp4"
+            type="video/mp4"
+          />
+        </video>
+        <p>
+          It is helpful to think of these realtime middlewares as separate
+          services. In the above example, there is a profanity filter service,
+          a directions service, and various language translation services.
+          Each middleware only needs to perform some small amount of
+          processing, but needs to be able to scale up and down,
+          independently, on demand.
+        </p>
+
+        <video autoplay loop muted playsinline>
+          <source
+            src="images/diagrams/middleware-scaling.mp4"
+            type="video/mp4"
+          />
+        </video>
+        <p>
+          There are four places that a realtime infrastructure-as-a-service
+          provider could put realtime middleware:
+        </p>
+        <ol>
+          <li>In the client-side code</li>
+          <li>In the server-side code</li>
+          <li>On a dedicated server for realtime middleware</li>
+          <li>In Serverless Functions</li>
+        </ol>
+        <img class="lazy" data-src="images/diagrams/middleware-where-1.png" />
+        The first option, putting realtime middleware in client-side code, is
+        a non-starter. Putting business logic in client-side code is not a
+        good practice because it introduces performance problems and security
+        concerns. In the
+        <a
+          href="https://softwareengineeringdaily.com/wp-content/uploads/2018/04/SED554-Pubsub-Infrastructure.pdf"
+          target="_blank"
+          >words</a
         >
-          <h2>2.1 - Deploy Previews</h2>
-          <p>
-            Deploy previews were introduced as a solution to streamline the
-            code review process, allowing engineers to view changes earlier in
-            the development process without the need to manually pull down
-            code or wait for access to a staging environment. This drastically
-            shortened the cycle between identifying bugs and deploying fixes,
-            enabling faster iterations and more efficient development.
-          </p>
-          <p>
-            Deploy previews also provided an accessible platform for
-            non-engineering team members to view proposed changes. This
-            expanded the review process to a broader group of stakeholders and
-            enabled collaboration across different teams. Despite their
-            effectiveness in demonstrating code changes, deploy previews
-            initially lacked integrated tools for submitting feedback directly
-            within the previews.
-          </p>
-          <p>
-            <img
-              src="images/case-study/03.png"
-              alt="Introduction of deploy previews into dev cycle"
-            />
-          </p>
-        </section>
-  
-        <section
-          id="section-2-2-Limitations-of-Deploy-Previews"
-          data-section="Limitations of Deploy Previews"
-        >
-          <h2>2.2 - Limitations of Deploy Previews</h2>
-          <p>
-            While deploy previews were adept at showcasing code changes, they
-            lacked an interface to provide feedback to the proposed changes
-            within the same application. This forced users to use third-party
-            tools to provide feedback on the proposed changes, like Slack and
-            GitHub for comments or Loom and Zight (formerly CloudApp) for
-            screen recordings, or Zoom for synchronous video calls. The
-            absence of a unified feedback interface often led to scattered
-            comments across many different platforms, complicating the
-            aggregation and tracking of feedback, and often causing the
-            context to be lost.
-          </p>
-          <p>
-            Comments made across multiple different platforms led to
-            disjointed communication, complicating the feedback process. Even
-            if developers consolidated discussions on GitHub, non-engineering
-            team members, such as project managers, designers, and QA
-            personnel, were often left out of the loop. They often don’t have
-            GitHub accounts and would seek a straightforward way to comment on
-            visual changes. Not having a built-in, accessible feedback system
-            in deploy previews made it harder to collaborate and quickly fix
-            problems.
-            <a class="reference" href="#section-8-References">8</a>
-          </p>
-          <p>
-            <img
-              src="images/case-study/04.png"
-              alt="Overwhelmed and frustrated developer"
-            />
-          </p>
-        </section>
-  
-        <section
-          id="section-3-Existing-Solutions"
-          data-section="Existing Solutions"
-        >
-          <h1>3 - Existing Solutions</h1>
-          <p>
-            Several solutions have recently been developed to add a
-            communication layer to deploy previews, making collaboration more
-            accessible for non-technical team members. Services like Netlify
-            Drawer, Vercel Comments, and Livecycle have attempted to bridge
-            this gap by offering built-in tools for capturing feedback when
-            the user is viewing proposed changes. Each of these services
-            presents different tradeoffs, particularly in terms of hosting
-            options, whether they are open-source, and the ease of setup and
-            use.
-          </p>
-        </section>
-  
-        <section
-          id="section-3-1-Deploy-Previews-as-a-Feature"
-          data-section="Deploy Previews as a Feature"
-        >
-          <h2>3.1 - Deploy Previews as a Feature</h2>
-          <p>
-            Netlify and Vercel integrate deploy previews within their broader
-            suite of services, providing a production-like view of changes
-            pre-deployment. Netlify, primarily a host for static sites and
-            supports Jamstack projects, includes Netlify Drawer as a feature
-            available for their deploy previews. Similarly, Vercel is tailored
-            for frontend frameworks like Next.js, incorporating Vercel
-            Comments into its regular services, so that non-engineering team
-            members have the ability to provide feedback on their team’s
-            deploy previews.
-          </p>
-          <p>
-            Netlify Drawer enhances Netlify’s deploy previews with a feedback
-            toolbar for screenshots, recordings, and comments. The Drawer
-            comment feature allows for synchronizing feedback between the
-            deploy preview and GitHub. Comments can be posted by Netlify
-            Drawer’s bot if the user does not have a GitHub account.. This
-            integration includes the user’s browser metadata in comments,
-            providing context in order to make it easier for developers to
-            recreate and fix any potential bugs.
-          </p>
-          <p>
-            Vercel’s Comments leverage Liveblocks, a third-party real-time
-            collaboration tool, allowing users to attach comments directly to
-            UI elements. This integration improves feedback by allowing more
-            interactive and detailed discussions. Unlike Netlify, Vercel syncs
-            their comments with Slack rather than GitHub.
-          </p>
-          <div class="multiple-images">
-            <p>
-              <img
-                src="images/case-study/vercel-comments.png"
-                alt="Screenshot of Vercel's Comments"
-                data-group="preview-as-a-feature"
-              />
-            </p>
-            <p>
-              <img
-                src="images/case-study/netlify-drawer.png"
-                alt="Client requesting resources using path routing from the application load balancer"
-                data-group="preview-as-a-feature"
-              />
-            </p>
-          </div>
-  
-          <p>
-            These services, while feature-rich, come with the caveat of
-            requiring full application hosting on their platforms, limiting
-            flexibility for teams who prefer independent control over their
-            deployment.
-          </p>
-        </section>
-  
-        <section id="section-3-2-Livecycle" data-section="Livecycle">
-          <h2>3.2 - Livecycle</h2>
-          <p>
-            Livecycle's preview environments are the core of their project
-            offering. Livecycle offers a unique combination of deploy previews
-            and collaborative tools through its products, Preevy and a product
-            also named Livecycle. Preevy manages preview environments via
-            CI/CD workflows or an SDK for external hosting. Livecycle
-            integrates a feedback interface enabling commenting, HTML/CSS
-            suggestions, and visual edit comparisons. Additionally, Livecycle
-            provides debugging tools like screen size adjustments, rudimentary
-            dev tools, and console access. Its session replay feature
-            automatically captures user interactions within the preview
-            environment, offering a replayable video that begins recording
-            from the moment the user visits the deploy preview.
-          </p>
-          <p>
-            <img
-              src="images/case-study/livecycle.png"
-              alt="screenshot of livecycle(cropped)"
-            />
-          </p>
-        </section>
-  
-        <section id="section-3-3-DIY" data-section="DIY">
-          <h2>3.3 - DIY</h2>
-          <p>
-            A custom-built deploy preview solution offers a team complete
-            control over their development and review process. This building
-            process can be divided into two main parts: the deploy preview
-            functionality and the feedback system, together encompassing up to
-            40 steps or more.
-          </p>
-          <p>
-            Implementing such a custom solution requires dedicated teams of
-            engineers, integration with existing tools, and ongoing
-            maintenance. The complexity and resource demands can make it
-            overwhelming and impractical for organizations lacking extensive
-            technical expertise in automating workflows and managing cloud
-            service resources.
-          </p>
-          <p>
-            <img
-              src="images/case-study/05.png"
-              alt="Exhaustive list of steps for DIY"
-            />
-          </p>
-        </section>
-  
-        <section
-          id="section-4-Introducing-Campfire"
-          data-section="Introducing Campfire"
-        >
-          <h1>4 - Introducing Campfire</h1>
-          <p>
-            Campfire removes the trouble of building a DIY solution from
-            scratch while still providing organizations control over their
-            data, and allowing integration into an existing CI/CD pipeline.
-            Our primary goal was to design a feedback interface that
-            integrates seamlessly with the deploy preview, ensuring
-            stakeholders can provide feedback without switching contexts. This
-            interface supports comments and session replays and allows the
-            capture of contextual data to enhance understanding. Although not
-            as feature and integration-rich as solutions like Livecycle,
-            Netlify Drawer, and Vercel, Campfire offers an open-source
-            alternative with comments that sync to a GitHub pull request and
-            the ability to record sessions, providing context-rich feedback
-            directly within the deploy preview.
-          </p>
-          <p>
-            <img
-              src="images/case-study/tradeoffs-table.png"
-              alt="Table comparing existing deploy preview solutions"
-            />
-          </p>
-        </section>
-  
-        <section
-          id="section-4-1-Who-Campfire-is-For"
-          data-section="Who Campfire is For"
-        >
-          <h2>4.1 - Who Campfire is For</h2>
-          <p>
-            Campfire is designed to support front-end applications that meet
-            the following criteria:
-          </p>
-          <ul>
-            <li>Hosted on GitHub</li>
-            <li>Contain a Dockerfile</li>
-            <li>
-              Operate independently of a backend or interact with an external
-              backend via APIs.
-            </li>
-            <li>Targeted towards small or early-stage teams</li>
-          </ul>
-          <p>
-            Campfire is not designed to support the following types of
-            applications:
-          </p>
-          <ul>
-            <li>Hosted on GitLab or other developer platforms</li>
-            <li>
-              Require a container image to be generated from source code
-            </li>
-            <li>Monolithic architecture</li>
-            <li>Multi-container applications</li>
-          </ul>
-        </section>
-  
-        <section
-          id="section-4-2-Campfire-Features"
-          data-section="Campfire Features"
-        >
-          <h2>4.2 - Campfire Features</h2>
-          CLI tool to simplify the installation and configuration of Campfire:
-          <div class="gif">
-            <img
-              src="images/features/campfire-cli-clip.gif"
-              alt="GIF of CLI"
-            />
-          </div>
-          Integration with GitHub automates the creation, update, and
-          dismantling of preview environments:
-          <div class="gif">
-            <img
-              src="images/features/pull-request.gif"
-              alt="GIF of pull request"
-            />
-          </div>
-          Looks Good to Me (LGTM) Button to quickly approve changes with a
-          simple acknowledgment (and confetti):
-          <div class="gif">
-            <img
-              src="images/case-study/LGTM-side-by-side.gif"
-              alt="GIF of LGTM feature with github"
-            />
-          </div>
-          Comments provide feedback directly on the deploy preview and sync
-          with the GitHub pull request:
-          <div class="gif">
-            <img
-              src="images/case-study/comments-side-by-side.gif"
-              alt="GIF of comment feature with github"
-            />
-          </div>
-          Session Replay to capture user interactions in real-time to
-          demonstrate issues:
-          <div class="gif">
-            <img
-              src="images/features/session-replay.gif"
-              alt="GIF of session replay feature"
-            />
-          </div>
-        </section>
-  
-        <section
-          id="section-5-Developing-Campfire"
-          data-section="Developing Campfire"
-        >
-          <h1>5 - Developing Campfire</h1>
-          <p>
-            In order to build Campfire, we identified four components of a
-            collaborative deploy preview solution:
-          </p>
-          <ol>
-            <li>
-              <strong>Automation</strong> - An automated process to generate
-              deploy previews for each new pull request, or new commit to an
-              existing pull-request.
-            </li>
-            <li>
-              <strong>Access</strong> - A reliable and straightforward method
-              for users to access these previews to view and interact with the
-              proposed changes.
-            </li>
-            <li>
-              <strong>Feedback Interface</strong> - An integrated feedback
-              mechanism within the deploy preview to collect and display
-              feedback, allowing stakeholders to comment and discuss directly
-              on the preview.
-            </li>
-            <li>
-              <strong>Data Storage</strong> - A place to store and manage
-              Campfire’s data.
-            </li>
-          </ol>
-          <p>
-            This diagram is an overview of all the responsibilities we
-            described and how they interact with each other:
-          </p>
-          <p>
-            <img
-              src="images/case-study/high-level-overview.png"
-              alt="Campfire architecture by responsibilities"
-            />
-          </p>
-        </section>
-  
-        <section
-          id="section-5-1-Automating-Deploy-Previews"
-          data-section="Automating Deploy Previews"
-        >
-          <h2>5.1 - Automating Deploy Previews</h2>
-          <p>
-            <img
-              src="images/case-study/automation.png"
-              alt="Campfire architecture highlighting automation"
-            />
-          </p>
-          <p>
-            Campfire’s architecture starts with the automatic deployment of
-            deploy previews, which are generated for each pull request and
-            hosted temporarily until the pull request is closed. We faced two
-            primary decisions in this area:
-          </p>
-          <ol>
-            <li>
-              How to automatically trigger a deployment when a pull request is
-              made?
-            </li>
-            <li>How to host the client application once deployed?</li>
-          </ol>
-          <h3>5.1.1 Automatically Triggering Deployment</h3>
-          <p>
-            We initially considered using webhooks to trigger a self-hosted
-            endpoint whenever a pull request was created by the user. However,
-            this required deploying a dedicated service to handle webhook
-            events, which would involve additional resources being provisioned
-            on the user’s AWS account.
-          </p>
-          <p>
-            We opted instead for GitHub Actions, a CI/CD platform that offers
-            the flexibility of using either self-hosted or GitHub-hosted
-            runners to automate workflows. This approach eliminates the need
-            to manage separate resources for webhook responses. GitHub Actions
-            automatically provisions an environment to execute our defined
-            workflows, which handle tasks such as authenticating cloud
-            services, spinning up the necessary resources for the deploy
-            preview, and posting the preview URL back to the pull request.
-          </p>
-          <p>
-            Additionally, GitHub Actions manages the lifecycle of the runners,
-            ensuring they shut down and clean up resources after execution.
-            This efficiency and integration led us to choose GitHub Actions
-            for automating the deployment of deploy previews. Consequently, a
-            fundamental requirement for using Campfire is that the user’s
-            application must be hosted on GitHub; therefore, we are currently
-            unable to support users on other platforms like GitLab.
-          </p>
-          <p>
-            <img
-              src="images/features/pull-request.gif"
-              alt="Trigger deploy preview using GitHub Actions"
-            />
-          </p>
-          <h3>5.1.2 Hosting the Client’s Application</h3>
-          <p>
-            The next step involved selecting a service to temporarily host the
-            client application. To accommodate a diverse range of applications
-            and simplify the deployment process, Campfire chose to support
-            containerized applications. Containerization packages an
-            application with its dependencies and configurations into a
-            standardized unit, or container, ensuring it runs consistently
-            across any environment.
-          </p>
-          <p>
-            Ensuring that the client application behaves the same way locally
-            as it does once deployed minimizes bugs related to cross-platform
-            compatibility issues. By focusing on containerized applications,
-            we enhance the likelihood of successful deployments regardless of
-            the specific setup or technology stack of the application.
-          </p>
-          <p>
-            The use of containers required a way to manage their life cycles –
-            deploying, updating, and terminating containers as pull requests
-            are opened, updated, or closed. Container orchestration services
-            provide many features in addition to managing the lifecycle of
-            containers, including automated scaling and high availability.
-            Without container orchestration services, manual management of
-            container lifecycles and scaling would be required, introducing
-            complexity and potential for error.
-          </p>
-          <p>
-            We selected AWS Elastic Container Service (ECS) because it
-            simplifies container orchestration and easily integrates with
-            other AWS services such as the application load balancer used in
-            Campfire. ECS automates the deployment, scaling, and monitoring of
-            containers, allowing us to deliver stable and consistent deploy
-            previews without the burden of managing the orchestration layer
-            ourselves.
-          </p>
-          <p>
-            While other solutions like Elastic Kubernetes Service (EKS) and
-            Docker Swarm offer more control and flexibility in managing
-            containers, they require deep knowledge of their ecosystems and
-            are feature-rich, which can be excessive for our needs. Given that
-            Campfire requires orchestration for just a single container per
-            pull request, the simpler and less complex ECS is more appropriate
-            than the more powerful but complex alternatives like EKS and
-            Docker Swarm.
-          </p>
-        </section>
-  
-        <section
-          id="section-5-2-Accessing-Deploy-Previews"
-          data-section="Accessing Deploy Previews"
-        >
-          <h2>5.2 - Accessing Deploy Previews</h2>
-          <p>
-            <img
-              src="images/case-study/access.png"
-              alt="Campfire architecture highlighting application load balancer"
-            />
-          </p>
-          <p>
-            Access to each deploy preview was the next step for Campfire.
-            Within our setup with AWS ECS, each deploy preview operates as a
-            separate task. A task is a running instance of a containerized
-            application, specified by its CPU, memory, and network settings in
-            a task definition. Each task is automatically assigned a public IP
-            that can be used to access the running instance. These public IPs
-            can change if a task is restarted due to updates, configuration
-            changes, or scaling operations. To manage the dynamic nature of
-            public IPs, we implemented an application load balancer.
-          </p>
-          <p>
-            Generally, a load balancer distributes incoming network traffic
-            across multiple servers. For Campfire, which hosts a single
-            instance of a client’s application in a container, the load
-            balancer functions more like a router. It efficiently channels
-            incoming traffic to our preview tasks, using listeners to direct
-            traffic according to predefined Campfire rules.
-          </p>
-          <p>
-            The traffic is then routed through these rules to target groups,
-            which are collections that map to specific ECS tasks, regardless
-            of their currently assigned IP addresses. Having an application
-            load balancer means access to Campfire’s deploy previews remains
-            stable and continuous, even when individual tasks undergo IP
-            changes due to restarts.
-          </p>
-          <p>
-            <img
-              src="images/case-study/alb-listener.png"
-              alt="Load balancer routing to target groups that direct traffic to ECS tasks"
-            />
-          </p>
-          <p>
-            When configuring rules for the load balancer’s listener we first
-            experimented with path-based rules for routing – directing traffic
-            to specific services based on URL paths, for example,
-            &quot;/client-app/12&quot; for accessing the preview of pull
-            request #12. However, this approach proved inadequate due to 404
-            errors when browsers requested additional resources not accounted
-            for in the path-based rules.
-          </p>
-          <div class="multiple-images">
-            <p>
-              <img
-                src="images/case-study/path-based-rule-1.png"
-                alt="Client requesting resources using path routing from the application load balancer"
-                data-group="path-based-rule"
-              />
-            </p>
-            <p>
-              <img
-                src="images/case-study/path-based-rule-2.png"
-                alt="Client requesting resources using path routing from the application load balancer"
-                data-group="path-based-rule"
-              />
-            </p>
-          </div>
-          <p>
-            The solution evolved to using host-based routing, where the load
-            balancer would manage requests to a host like
-            &quot;client-app-12.preview.campfire.com&quot; as an example,
-            ensuring all subsequent resource requests for a particular preview
-            consistently reached the correct service.
-          </p>
-          <div class="multiple-images">
-            <p>
-              <img
-                src="images/case-study/host-based-rule-1.png"
-                alt="Client requesting resources using path routing from the application load balancer"
-                data-group="host-based-rule"
-              />
-            </p>
-            <p>
-              <img
-                src="images/case-study/host-based-rule-2.png"
-                alt="Client requesting resources using path routing from the application load balancer"
-                data-group="host-based-rule"
-              />
-            </p>
-          </div>
-          <p>
-            This method eliminated the 404 issue as the host-based approach
-            accurately directed all related traffic to the appropriate deploy
-            preview environment, regardless of the specific resource being
-            requested.
-          </p>
-        </section>
-  
-        <section
-          id="section-5-3-Feedback-Interface"
-          data-section="Feedback Interface"
-        >
-          <h2>5.3 - Feedback Interface</h2>
-          <p>
-            <img
-              src="images/case-study/feedback-interface.png"
-              alt="Campfire architecture with feedback interface and ALB highlighted"
-            />
-          </p>
-          <p>
-            Campfire wanted to design a feedback interface that accomplishes a
-            few things:
-          </p>
-          <ul>
-            <li>
-              integrates with the deploy preview, so that stakeholders don’t
-              need to switch contexts to add feedback
-            </li>
-            <li>
-              handles comments, since this is the main way stakeholders can
-              leave feedback
-            </li>
-            <li>
-              allows the user to capture context, for when text comments alone
-              aren’t enough
-            </li>
-          </ul>
-          <p>
-            We’ll be talking more about why and how we implemented these in
-            the next few sections, as well as a few challenges we encountered
-            along the way. Finally, we’ll end with a brief section on our
-            backend infrastructure.
-          </p>
-          <h3>
-            5.3.1 - Integrating the Deploy Preview with the Feedback Interface
-          </h3>
-          <p>
-            <img
-              src="images/case-study/integrating-fi.gif"
-              alt="GIF of feedback interface and deploy preview coming together"
-            />
-          </p>
-          <p>
-            When it came to integrating our feedback interface with our deploy
-            preview, we had two options:
-          </p>
-          <ol>
-            <li>
-              Inject or ask the user to add the feedback interface to their
-              application – perhaps as a custom web component, script, or
-              using an iframe.
-            </li>
-            <li>
-              Create a feedback interface application that embeds the deploy
-              preview within it using an iframe.
-            </li>
-          </ol>
-          <p>
-            <img
-              src="images/case-study/integration-options.png"
-              alt="Feedback interface in deploy preview vs deploy preview in feedback interface"
-            />
-          </p>
-          <p>
-            The first option involves running a single task, the deploy
-            preview, with the feedback interface integrated directly into it.
-            This approach could reduce costs because no additional components
-            are active when there are no deploy previews. However, it
-            complicates the user experience by adding an extra step, and may
-            restrict the types of applications we can support due to the need
-            to ensure compatibility with various frontend frameworks.
-          </p>
-          <p>
-            Since the second option would not require any additional work on
-            the user’s part and would maximize on application compatibility,
-            we decided to create a separate feedback interface that would
-            embed the deploy preview. We built a React application with an
-            iframe that points to the deploy preview.
-          </p>
-          <p>
-            We opted for the second option, which requires no additional
-            effort from the user and maximizes application compatibility. To
-            achieve this, we developed a separate feedback interface,
-            embedding the deploy preview within an iframe in a React
-            application.
-          </p>
-          <table>
-            <tr>
-              <td><strong>Component</strong></td>
-              <td><strong>URL</strong></td>
-            </tr>
-            <tr>
-              <td>Deploy Preview</td>
-              <td>client-app-12.preview.campfire.com</td>
-            </tr>
-            <tr>
-              <td>Feedback Interface</td>
-              <td>feedback-interface.campfire.com/client-app/12</td>
-            </tr>
-          </table>
-          <p>
-            The user would be given the URL that pointed to the feedback
-            interface, while the URL generated for the deploy preview would be
-            used internally by the feedback interface application.
-          </p>
-  
-          <h3>5.3.2 - Comments</h3>
-          <p>
-            Comments allow all stakeholders, including those without technical
-            expertise or a GitHub account, to actively participate in the
-            deployment review process enabling detailed feedback and
-            discussions directly within deploy previews. Comments allow teams
-            to discuss issues and suggest improvements, fostering an
-            interactive and collaborative review environment.
-          </p>
-          <p>
-            We designed Campfire to aggregate comments in both the GitHub
-            interface and within the deploy preview itself. This dual
-            visibility ensures that feedback is not lost across platforms and
-            supports a unified discussion thread that all team members can
-            follow and contribute to, regardless of where they choose to
-            interact.
-          </p>
-          <p>
-            To accomplish this, we needed to retrieve existing comments from
-            GitHub pull requests and also enable the posting of new comments
-            from within Campfire. The implementation of this commenting
-            functionality involved use of GitHub’s API.
-          </p>
-          <p>
-            GitHub has three options to authorize API requests, although this
-            can be reduced to less than three depending on the API resource
-            being accessed. For Campfire to obtain the necessary authorization
-            in order to push comments from Campfire back to the GitHub pull
-            request we could use:
-          </p>
-          <ul>
-            <li>Personal Access Token (requires GitHub account),</li>
-            <li>User Access Token (requires GitHub account)</li>
-            <li>App Installation Token</li>
-          </ul>
-          <p>
-            Recognizing that not all Campfire users would have a GitHub
-            account, we chose to utilize GitHub’s App Installation Token for
-            authorization. This approach enables Campfire to post comments on
-            behalf of users, allowing feedback added in Campfire to sync with
-            the pull request. It also permits users who are not registered on
-            GitHub to contribute their own feedback.
-          </p>
-          <p>
-            <img
-              src="images/case-study/github-authentication.png"
-              alt="types of github authentication"
-            />
-          </p>
-          <p>
-            Generating the App Installation Token requires the user or
-            organization using Campfire to register and install a GitHub App
-            with configured permissions. Once the app is installed, Campfire
-            is able to generate the required authorization through its
-            credentials and cross-post any comments made in Campfire directly
-            to the pull request.
-          </p>
-          <p>
-            To avoid exposing sensitive data from the feedback interface, the
-            GitHub App’s credentials are stored in AWS Secrets Manager. Any
-            GitHub-related actions taken requires retrieving these credentials
-            beforehand to authenticate the GitHub App. The following diagram
-            shows the flow for posting comments:
-          </p>
-          <p>
-            <img
-              src="images/case-study/comments-flow.png"
-              alt="Architecture/flow for posting comment"
-            />
-          </p>
-          <p>
-            Adding authorization to our requests also benefited our GET
-            requests by increasing the rate limits and allowing GET requests
-            to private repos.
-          </p>
-          <p>
-            Using our GitHub app to authorize POST requests to the API,
-            however, also meant that all Campfire user’s comments would be
-            attributed to the App and not the individuals themselves who were
-            leaving feedback:
-          </p>
-          <p>
-            <img
-              src="images/case-study/campfire-bot-comment.png"
-              alt="GitHub Bot commenting 'This looks great&quot;!'"
-            />
-          </p>
-          <p>
-            To get around this issue, Campfire displays a welcome screen for
-            first time users before they are able to view the deploy preview.
-            The name the user enters is then stored in their browser’s local
-            storage, ready for use on subsequent visits. The user’s name is
-            also displayed in the top right corner of the feedback interface
-            and prefixed to any comments they make through Campfire.
-          </p>
-          <div>
-            <img
-              src="images/case-study/welcome-name.png"
-              alt="Prompt the user for name"
-            />
-            <p>
-              The welcome screen asks the user for their name before they can
-              interact with the deploy preview.
-            </p>
-          </div>
-          <div class="multiple-images">
-            <div>
-              <img
-                src="images/case-study/name-banner.png"
-                alt="Name banner in feedback interface"
-              />
-              <p>
-                Once they enter their name it’s displayed in the top right.
-              </p>
-            </div>
-            <div>
-              <img
-                src="images/case-study/name-banner-collapsed.png"
-                alt="Name banner in feedback interface hidden"
-              />
-              <p>The tab is collapsible so it’s not in the way.</p>
-            </div>
-          </div>
-  
-          <p>
-            Comments can now be attributed to the right user:
-            <img
-              src="images/case-study/comment-with-name.png"
-              alt="GitHub comment in pull request with user's name"
-            />
-          </p>
-          <p>
-            Other context Campfire provides includes some basic information on
-            the user’s operating system, browser, and screen-size appended to
-            comments. It may be the case that the UI breaks in certain
-            browsers, but not others, or when viewed at certain dimensions.
-            Having the user’s browser stack info enables the engineering team
-            to more easily replicate the conditions that lead to issues,
-            thereby fixing any bugs much faster.
-          </p>
-          <h3>5.3.3 - Exploring Screen Capture Solutions</h3>
-          <p>
-            Our team investigated enhancing the Campfire feedback interface
-            with screen capture functionality to provide richer context for
-            debugging and user support. The goal was to record interactions to
-            quickly identify and address issues encountered by developers or
-            users.
-          </p>
-          <p>
-            There are a few different approaches to capturing user
-            interactions:
-          </p>
-          <ul>
-            <li>
-              <strong>Screenshots</strong> - Capture a single moment, useful
-              for documenting specific issues.
-            </li>
-            <li>
-              <strong>Screen recordings</strong> - Record a sequence of
-              actions, providing a video-like overview of user interactions.
-            </li>
-            <li>
-              <strong>Session replay</strong> - Record all DOM events to
-              create a detailed playback of user interactions, offering
-              comprehensive insights into user behaviors and issues.
-            </li>
-          </ul>
-          <p>
-            Initially, we researched the SDKs of third-party tools such as
-            Loom and Zight, which offer screen recording and screenshot
-            capabilities. We decided to not use these solutions given that
-            they’re not open-source or self-hosted, which doesn’t align with
-            Campfire’s open-source design.
-          </p>
-          <p>
-            Although screenshots and screen-recording provide visual context,
-            we sought a more detailed capture of user interactions. Ideally
-            any captured data should be useful for developers seeking to
-            understand and accurately replicate issues users face. This led us
-            to prioritizing implementing a session replay feature, which
-            records DOM events in detail, facilitating a deeper analysis and
-            easier replication of issues by developers.
-          </p>
-          <p>
-            Session replay captures DOM events such as mouse movements,
-            clicks, scrolls, keystrokes, and changes within the DOM. These
-            events are stored in an array, and replay involves reconstructing
-            the user session from these events. This method not only allows
-            skipping periods of inactivity, enhancing storage efficiency, but
-            also structures data in a way conducive to further analytics.
-          </p>
-          <p>
-            <img
-              src="images/case-study/events-array.png"
-              alt="array of session replay events"
-            />
-          </p>
-          <p>
-            Conversely, screen recordings provide a continuous video capture
-            of the user's screen, which can include elements outside the
-            webpage context, like video streams and browser extensions. Screen
-            recordings can also effortlessly capture content within iframes, a
-            task challenging for session replay due to security and technical
-            limitations.
-          </p>
-          <p>
-            While screen recordings capture more visual information, they lack
-            the parsability and storage efficiency of session replays. Session
-            replays, recording only meaningful DOM interactions, avoid
-            unnecessary data accumulation during inactivity and structure data
-            for potential analytical use, unlike the less-structured nature of
-            video files.
-          </p>
-          <p>
-            After evaluating these options, we concluded that session replay
-            offered the most advantages for Campfire's needs, aligning with
-            our goal of providing actionable insights into user behavior while
-            maintaining efficient data management.
-          </p>
-          <h3>5.3.4 - Implementing Session Replay and SDK</h3>
-          <p>
-            Choosing to implement a session replay feature was not without its
-            complications. Because a session replay is by default not able to
-            record events occurring within an iframe, we had some additional
-            work ahead of us.
-          </p>
-          <p>
-            We chose the rrweb library to implement this feature due to its
-            ease of use and open-source nature. Cross-origin policies and
-            browser security measures prohibit session replay libraries such
-            as rrweb from accessing the contents of an iframe that are hosted
-            on different domains. For Campfire, this meant we were unable to
-            record interactions from the client’s application because the
-            deploy preview domain and feedback interface domain were not the
-            same.
-          </p>
-          <p>The following gif shows the blank screen that would result:</p>
-          <p>
-            <img
-              src="images/case-study/blank-screen-recording.gif"
-              alt="GIF of session replay being blank"
-            />
-          </p>
-          <p>
-            In situations where developers have ownership of both the parent
-            application and the child application, rrweb recommends embedding
-            their library components into both applications. All recorded user
-            interactions in the child application can then be sent to the
-            parent application.
-          </p>
-          <p>
-            The diagram below illustrates this solution in terms of Campfire’s
-            use-case. Here the feedback interface is the parent application
-            and the deploy preview (preview app) is the child application.
-          </p>
-          <p>
-            <img
-              src="images/case-study/embedding-rrweb.png"
-              alt="rrweb in client app communicating with rrweb in feedback interface"
-            />
-          </p>
-          <p>
-            Implementing rrweb's solution to successfully display iframes in
-            recordings required having rrweb’s component embedded in the
-            client application. This presented an additional prerequisite for
-            the user: the rrweb component (or an SDK) must be embedded into
-            the application in order for the session replay feature to
-            function properly. We initially dismissed this option as one of
-            our priorities in developing Campfire was to have as few
-            prerequisites for our users as possible.
-          </p>
-          <p>
-            The second option to rrweb’s solution was to programmatically
-            inject the rrweb component into the embedded application. This
-            removed the prerequisite for users to manually embed the component
-            themselves. However, this idea was later deemed unviable due to
-            security measures enforced by browsers. The same cross-origin
-            policies that restricted rrweb from directly recording iframes
-            also restricted the parent application from accessing the contents
-            of the iframe.This meant the feedback interface could not
-            manipulate the DOM of the iframe and inject the rrweb component.
-          </p>
-  
-          <p>
-            <img
-              src="images/case-study/feedback-interface-blocked.png"
-              alt="rrweb in client app communicating with rrweb in feedback interface"
-            />
-          </p>
-  
-          <p>
-            The third option was for the client application to use special
-            response headers when being retrieved from the feedback interface.
-            In the HTTP request/response lifecycle, the
-            Content-Security-Policy response header can be used to authorize
-            certain origins to access the requested resource, in this case the
-            client application, within iframes. This meant the feedback
-            interface could be whitelisted and allowed to manipulate the DOM
-            of the embedded client application.
-          </p>
-          <p>
-            While this approach appeared to be a practical solution, using
-            special response headers would require additional AWS services to
-            append the response heads to resources. AWS’s Application Load
-            Balancer does not provide a mechanism for adding response headers.
-            AWS Cloudfront, on the other hand, provides the capabilities to do
-            so. To avoid adding additional complexity to our AWS
-            infrastructure, we did not choose this approach.
-          </p>
-          <p>
-            After considering our possible solutions and their tradeoffs, we
-            decided the simplest approach would be to create our own SDK and
-            require clients to embed the SDK into their applications. The SDK
-            abstracts away the rrweb library component and is responsible for
-            transmitting recorded user interactions back to the feedback
-            interface.
-          </p>
-          <p>
-            <img
-              src="images/case-study/rrweb-sdk.png"
-              alt="Feedback interface communicating with embedded Campfire SDK"
-            />
-          </p>
-          <p>
-            Although the SDK adds an additional prerequisite for our users, we
-            believed it was the most straightforward option for our first
-            iteration of Campfire. An advantage of building an SDK is we can
-            continue to build onto the SDK in the future to add new features
-            to the feedback interface. Features that we had previously decided
-            against due to the lack of inter-iframe communication can now be
-            implemented with the addition of the SDK.
-          </p>
-          <h3>5.3.6 - Handling Ad Blocker Interference</h3>
-          <p>
-            After incorporating the rrweb library for session replay into our
-            Campfire application, we encountered another issue: the entire
-            Campfire app failed to load for users with ad-blocking extensions
-            active in their browsers. This problem was traced back to rrweb
-            being integrated into several of our React components, which are
-            interconnected. When rrweb was blocked by an ad blocker, it led to
-            a cascading failure, preventing the entire application from
-            loading, not just the session replay feature.
-          </p>
-          <p>
-            <img
-              src="images/case-study/adblocker_blocking_campfire.png"
-              alt="Campfire blocked by an ad blocking extension"
-            />
-          </p>
-          <p>
-            To address this, instead of identifying and managing individual
-            ad-blocking extensions, we focused on detecting whether the rrweb
-            functionality was obstructed. If rrweb failed to load, we
-            implemented a system to inform the user through a notification
-            banner, advising them to disable their ad blocker to access
-            Campfire.
-          </p>
-          <p>
-            <img
-              src="images/case-study/dynamic-loading-flowchart.png"
-              alt="Dynamic loading of rrweb library and React components"
-            />
-          </p>
-          <p>
-            Implementing this solution involved exploring dynamic component
-            and module loading in React. By adopting dynamic imports, we were
-            able to conditionally load rrweb components, ensuring that even if
-            these components failed to load due to an ad blocker, the rest of
-            the application would remain functional. This approach also
-            allowed us to display a banner alerting users of the need to
-            disable their ad blockers.
-          </p>
-          <h3>5.3.7 - Serverless Backend</h3>
-          <p>
-            At this point, Campfire needed a backend to use GitHub’s API and
-            to use the AWS SDK. Authenticated calls to GitHub's API were for
-            retrieving and posting comments to pull requests, while the AWS
-            SDK was needed to store user generated session replay data.
-          </p>
-          <p>
-            Initially two approaches were considered for our backend
-            infrastructure:
-          </p>
-          <ul>
-            <li>traditional server-based backend</li>
-            <li>a serverless architecture</li>
-          </ul>
-          <p>
-            A traditional backend setup would involve using a server, for
-            example an Express application, paired with a web server, like
-            Nginx, to manage API routing. This type of set-up would have the
-            benefit of avoiding cold starts that are the result of using a
-            serverless architecture. The trade-off is that the user would have
-            to pay the costs of having a server running continuously, even if
-            there are little to no requests being handled. Since deploy
-            previews don’t necessarily need the speed that comes with avoiding
-            cold starts, we thought it best to maximize cost-efficiency.
-          </p>
-          <p>
-            We opted for a serverless approach using AWS Lambda, a computing
-            service that allows you to execute code without provisioning or
-            managing servers. Using an API Gateway with Lambda integration did
-            not require an additional service to be hosted for the backend.
-            However, it did require the incorporation of several new
-            resources, primarily the API Gateway and Lambda functions. While
-            this choice added additional complexity to Campfire’s
-            architecture, the services we chose to use are far less expensive
-            than having multiple ECS services running on a cluster on the
-            user’s account.
-          </p>
-        </section>
-  
-        <section id="section-5-4-Data-Storage" data-section="Data Storage">
-          <h2>5.4 - Data Storage</h2>
-          <p>
-            <img
-              src="images/case-study/storage.png"
-              alt="Campfire's architecture with S3 highlighted"
-            />
-          </p>
-          <p>
-            The primary data that Campfire needed to store was session replay
-            data, which took the form of arrays of event objects. For storage,
-            we considered AWS Elastic File System (EFS) and AWS S3 buckets
-            (S3), both accessible via lambdas and capable of being shared
-            across all containers if needed.
-          </p>
-          <p>
-            Although both EFS and S3 would be able to support this data, they
-            have slightly different use cases. EFS is meant to be a shared
-            file system among multiple containers, and works well for when you
-            need to structure your data in a hierarchical manner with nested
-            folders and files. It’s primarily meant to be used internally by
-            those instances.
-          </p>
-          <p>
-            S3 is an object storage system that allows you store any type of
-            data in an unstructured way, and lets you retrieve it using a
-            unique identifier. It’s useful as a data store for objects that
-            need to be accessed over the internet. With S3, access to stored
-            objects could be available outside the containerized instances.
-          </p>
-          <p>
-            Since Campfire didn’t necessarily need a shared file system, but
-            rather a place to store discrete pieces of data to be retrieved
-            later, S3 seemed a better fit. It also gave two more advantages:
-          </p>
-          <ul>
-            <li>
-              We could store our files for our Lambda functions in the S3
-              bucket, which Cloud Formation could then pull from during set-up
-            </li>
-            <li>
-              Opens up possibility for later storing user uploaded
-              screenshots, which, because of the external nature of S3 items,
-              would make the images available not just within the feedback
-              interface, but also on GitHub pull-requests
-            </li>
-          </ul>
-          <p>
-            The following diagram shows our architecture as a whole:
-            <img
-              src="images/case-study/whole-architecture.png"
-              alt="Campfire's overall architecture"
-            />
-          </p>
-        </section>
-  
-        <section id="section-7-Future-Work" data-section="Future Work">
-          <h1>6 - Future Work</h1>
-          <h3>6.1 - CSS Editor</h3>
-          <p>
-            Integrating a CSS Editor into Campfire’s feedback interface would
-            allow users to suggest CSS modifications directly within the
-            preview environment. This feature would enable more detailed
-            visual collaboration on styling changes and improve the process of
-            refining the UI/UX. Proposed CSS changes could then be
-            automatically formatted into code snippets and attached to the
-            corresponding pull request, facilitating a smoother review and
-            integration workflow.
-          </p>
-          <h3>6.2 - Screenshots</h3>
-          <p>
-            Introducing a screenshot feature would enable users to capture and
-            share specific moments or layouts from their deploy preview
-            without having to record an entire session replay. This would be
-            particularly useful for visually documenting issues or
-            highlighting design elements, providing a quick and clear
-            reference point in discussions. Additionally, images can be posted
-            to GitHub discussions directly instead of having a session replay
-            link that takes users back to their deploy preview. .
-          </p>
-          <h3>6.3 - GitHub User Authorization</h3>
-          <p>
-            Enhancing Campfire with optional GitHub user authorization would
-            allow users to interact with the feedback interface directly. This
-            would ensure that comments and feedback are accurately attributed,
-            enhancing traceability and accountability in the collaboration
-            process.
-          </p>
-          <h3>6.4 - Reduce Costs</h3>
-          <p>
-            In the future, we also want to explore ways to cut costs, possibly
-            using web components or other techniques. Our current setup has
-            the client app and feedback interface on separate clusters, which
-            can be inefficient. For example, the feedback interface's cluster
-            runs non-stop, costing money even without active deploy previews.
-            A better approach might be to merge the feedback interface with
-            the client app before deployment. This could be done by injecting
-            code or using web components, which would allow both parts to run
-            on the same cluster, saving resources and money.
-          </p>
-          <p>
-            Additionally, we may consider implementing a scaling strategy
-            where the system could automatically scale down to zero in periods
-            of inactivity. This approach would reduce the cluster to minimal
-            operational status, effectively cutting costs by not running
-            unnecessary resources.
-          </p>
-        </section>
-  
-        <section id="section-8-References" data-section="References">
-          <h1>7 - References</h1>
-          <ol>
-            <li>
-              <a
-                href="https://livecycle.io/blogs/history-of-preview-environments/"
-                >The History of Preview Environments in Development
-                Workflows</a
-              >
-            </li>
-            <li>
-              <a
-                href="https://tarynwritescode.hashnode.dev/a-history-of-version-control"
-                >A History of Version Control</a
-              >
-            </li>
-            <li>
-              <a href="https://release.com/staging-environments"
-                >What is a staging Environment?</a
-              >
-            </li>
-            <li>
-              <a
-                href="https://www.bunnyshell.com/blog/what-are-ephemeral-environment"
-                >What Are Ephemeral Environments? + How to Deploy and Use Them
-                Efficiently</a
-              >
-            </li>
-            <li>
-              <a href="https://shipyard.build/ephemeral-environments/"
-                >What Are Ephemeral Environments?</a
-              >
-            </li>
-            <li>
-              <a
-                href="https://www.qovery.com/blog/overcoming-shared-environment-bottlenecks/"
-                >Overcoming Shared Environment Bottlenecks</a
-              >
-            </li>
-            <li>
-              <a
-                href="https://thenewstack.io/netlify-brings-collaboration-to-deploy-previews-with-featurepeek-acquisition/"
-                >Netlify Brings Collaboration to Deploy Previews with
-                FeaturePeek Acquisition</a
-              >
-            </li>
-            <li>
-              <a
-                href="https://pipelinedriven.org/article/the-four-biggest-issues-with-having-static-environments"
-                >The Four Biggest Issues With Having Static Environments</a
-              >
-            </li>
-            <li>
-              <a
-                href="https://livecycle.io/blogs/ephemeral-environments-2022/"
-                >The Ephemeral Environment Landscape</a
-              >
-            </li>
-          </ol>
-        </section>
-      </article>
-      
+        of PubNub founder Stephen Blum
+        <blockquote>
+          “You want that code to execute in a trusted environment, not on a
+          client mobile device, which is uninterested code execution, because
+          those things are hackable and crackable. You want it to store your
+          business logic in a place that it just can't be tampered with.”
+        </blockquote>
+        <img class="lazy" data-src="images/diagrams/middleware-where-2.png" />
+        <p>
+          The second option of putting realtime middleware on the realtime
+          server doesn’t work either. This is because it is not feasible to
+          perform these message transformations directly on realtime servers.
+          There are several reasons for this:
+        </p>
+        <ul>
+          <li>
+            <strong>Customization</strong>: Different customers have different
+            business needs for how their messages should be transformed and
+            interacted with. It is not practically possible for clients to
+            create custom code within these service providers’ server
+            codebase, and it is not possible for the service provider to
+            predict all customer needs and create the functions for them.
+          </li>
+          <li>
+            <strong>Security</strong>: Running customer code directly on the
+            realtime servers would present a significant risk. The service
+            provider would have to guard against both accidental disruptions
+            to the core code base as well as malicious attacks through this
+            access point into the realtime servers.
+          </li>
+          <li>
+            <strong>Separation of concerns</strong>: Running business logic
+            code on the realtime servers would tightly couple the message
+            delivery architecture to the business logic code. Both the
+            business logic execution and the message delivery performance
+            would be susceptible to decreased performance if it were sharing
+            resources with the other task. Additionally, these two tasks would
+            not necessarily scale in the same way or at the same time.
+          </li>
+        </ul>
+        <img class="lazy" data-src="images/diagrams/middleware-where-3.png" />
+        <p>
+          The third option, to put realtime middleware on a dedicated message
+          processing server wouldn’t be an ideal solution either. Although
+          this solution would decouple realtime management from realtime
+          message processing, all of the realtime middleware would be tightly
+          coupled on one server. Because each middleware should be treated as
+          its own modular service with different scaling needs, it doesn’t
+          make sense to put them all on the same server.
+        </p>
+        <img class="lazy" data-src="images/diagrams/middleware-where-4.png" />
+        <p>
+          The last option, serverless functions, is a perfect fit for realtime
+          middleware because it is secure, modular, and easy for developers to
+          customize.
+        </p>
+        <p>
+          Serverless functions are elastic compute hosted by a third party
+          that have several properties that make them ideal to use as realtime
+          middleware.
+        </p>
+        <ol>
+          <li>
+            They usually have small or compact use cases and as such are not
+            designed for persistence, but rather atomic ‘throwaway’
+            operations, albeit ones that can be readily reused.
+          </li>
+          <li>They spin up on demand and are independently scalable.</li>
+          <li>They are easy to package and deploy.</li>
+          <li>
+            The cost of running them is allocated per unit of time and as a
+            result they are potentially lower cost, since you only pay for
+            what you use.
+          </li>
+        </ol>
+        <img
+          class="lazy"
+          data-src="images/diagrams/serverless-functions.png"
+        />
+        <p>
+          These properties make them ideal for the purposes of realtime
+          middleware. With serverless functions, developers can easily create
+          and update realtime middleware without posing a security risk to the
+          realtime infrastructure. Each serverless function can be treated as
+          its own separate service that spins up and scales, independently, on
+          demand. Resultantly, they can be used by not just one, but multiple
+          applications for similar messages processing needs. And because
+          serverless functions scale up on demand and charge based on compute
+          time (or invocation frequency in the case of Cloudflare), developers
+          don’t have to worry about paying for idle compute resources.
+        </p>
+        <p>
+          It’s worth noting the limitations of serverless functions; they
+          aren’t a silver bullet. They aren’t ideal for processes requiring
+          large amounts of compute; there are maximums for length of compute
+          and size of payload. They also add some complexity to the
+          infrastructure and as a result can be harder to test and debug. They
+          live on servers with other people's code so there can be security
+          concerns. Since they are ephemeral, any initial execution can have a
+          slight lag -- the so-called ‘cold start’. Given these limitations,
+          though, the benefits of serverless functions outweigh the
+          disadvantages for this use case.
+        </p>
+        <p>
+          Although both companies used serverless functions to provide
+          realtime middleware for their customers, they did so in very
+          different ways.
+        </p>
+        <img class="lazy" data-src="images/diagrams/existing-solutions.png" />
+        <p>
+          PubNub created
+          <a href="https://www.pubnub.com/features/functions/" target="_blank"
+            >PubNub Functions</a
+          >
+          which are proprietary serverless functions, created and deployed
+          within PubNub. They
+          <a
+            href="https://www.youtube.com/watch?v=BCpReEEV9i8&ab_channel=PubNub"
+            target="_blank"
+            >characterized</a
+          >
+          it as “the idea of using an eventive model of programming so that
+          you are rewriting data as it goes through the network and then
+          publishing it out." Elsewhere, PubNub’s CEO
+          <a
+            href="https://softwareengineeringdaily.com/wp-content/uploads/2018/04/SED554-Pubsub-Infrastructure.pdf"
+            target="_blank"
+            >stated</a
+          >:
+        </p>
+        <blockquote>
+          “If there wasn't a concept called serverless, we would still want to
+          go down this path that we went down. Being able to give your
+          customer the control of how the network is involved and shaped is
+          very important, especially since you need somewhere to host your
+          trusted code. You want that code to execute in a trusted
+          environment...”
+        </blockquote>
+        <p>
+          Ably took a different approach: you create your own serverless
+          functions on one of the major serverless function providers’
+          infrastructure, and Ably lets you integrate these functions into
+          your Ably pipeline using
+          <a href="https://ably.com/integrations" target="_blank"
+            >Reactor Integrations</a
+          >.
+        </p>
+        <p>
+          We took the solutions proposed by Ably and PubNub as an opportunity
+          to explore the ‘realtime + middleware’ space. There were a number of
+          technical and practical problems that these third-party options had
+          solved, but we found a certain set of use cases where we had
+          something to offer.
+        </p>
+
+        <!-- Section 6 -->
+        <h2 id="section-6">6. Why We Built Ekko</h2>
+        <p>
+          Developers building realtime applications can choose between three
+          main options: a third-party service, an open-source solution, or
+          do-it-yourself. The right choice depends on the specific use case.
+        </p>
+        <img class="lazy" data-src="images/diagrams/current-options.png" />
+        <p>
+          If easy setup is most important, it’s probably best to go with a
+          third-party solution. There are good open-source solutions, but the
+          extent to which they are easy-to-use depends on each use case.
+        </p>
+        <p>
+          If complete control over data and infrastructure is important,
+          third-party solutions won't work. In this case, the only options are
+          open-source solutions or custom, self-built solutions.
+        </p>
+        <p>
+          If applications need realtime middleware, the choices become very
+          limited. Not all major third-party providers offer realtime
+          middleware out of the box, and there are currently no open-source
+          solutions that offer realtime middleware.
+        </p>
+        <p>
+          A custom built, in house realtime infrastructure is always an
+          option, and provides full control over infrastructure and data, but
+          this is a fairly ambitious undertaking.
+        </p>
+        <p>
+          We saw an opportunity to fill this gap in the market by building an
+          easy-to-use, open-source framework for self-deployed, realtime
+          infrastructure, with middleware. The result was Ekko: a realtime
+          framework for the in-transit processing of messages.
+        </p>
+
+        <!-- Section 7 -->
+        <h2 id="section-7">7. Using Ekko</h2>
+        <p>There are four main parts to Ekko:</p>
+        <ul>
+          <li>Ekko Server</li>
+          <li>Ekko Functions</li>
+          <li>Ekko CLI</li>
+          <li>Ekko Client</li>
+        </ul>
+        <img class="lazy" data-src="images/diagrams/parts.png" />
+        <p>
+          The Ekko Server manages realtime messages for applications with many
+          publishers and subscribers. It facilitates the processing of
+          realtime messages by invoking Ekko Functions.
+        </p>
+        <p>
+          Ekko Functions provide realtime middleware for in-transit message
+          processing. These functions are easy to create, update, and deploy
+          with the Ekko CLI tool. For complex workflows, developers can chain
+          multiple Ekko Functions together.
+        </p>
+        <p>
+          The Ekko CLI tool provides clear and simple commands that a
+          developer can use to manage Ekko Functions as well as spin up and
+          tear down the entire Ekko infrastructure.
+        </p>
+        <p>
+          Ekko Client enables developers to build realtime applications on top
+          of the Ekko Server. The Ekko Client exposes a handful of methods to
+          the developer, enabling clients to subscribe and unsubscribe to and
+          from channels, publish messages, and handle received messages.
+        </p>
+        <h3 id="section-7-1">7.1 Deploying Ekko</h3>
+        <p>
+          The Ekko Server infrastructure can easily be deployed to AWS by
+          running the <code>ekko init</code> command using the
+          <a
+            href="https://www.npmjs.com/package/ekko-realtime-cli"
+            target="_blank"
+            >Ekko CLI tool</a
+          >.
+        </p>
+        <img
+          class="lazy"
+          data-src="images/diagrams/cli-deploy-no-shadow.png"
+        />
+        <p>
+          The Ekko CLI prompts for AWS credentials and uses those, along with
+          AWS’ Cloud Development Kit (CDK), to deploy the Ekko infrastructure
+          to AWS.
+        </p>
+        <h3 id="section-7-2">7.2 Ekko Infrastructure</h3>
+        <img class="lazy" data-src="images/diagrams/infrastructure-1.png" />
+        <p>This is the infrastructure deployed by <code>ekko init</code>.</p>
+        <p>
+          The Ekko Server is a Node application deployed via container to AWS’
+          Elastic Container Service (ECS). The Application Load Balancer
+          distributes incoming WebSocket connections to the Ekko Server. We’ll
+          go into more detail on the importance of the S3 bucket and
+          ElastiCache instance in section 8.
+        </p>
+        <h3 id="section-7-3">7.3 Connecting an Application to Ekko Server</h3>
+        <p>
+          The Ekko Client is used to build realtime applications that make use
+          of the Ekko Server. Ekko Client can be
+          <a href="https://www.npmjs.com/package/ekko-realtime-client"
+            >installed with npm</a
+          >
+          or imported via CDN.
+        </p>
+        <p>
+          Once Ekko Client is installed, it can be used to create a new Ekko
+          Client instance.
+        </p>
+        <img class="lazy" data-src="images/diagrams/ekko-instance.png" />
+        <p>
+          This Ekko Client Instance allows an application to connect, and send
+          realtime messages to the Ekko Server. Ekko Client takes a handful of
+          parameters including an app name, a host, a
+          <a href="https://jwt.io" target="_blank">JSON Web Token</a> (JWT),
+          and an optional universally unique identifier (UUID). The app name
+          is the developers choice, and the host and JWT can be generated
+          using the Ekko CLI. The UUID is normally generated and passed in by
+          the developer. But, if a UUID is not passed to the Ekko Client
+          instance, Ekko Client will automatically generate one.
+        </p>
+        <p>
+          Retrieving the host and generating JWT values can be done by running
+          the <code>ekko jwt</code> command in the Ekko CLI.
+        </p>
+        <img class="lazy" data-src="images/diagrams/jwt.png" />
+        <p>
+          The Ekko Server endpoint is retrieved by the CLI from a local
+          environment variable that is generated when the Ekko infrastructure
+          is deployed. This is the URL for the Application Load Balancer that
+          proxies WebSocket connections to the Ekko Server. Passing this value
+          as the host to the Ekko Client, enables it to connect and send
+          realtime messages to the Ekko Server.
+        </p>
+        <p>
+          The CLI tool generates JWTs using a secret that is generated when
+          the Ekko infrastructure is first deployed. Passing in an admin
+          token, instead of a user token, gives access to status events,
+          including connect, disconnect and error messages.
+        </p>
+        <p>
+          Once an Ekko Client instance has been created, it exposes several
+          methods that you can use to interact with the Ekko Server. With
+          these methods, the client can subscribe and unsubscribe from
+          channels, publish messages, and handle messages of different types.
+        </p>
+        <p>
+          This is what it looks like when we have two clients connected to the
+          Ekko Server, subscribed to the same channel, publishing messages on
+          it.
+        </p>
+
+        <video autoplay loop muted playsinline>
+          <source
+            src="images/diagrams/infrastructure-2.mp4"
+            type="video/mp4"
+          />
+        </video>
+        <h3 id="section-7-4">7.4 Deploying Ekko Functions</h3>
+        <p>
+          To process realtime messages in transit, Ekko Functions need to be
+          deployed to AWS Lambda. When the Ekko infrastructure is deployed
+          with the <code>ekko init</code> command, it creates an
+          <code>ekko/ekko_functions</code> directory locally. From this
+          directory, <code>create</code>, <code>update</code>,
+          <code>deploy</code>, and <code>destroy</code> commands can be run to
+          manage Ekko Functions.
+        </p>
+        <p>
+          Ekko Functions are created with a default file structure and format
+          so that they can be deployed to AWS Lambda. These functions can be
+          as simple as the example below, or a complex program with multiple
+          files. In this example, the demo-angry function exists in an
+          <code>index.js</code> file and simply takes the message payload,
+          capitalizes the text, and adds a few exclamation points.
+        </p>
+        <img class="lazy" data-src="images/diagrams/angry.png" />
+        <p>
+          Once Ekko Functions are created, they can easily be deployed to AWS
+          Lambda with the <code>ekko deploy</code> command. After Ekko
+          Functions have been deployed, the
+          <code>associations.json</code> file in the
+          <code>ekko_functions</code> directory needs to be manually updated.
+        </p>
+        <img class="lazy" data-src="images/diagrams/associationsjson.png" />
+        <p>
+          <code>associations.json</code> informs the server what functions it
+          should use for processing messages published to a specific channel.
+          Once this file has been updated, the
+          <code>ekko update associations.json</code> command can be run which
+          stores the file on the S3 bucket mentioned earlier, and caches it on
+          the Ekko Server.
+        </p>
+        <h3 id="section-7-5">7.5 Transforming Messages in Realtime</h3>
+        <p>
+          After creating and deploying Ekko Functions, this is what the Ekko
+          infrastructure and message processing flow looks like:
+        </p>
+
+        <video autoplay loop muted playsinline>
+          <source
+            src="images/diagrams/infrastructure-3b.mp4"
+            type="video/mp4"
+          />
+        </video>
+        <p>
+          Now, when a client sends a message on the Angry channel, the server
+          forwards that message on to the Angry Lambda for processing. The
+          Angry Lambda sends the processed message back to the Ekko Server
+          which then emits the message out to all subscribed clients on the
+          Angry channel. The same occurs on the other two channels. The server
+          knows which functions are associated with which channels using
+          <code>associations.json</code>.
+        </p>
+        <!-- <img class="lazy" data-src="PLACEHOLDER WIDGET" /> -->
+        <p>
+          If you want to teardown your Ekko infrastructure, you can do that
+          with the <code>ekko teardown</code> command. This will tear down
+          your Ekko Infrastructure and all Ekko Functions deployed to AWS
+          Lambda.
+        </p>
+        <p>
+          As you can see, deploying your own realtime infrastructure and
+          managing realtime middleware is easy to do with Ekko. You have now
+          seen what Ekko is and how it works. In the next section, we show
+          three areas where we faced challenges while building Ekko.
+        </p>
+
+        <!-- Section 8 -->
+        <h2 id="section-8">8. Engineering Challenges</h2>
+        <p>
+          We faced several engineering challenges when building Ekko: how to
+          authenticate clients connecting to our server, how to associate
+          individual Ekko Functions with specific realtime channels, and how
+          to scale the infrastructure.
+        </p>
+        <h3 id="section-8-1">8.1 Authenticating Clients</h3>
+        <p>
+          Once we created an Ekko Server to manage realtime communication and
+          an Ekko Client API that developers could use to build realtime
+          applications, we faced the problem of authentication. With the
+          current design, Ekko Clients send messages to the developer's Ekko
+          Server endpoint. But the problem with this is that anyone can send
+          messages to this public endpoint, including bad actors.
+        </p>
+
+        <video autoplay loop muted playsinline>
+          <source src="images/diagrams/bad-actor-1.mp4" type="video/mp4" />
+        </video>
+        <p>
+          To validate Ekko Clients, we decided to use JSON Web Tokens (JWTs).
+          These are essentially API keys that can have a JSON object encoded
+          into it -- the data isn't private, but you can't change it without
+          breaking the API key. When the Ekko infrastructure is deployed, a
+          secret key is generated and stored as an environment variable on
+          Ekko Server and the CLI tool. When a developer runs the ekko jwt
+          command, the CLI tool uses the secret to generate app specific JWTs
+          that can be passed in to a new Ekko Client instance. The Ekko server
+          uses the same secret to authenticate JWTs and only allows clients
+          with a valid JWT to connect to it.
+        </p>
+
+        <video autoplay loop muted playsinline>
+          <source src="images/diagrams/bad-actor-2.mp4" type="video/mp4" />
+        </video>
+        <p>
+          Since we can encode data into the JWT, we used it to specify if the
+          connecting client was an admin or a normal user, and what app they
+          were allowed to access. This gave us basic app- and role-level
+          security.
+        </p>
+        <h3 id="section-8-2">8.2 Ekko Function Management</h3>
+        <p>
+          Like PubNub and Ably, we decided to use serverless functions to run
+          our realtime middleware code. But, we still needed to figure out how
+          to coordinate message processing. How would Ekko Server know which
+          messages needed to be processed by which functions?
+        </p>
+        <h4 id="section-8-2-1">8.2.1 Linking Ekko Functions with Messages</h4>
+
+        <video autoplay loop muted playsinline>
+          <source src="images/diagrams/linking.mp4" type="video/mp4" />
+        </video>
+        <p>
+          Since clients publish and subscribe to channels, it made sense to
+          link specific channels with specific Ekko functions. So if you’re
+          making a chat app that uses a profanity filter, you can create a
+          channel and all messages published to that channel get processed
+          with the profanity filter middleware. All subscribers to that
+          channel will receive the processed message.
+        </p>
+        <p>
+          We created an <code>associations.json</code> file to store these
+          associations between channels and functions.
+        </p>
+        <img class="lazy" data-src="images/diagrams/associationsjson.png" />
+        <p>
+          <code>associations.json</code> is organized by application. Each
+          application has an array of channels, and each of those channels
+          contain an array of Ekko Functions to be used for that channel. With
+          this file, the Ekko Server routes messages from a specific channel
+          to the Ekko Functions associated with that channel. Once processed,
+          messages are returned to the Ekko server and emitted to all
+          subscribed clients.
+        </p>
+        <p>
+          It’s worth noting that multiple functions can be chained together
+          and the Ekko Server will route messages to all of the functions, in
+          order, before emitting the processed message back out to
+          subscribers.
+        </p>
+
+        <video autoplay loop muted playsinline>
+          <source src="images/diagrams/chaining.mp4" type="video/mp4" />
+        </video>
+        <!-- <img class="lazy" data-src="PLACEHOLDER WIDGET" /> -->
+        <h4 id="section-8-2-2">8.2.2 Storing associations.json</h4>
+        <p>
+          The <code>associations.json</code> file is stored in an S3 bucket
+          and the developer is responsible for updating it locally and then
+          uploading it with the Ekko CLI tool.
+        </p>
+
+        <video autoplay loop muted playsinline>
+          <source src="images/diagrams/upload.mp4" type="video/mp4" />
+        </video>
+        <h4 id="section-8-2-3">8.2.3 Updating associations.json</h4>
+        <p>
+          We opted to cache the associations data on the server since we want
+          to minimize the amount of time it takes to process messages. But we
+          needed to figure out how to update the server nodes when a change
+          was made to the JSON file.
+        </p>
+        <p>
+          We looked at two ways for pushing the data to the Ekko Server. The
+          first option was to use the AWS service CloudWatch to send a message
+          through Simple Notification Service (SNS), another AWS service,
+          every time the S3 bucket registered an upload event.
+        </p>
+
+        <video autoplay loop muted playsinline>
+          <source
+            src="images/diagrams/updating-associations-cloudwatch.mp4"
+            type="video/mp4"
+          />
+        </video>
+
+        <p>
+          The second option was to update the Ekko Server directly at the same
+          time that we upload the new JSON file to the S3. This would involve
+          sending a <code>PUT</code> request to the Ekko Server with the JSON
+          object as the payload. We could just add this behind the scenes in
+          our CLI tool when the developer uses the
+          <code>ekko update</code> command. This was the option we chose since
+          it didn’t add any complexity to our infrastructure. The
+          <code>associations.json</code> file is sent as a JSON Web Token, and
+          the code for the <code>PUT</code> route on the server verifies it is
+          a valid token (in addition to decoding it and using that payload as
+          the new function-channel associations data.
+        </p>
+
+        <video autoplay loop muted playsinline>
+          <source
+            src="images/diagrams/updating-associations-put.mp4"
+            type="video/mp4"
+          />
+        </video>
+
+        <h3 id="section-8-3">8.3 Scaling Ekko</h3>
+        <p>
+          The final engineering challenge we needed to handle was around
+          scaling Ekko. We wanted the deployed infrastructure to be able to
+          scale up and down as needed. If there were more users connecting to
+          the realtime server, we needed to be able to support those
+          simultaneous connections, and if there was an increased volume of
+          messages passing through the server, we needed to be able to support
+          the speedy transmission of those messages as well as any
+          transformations or in-transit processing.
+        </p>
+        <h4 id="section-8-3-1">8.3.1 Deploying to AWS using CDK</h4>
+        <p>
+          Most of our scaling needs were handled by the choices we made when
+          deploying our infrastructure to AWS. We used AWS' Cloud Development
+          Toolkit (CDK) which synthesizes CloudFormation templates and then
+          deploys those constructs to AWS.
+        </p>
+        <img class="lazy" data-src="images/diagrams/cdk.png" />
+        <p>
+          We didn't want to have to deploy our scalable infrastructure
+          manually, using the AWS web interface. Options available to us
+          included something platform agnostic like
+          <a href="https://www.terraform.io" target="_blank">Terraform</a> or
+          the AWS homegrown equivalent,
+          <a
+            href="https://aws.amazon.com/cloudformation?tag=soumet-20"
+            target="_blank"
+            >CloudFormation</a
+          >
+          templates. CDK is a way to define those CloudFormation templates
+          using ordinary JavaScript code; it was appealing not to have to
+          handle the complexity of writing extremely long CloudFormation
+          templates from scratch and instead to define the infrastructure
+          'constructs' we wanted to provision.
+        </p>
+        <h4 id="section-8-3-2">8.3.2 Scaling the Ekko Server</h4>
+        <p>
+          The main part of Ekko that needed to be able to scale was the Ekko
+          server. We needed to support a flexible number of users connecting
+          to the realtime service as well as an increased volume of messages
+          being published.
+        </p>
+        <p>
+          In order to be able to scale flexibly, an attractive option for
+          horizontal scaling was to package up our server application as a
+          Docker container and then use AWS Fargate to scale those server
+          'tasks' up and down according to how taxed the particular task
+          instance became.
+        </p>
+        <img class="lazy" data-src="images/diagrams/scaling.png" />
+        <p>
+          Fargate scales according to rules defined to account for how much
+          CPU and memory each container instance is using. We can specify
+          minimum and maximum boundary values to constrain how many containers
+          AWS can run. Fargate is not always completely transparent to use,
+          but it does handle our core problem of wanting to horizontally scale
+          our Ekko Server.
+        </p>
+        <h4 id="section-8-3-3">8.3.3 Establishing WebSocket Connections</h4>
+        <p>
+          Our next challenge came from the way our load balancer was routing
+          incoming connections and how that disrupted our need for persistent
+          WebSocket connections.
+        </p>
+        <p>
+          Socket.IO makes one request to set a connection ID, and a subsequent
+          upgrade request to establish the long lived WebSocket connection.
+          These two requests must go to the same backend process, but by
+          default our load balancer — AWS' Application Load Balancer — may
+          send the two requests to different Fargate container instances, so
+          the connection may not be successful.
+        </p>
+
+        <video autoplay loop muted playsinline>
+          <source src="images/diagrams/ws-fail.mp4" type="video/mp4" />
+        </video>
+        <p>
+          When we first tried out Ekko on AWS infrastructure we could not
+          establish WebSocket connections for this reason.
+        </p>
+        <p>
+          The fix for this was to enable sticky sessions as a policy for our
+          Fargate task definition. We updated our CDK code to specify this
+          sticky property. Now each Ekko client gets routed to the same server
+          instance to which it was initially assigned and WebSocket
+          connections work as they should.
+        </p>
+
+        <video autoplay loop muted playsinline>
+          <source src="images/diagrams/ws-work.mp4" type="video/mp4" />
+        </video>
+        <h4 id="section-8-3-4">8.3.4 Scaling WebSocket Connections</h4>
+        <p>
+          Once our infrastructure was deployed, we wanted to make sure our
+          original server code continued to function as designed. Scaling to
+          multiple instances of the Ekko server presented an immediate
+          problem: how would all server instances know which messages were
+          being published on the various other instances?
+        </p>
+        <p>This animation illustrates the problem of scaling WebSockets:</p>
+
+        <video autoplay loop muted playsinline>
+          <source src="images/diagrams/ws-problem.mp4" type="video/mp4" />
+        </video>
+        <p>
+          If we have two instances of the Ekko server, the load balancer is
+          going to connect one user to server instance A and the other to
+          server instance B. In this scenario, they are both subscribed to the
+          same channel so that they can chat with each other. Alice has a
+          WebSocket connection to server A and when she publishes her message,
+          server A receives it and publishes that message to the channel so
+          that all subscribers will receive it. However, only the WebSockets
+          connected with server A will get that message, so Bob won’t receive
+          it since he’s connected to server B.
+        </p>
+        <p>
+          In order to solve this problem, we used the Socket.IO Redis adapter
+          library. This library uses a Redis instance to broadcast events to
+          all of the Socket.IO server nodes.
+        </p>
+
+        <video autoplay loop muted playsinline>
+          <source src="images/diagrams/ws-solution.mp4" type="video/mp4" />
+        </video>
+        <p>
+          Alice’s message, published to server node A, is automatically
+          published to server node B and emitted out to all subscribers.
+        </p>
+        <h4 id="section-8-3-5">8.3.5 Syncing Associations Data</h4>
+        <p>
+          A final engineering challenge we encountered was figuring out how to
+          synchronise state between all our Ekko Server instances.
+          Specifically, we needed to ensure that all server instances had the
+          latest version of the associations.json data (which pairs channels
+          with the Ekko Functions that will execute on all associated messages
+          passing through).
+        </p>
+        <p>
+          When updates are made to the <code>associations.json</code> file, we
+          use the CLI tool to upload these updates to the S3 bucket for
+          storage. We also let the Ekko Server know by sending a
+          <code>PUT</code> request with the new associations data as the
+          payload. In this way, the current server uses the data sent via the
+          <code>PUT</code> request, and new server instances spinning up will
+          use the latest version of the associations data in the S3 bucket.
+        </p>
+        <p>
+          However, we had a problem. The request will be routed to just one of
+          the Ekko Server instances. We need to be able to notify all of the
+          Ekko Server instances with the updated data. As you can see from the
+          animation, our <code>PUT</code> request does update one of our
+          server container instances, but this update isn't shared with the
+          others.
+        </p>
+
+        <video autoplay loop muted playsinline>
+          <source src="images/diagrams/put-fail.mp4" type="video/mp4" />
+        </video>
+        <p>
+          Our solution to this was to use the standard Redis package. The
+          server that receives the message publishes the file to the Redis /
+          ElastiCache cluster, and all the other server instances in turn are
+          subscribed to the Redis cluster and receive a copy of the new
+          associations data. This allowed us to keep our server instances
+          synchronised.
+        </p>
+
+        <video autoplay loop muted playsinline>
+          <source src="images/diagrams/put-work.mp4" type="video/mp4" />
+        </video>
+        <p>
+          Solving these various engineering challenges allowed us to build
+          Ekko out such that it was working as we hoped, and it was also able
+          to scale. At this point, we wanted to make sure that the service as
+          a whole could function under realistic use loads.
+        </p>
+
+        <!-- Section 9 -->
+        <h2 id="section-9">9. Load Testing Ekko</h2>
+        <p>
+          We wanted Ekko to be able to manage thousands of WebSocket
+          connections to be viable as a realtime message processing framework.
+          In addition, we wanted it to handle and route hundreds of thousands
+          of messages in a short amount of time, all while invoking Lambda
+          functions for in-transit message processing. To test all of this, we
+          used the
+          <a href="https://artillery.io/" target="_blank"
+            >Artillery.io load testing library</a
+          >.
+        </p>
+        <p>
+          We
+          <a
+            href="https://github.com/ekko-realtime/load-testing"
+            target="_blank"
+            >set out</a
+          >
+          to see how many WebSocket connections Ekko could handle. We ran into
+          a hard limit of 65,000 connections per Ekko Server container.
+          Attempting to establish more than 65,000 connections resulted in
+          WebSocket errors. We subsequently learned that other developers had
+          come across this unwritten AWS limit in
+          <a
+            href="https://medium.com/dazn-tech/introducing-pubby-our-custom-websockets-solution-c5764e3a7dcb"
+            target="_blank"
+            >their own projects</a
+          >. Although Ekko -- and the underlying infrastructure -- could
+          almost certainly be modified to remove this limit, we decided that
+          65,000 connections was enough for our use case.
+        </p>
+        <img class="lazy" data-src="images/diagrams/loadtest-1.png" />
+        <p>
+          Next, we wanted to test a common use case for a realtime message
+          processing service: many connected devices sending messages to a
+          realtime service for some kind of data processing or monitoring.
+          Note that in this scenario, there are many publishers generating
+          data for processing, but they are not subscribers. So, there is no
+          data being published back out to the connected devices from the
+          server.
+        </p>
+        <img class="lazy" data-src="images/diagrams/loadtest-4.png" />
+        <p>
+          In this test, we established 50,000 concurrent WebSocket
+          connections. Each connection published one message per minute for
+          ten minutes. Each of these messages were processed by an Ekko
+          Function deployed on AWS Lambda. The result was 50,000 concurrent
+          WebSocket connections sending a total of 500,000 messages to the
+          Ekko Server which transformed them -- a total of 500,000 Lambda
+          invocations over the course of ten minutes. During the test, AWS’
+          ECS spun up two additional Ekko Server containers to deal with this
+          load.
+        </p>
+        <p>
+          Finally, we wanted to test Ekko’s ability to handle the many
+          publisher, many subscriber use case that you would find with chat
+          apps. We started by testing 300 connections that all subscribed to
+          the same channel. Each connection sent 10 messages over the course
+          of a minute, for a total of 3,000 published messages.
+        </p>
+        <img class="lazy" data-src="images/diagrams/loadtest-2.png" />
+        <p>
+          Ekko Server was able to handle this without issues, only reaching
+          15% of its maximum CPU usage at peak. When we ran the same test with
+          900 connections, it maxed out the CPU before ECS and Fargate could
+          scale up. We realized that we were seeing a quadratic increase in
+          load with each additional subscriber. In the first test, Ekko Server
+          had to send 3000 messages to 300 subscribed clients, totaling
+          900,000 messages sent from the server. In the second test, it had to
+          send 9000 messages to 900 clients, totaling 8,100,000 messages.
+        </p>
+        <img class="lazy" data-src="images/diagrams/loadtest-3.png" />
+        <p>
+          Seeing how quickly load was increasing with additional connected
+          clients, we thought more about our use case. If you consider a chat
+          app like Slack, you realize that it is not common for users to be
+          continually sending messages. Instead, over the course of a day, a
+          user might send a few dozen messages. On average, a user might
+          receive a message a minute.
+        </p>
+        <p>
+          With this updated use case, we ran another test. We connected 10,000
+          clients that all subscribed to the same channel. We then connected
+          one client that published one message per second to all 10,000
+          clients. This resulted in Ekko Server sending 10,000 messages per
+          second for 100 seconds, totalling in 1,000,000 messages. This was
+          more than enough to justify the chat app use case and Ekko Server
+          only reached 50% CPU usage so we remained within reasonable ranges.
+        </p>
+        <img class="lazy" data-src="images/diagrams/loadtest-5.png" />
+        <p>
+          During our tests, ECS did scale up Ekko Server instances according
+          to the scaling policies defined by our CDK code. However, it became
+          apparent that different applications have different scaling needs. A
+          developer using Ekko will therefore most likely want to customize
+          their ECS scaling policies to suit their needs. For example, if you
+          anticipate consistently having over 100,000 connected clients, you
+          may want ECS to run a minimum of two or three Ekko Server containers
+          by default.
+        </p>
+
+        <!-- Section 10 -->
+        <h2 id="section-10">10. Future Work</h2>
+        <p>
+          Ekko is designed to solve the current use case we envisioned,
+          however we did notice some areas that we'd like to improve for
+          future iterations.
+        </p>
+        <h3 id="section-10-1">10.1 Message Persistence</h3>
+        <p>
+          Messages sent through Ekko are currently not stored anywhere. Ekko
+          simply acts as a hub and passes them on to whichever clients are
+          subscribed to the service. This was a design choice for our current
+          version: we chose to prioritise the message transmission speed and
+          the transformation functionality over any attempts to provide
+          durability or redundancy of the data passing through the Ekko
+          Server.
+        </p>
+        <p>
+          Simply storing every message somewhere on AWS infrastructure — S3
+          buckets or even DynamoDB — would be relatively easy to implement,
+          but using those within the context of the realtime service is a more
+          difficult problem. Which is to say, message persistence for the
+          purpose of simply logging message content is a much less problematic
+          planned feature than message persistence for the purpose of handling
+          dropped connections and the redelivery of messages missed while a
+          client was offline (for example). The exact scope of implementing
+          message persistence therefore depends quite a bit on what message
+          persistence is being used for.
+        </p>
+        <h3 id="section-10-2">10.2 Message Encryption</h3>
+        <p>
+          The Ekko Server currently has access to all messages sent through it
+          (providing they weren't already encrypted on the client side).
+          Encryption of user data is largely recognised as something that
+          should happen by default and not be offered as an afterthought.
+        </p>
+        <p>
+          For our use case, encryption of realtime data was not the core
+          problem we set out to solve, but in order to fill out the features
+          of Ekko we think that it is among the more important parts to
+          address. We would like to add TLS connection security by default,
+          the encryption of messages passing through the Ekko system as well
+          as more fine-grained access controls for users and developers.
+        </p>
+        <h3 id="section-10-3">10.3 In-order Delivery of Messages</h3>
+        <p>
+          Ekko currently prioritises the speedy — realtime — delivery of
+          messages rather than making sure those messages are delivered in
+          order. This is a tradeoff that most of the major realtime companies
+          concede, suggesting that users of their services add an incrementing
+          serial number to each incoming message so as to be able to ascertain
+          the order in which they were received.
+        </p>
+        <p>
+          For Ekko, messages can and will often be transformed in some way.
+          This means sending them off to an AWS Lambda function to be
+          transformed or acted upon, which can take a variable amount of time.
+          This is above all what might be responsible for causing messages to
+          be delivered out of order.
+        </p>
+        <p>
+          Developers using Ekko could implement their own variant of
+          incrementing message serial ids (as recommended by Pubnub and Ably),
+          but we would like to provide an option for in-order message
+          delivery, backed by whatever extra infrastructure is necessary.
+        </p>
+
+        <!-- Section 11 -->
+        <h2 id="section-11">11. Conclusion</h2>
+        <p>
+          Ekko is an open-source framework allowing developers to easily add
+          realtime infrastructure and in-transit message processing to web
+          applications.
+        </p>
+        <img class="lazy" data-src="images/diagrams/infrastructure.png" />
+        <p>
+          We hope you have seen how flexible Ekko is to work with. The
+          possibilities available to you are many, as you can see from some of
+          the following examples.
+        </p>
+        <img class="lazy" data-src="images/diagrams/options.png" />
+        <p>
+          The combination of a realtime server with serverless functions as a
+          kind of middleware for in-transit processing of messages offers a
+          rich palette of options from the very start. We look forward to
+          hearing what you build with Ekko!
+        </p>
+      </div>
     </div>
-  </section>
+    
+  </div>
+  
+
+</body>
+
+
+<style>
+
+#case-study-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  min-height: 100vh; /* Ensure container takes full viewport height */
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("fonts/montserrat/Montserrat-Regular.ttf") format("tff");
+}
+
+@font-face {
+  font-family: "Century Gothic";
+  src: url("fonts/centurygothic/GOTHICB.TTF") format("tff");
+}
+
+:root {
+  --ekko-blue: #334252;
+  --ekko-teal: #00bdaa;
+  --ekko-teal-light: rgba(0, 189, 170, 0.2);
+  --ekko-pink: #ff895d;
+
+  --white: #ffffff;
+  --gray-50: rgb(249, 250, 251);
+  --gray-100: rgb(243, 244, 246);
+  --gray-200: rgb(229, 231, 235);
+  --gray-300: rgb(209, 213, 219);
+  --gray-400: rgb(156, 163, 175);
+  --gray-500: rgb(107, 114, 128);
+  --gray-600: rgb(75, 85, 99);
+  --gray-700: rgb(55, 65, 81);
+  --gray-800: rgb(31, 41, 55);
+  --gray-900: rgb(17, 24, 39);
+
+  --toc-width: 400px;
+}
+
+
+
+/* TOC */
+#toc {
+  background-color: var(--white);
+  border-right: 1px solid var(--gray-200);
+  overflow-y: auto;
+  padding: 2rem 1rem;
+  position: fixed;
+  top: 4rem;
+  transition: all 0.5s ease;
+  flex: 0 0 var(--toc-width);
+  /* visibility: hidden; */
+  /* width: var(--toc-width); */
+  /* bottom: 0; */
+  /* left: calc(var(--toc-width)); */
+  /* opacity: 0; */
+  
+}
+
+#toc li {
+  margin-bottom: 1.5rem;
+  line-height: 1.25rem;
+}
+
+#toc a {
+  color: var(--gray-500);
+  text-decoration: none;
+}
+
+#toc a:hover {
+  color: var(--ekko-blue);
+}
+
+#toc .selected a {
+  color: var(--ekko-teal);
+  text-decoration: none;
+}
+
+#toc p {
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-left: 0.75rem;
+}
+
+#toc a > div {
+  align-items: center;
+  display: flex;
+}
+
+#toc .bullet {
+  align-items: center;
+  background-color: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  height: 1.25rem;
+  width: 1.25rem;
+}
+
+#toc .bullet div {
+  background-color: var(--gray-300);
+  border-radius: 50%;
+  height: 0.5rem;
+  width: 0.5rem;
+}
+
+#toc a:hover .bullet div {
+  background-color: var(--gray-400);
+}
+
+#toc .selected a:hover .bullet div {
+  background-color: var(--ekko-teal);
+}
+
+#toc .selected .bullet {
+  background-color: var(--ekko-teal-light);
+}
+
+#toc .selected .bullet div {
+  background-color: var(--ekko-teal);
+}
+
+#toc .subitem {
+  display: none;
+  margin-left: 1.625rem;
+}
+
+#toc .subitem.show {
+  display: block;
+}
+
+/* Case Study */
+#case-study {
+  flex: 1;
+}
+
+#case-study-content {
+  
+  /* border-bottom: 1px solid var(--gray-200);
+  border-top: 1px solid var(--gray-200); */
+}
+
+#case-study-content img {
+  max-width: 100%;
+}
+
+#case-study-content video {
+  max-width: 100%;
+}
+
+#case-study-content > div {
+  padding: 4rem 1rem;
+}
+
+#case-study-content .prose h1::before,
+#case-study-content .prose h2::before,
+#case-study-content .prose h3::before,
+#case-study-content .prose h4::before {
+  display: block;
+  content: " ";
+  margin-top: -6rem;
+  height: 6rem;
+  visibility: hidden;
+  /* background-color: rgba(0, 0, 0, 0.1); */
+  pointer-events: none;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+  color: var(--ekko-blue);
+  margin-top: 3rem;
+}
+
+.prose a {
+  color: #4c74b9;
+  text-decoration: underline !important;
+  text-decoration-color: #d2dcee !important;
+  transition: all 0.3s ease;
+}
+
+.prose a:hover {
+  text-decoration-color: #829dce !important;
+}
+
+.prose blockquote {
+  border-left: 0.25rem solid var(--gray-200);
+}
+
+.prose em {
+  font-style: italic;
+}
+
+/* #case-study img {
+  width: 700px;
+} */
+
+.prose code {
+  background-color: var(--gray-100);
+  color: var(--gray-600);
+  font-family: monospace;
+  font-weight: normal;
+  font-size: 0.75rem;
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.375rem;
+  line-height: 1.5rem;
+}
+
+.prose code:before,
+.prose code:after {
+  content: "";
+}
+
+
+</style>
+
 
 
 <script>
-  /*code for the toc and case study*/
+// Elements
+const navLinks = document.querySelectorAll("#header nav a");
+const navLinksCount = navLinks.length;
+const header = document.querySelector("header");
+const mobileMenuButton = document.querySelector("header #menu button");
+const mobileMenu = document.querySelector("#mobile-menu");
 const caseStudy = document.getElementById("case-study");
+const caseStudyText = document.querySelector(".prose");
 const toc = document.getElementById("toc");
 const tocLinks = document.querySelectorAll("#toc a");
 const tocLinksCount = tocLinks.length;
+const team = document.querySelector("#our-team ul li");
 
+// Handlers
+const handleScroll = () => {
+  handleTocSelection();
+};
 
-function handleTOCSelection() {
+const handlePageLoad = () => {
+  console.log("handling page load")
+  handleTocSelection();
+};
+
+const handleProseSize = () => {
+  if (window.innerWidth >= 1280) {
+    caseStudyText.classList.remove("prose-lg");
+    caseStudyText.classList.add("prose-xl");
+  } else if (window.innerWidth >= 1024) {
+    caseStudyText.classList.remove("prose-xl");
+    caseStudyText.classList.add("prose-lg");
+  } else {
+    caseStudyText.classList.remove("prose-lg");
+    caseStudyText.classList.remove("prose-xl");
+  }
+};
+
+const handleMainSectionSelection = () => {
+  const clearSelectedNav = () => {
+    const selectedItems = document.querySelectorAll("header a.selected");
+    selectedItems.forEach((selectedItem) => {
+      selectedItem.classList.remove("selected");
+    });
+  };
+  const selectNavItem = (hash) => {
+    const links = document.querySelectorAll(`a[href="${hash}"]`);
+    links.forEach((link) => {
+      link.classList.add("selected");
+    });
+  };
+
+  const teamInView =
+    team.offsetTop + team.offsetHeight < window.scrollY + window.innerHeight;
+
+  if (teamInView) {
+    clearSelectedNav();
+    selectNavItem("#our-team");
+    return;
+  }
+
+  for (let i = navLinksCount - 1; i >= 0; i--) {
+    const link = navLinks[i];
+
+    if (link.hash) {
+      const target = document.querySelector(link.hash);
+
+      if (!!target && target.offsetTop <= window.scrollY + 16 * 5) {
+        clearSelectedNav();
+        selectNavItem(link.hash);
+        break;
+      }
+    }
+  }
+};
+
+const handleTocVisibility = () => {
+  const tocIsVisible = () => {
+    const caseStudyTopIsVisible = window.scrollY >= caseStudy.offsetTop;
+    const caseStudyBottomIsVisible =
+      window.scrollY + window.innerHeight >
+      caseStudy.offsetHeight + caseStudy.offsetTop;
+
+    return true;
+  };
+
+  if (tocIsVisible()) {
+    toc.classList.add("show");
+  } else {
+    toc.classList.remove("show");
+  }
+};
+
+const handleTocSelection = () => {
+  console.log("handling toc selection")
   const clearSelectedToc = () => {
     const selectedTocItems = document.querySelectorAll("#toc .selected");
     const subItems = document.querySelectorAll(`li.subitem.show`);
 
-    //hide any open subitems
     subItems.forEach((subItem) => {
       subItem.classList.remove("show");
     });
 
-    //remove the selected items
     selectedTocItems.forEach((selectedTocItem) => {
       selectedTocItem.classList.remove("selected");
     });
@@ -1556,367 +2152,96 @@ function handleTOCSelection() {
     tocItem.classList.add("selected");
   };
 
-  //do nothing if we don't want to show the toc
-  if (!toc.classList.contains("show")) return;
+  // if (!toc.classList.contains("show")) return;
+  console.log("handling toc selection 2")
 
-  //for each link in the toc
   for (let i = tocLinksCount - 1; i >= 0; i--) {
+    console.log("handling toc selection 3")
     const link = tocLinks[i];
-    //link.hash is the place the anchor links to.
     if (!link.hash) continue;
     const target = document.querySelector(link.hash);
-
-    //if the target exists and its reasonable far away
+    console.log("handling toc selection 4")
     if (!!target && target.offsetTop <= window.scrollY + 16 * 2) {
       clearSelectedToc();
       selectTocItem(link, target);
+      console.log("handling toc selection 5")
 
       break;
     }
   }
-}
-
+};
 
 
 // Helpers
-function throttle(callback, wait) {
+const throttle = (callback, wait) => {
   let prevent = false;
 
-  return function (event) {
+  return function () {
     if (!prevent) {
-      callback(event);
+      callback();
       prevent = true;
       setTimeout(function () {
         prevent = false;
       }, wait);
     }
   };
-}
+};
 
-function handlePageLoad() {
-  handleTOCSelection();
-}
-
-function handleScroll() {
-  handleTOCSelection();
-}
-
-//events
+// Events
 document.addEventListener("DOMContentLoaded", handlePageLoad);
 document.addEventListener("scroll", throttle(handleScroll, 16));
+mobileMenuButton.addEventListener("click", handlemobileMenuClick);
+mobileMenu.addEventListener("click", handlemobileMenuClick);
+
+// Lazy image load
+document.addEventListener("DOMContentLoaded", function () {
+  var lazyloadImages;
+
+  if ("IntersectionObserver" in window) {
+    lazyloadImages = document.querySelectorAll(".lazy");
+    var imageObserver = new IntersectionObserver(function (entries, observer) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var image = entry.target;
+          image.src = image.dataset.src;
+          image.classList.remove("lazy");
+          imageObserver.unobserve(image);
+        }
+      });
+    });
+
+    lazyloadImages.forEach(function (image) {
+      imageObserver.observe(image);
+    });
+  } else {
+    var lazyloadThrottleTimeout;
+    lazyloadImages = document.querySelectorAll("img");
+
+    function lazyload() {
+      if (lazyloadThrottleTimeout) {
+        clearTimeout(lazyloadThrottleTimeout);
+      }
+
+      lazyloadThrottleTimeout = setTimeout(function () {
+        var scrollTop = window.pageYOffset;
+        lazyloadImages.forEach(function (img) {
+          if (img.offsetTop < window.innerHeight + scrollTop) {
+            img.src = img.dataset.src;
+            img.classList.remove("lazy");
+          }
+        });
+        if (lazyloadImages.length == 0) {
+          document.removeEventListener("scroll", lazyload);
+          window.removeEventListener("resize", lazyload);
+          window.removeEventListener("orientationChange", lazyload);
+        }
+      }, 20);
+    }
+
+    document.addEventListener("scroll", lazyload);
+    window.addEventListener("resize", lazyload);
+    window.addEventListener("orientationChange", lazyload);
+  }
+});
+
 </script>
-
-<style>
-:root {
-  --darker-blue: #13161d;
-  --dark-blue: #272f3f;
-  --blue: #363f54;
-  --red: #e2554f;
-  --darker-red: #ca4944;
-  --orange: #ed6b2c;
-  --light-orange: #ed9837;
-  --yellow: #efbe43;
-  --off-white: #f2f1ea;
-  --gray: #d3d2cc;
-  --toc-width: 320px;
-
-  font-family: "proxima-nova", sans-serif;
-  /* font-family: "futura", sans-serif; */
-  scroll-behavior: smooth;
-
-  --campfire-gradient: linear-gradient(
-    319deg,
-    rgba(239, 190, 67, 1) 12%,
-    rgba(237, 152, 55, 1) 32%,
-    rgba(237, 107, 44, 1) 49%,
-    rgba(226, 85, 79, 1) 80%,
-    rgba(39, 47, 63, 1) 100%
-  );
-}
-
-/* CASE STUDY SECTION */
-
-#case-study {
-  background-color: white;
-  padding: 70px;
-  padding-top: 100px;
-  color: black;
-}
-
-/* article wraps case study content */
-#case-study article {
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
-  /* margin-left: var(--toc-width); */
-  max-width: 700px;
-  line-height: 2rem;
-}
-
-#case-study article > section {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
-
-#case-study p,
-#case-study ul,
-#case-study ol {
-  color: black;
-  font-weight: 300;
-  font-size: 1.1rem;
-}
-
-#case-study td,
-#case-study th {
-  text-align: left;
-  vertical-align: top;
-}
-
-#case-study img {
-  margin: auto;
-  width: 100%;
-}
-
-#case-study > h1 {
-  display: inline-block;
-  border-top: 2px solid var(--darker-red);
-  padding-right: 10px;
-  padding-top: 10px;
-  margin-bottom: 70px;
-}
-
-#case-study h1,
-#case-study h2,
-#case-study h3 {
-  font-family: "futura", sans-serif;
-  color: #F58549;
-}
-#case-study h1 {
-  font-size: 2rem;
-}
-
-#case-study h2 {
-  font-size: 1.5rem;
-}
-
-#case-study h3 {
-  font-size: 1.2rem;
-}
-
-#case-study article a {
-  color: black;
-  font-family: "Bodoni Moda", "Times New Roman", Times, serif;
-  font-style: italic;
-}
-
-#case-study a:hover {
-  color: var(--red);
-}
-
-#case-study article ul li {
-  list-style-type: disc;
-  list-style: outside;
-  padding: 5px;
-}
-
-#section-4-2-Campfire-Features li:nth-child(even) {
-  list-style: none;
-  padding: 5px;
-}
-
-#case-study article ol li {
-  list-style: outside;
-  padding: 5px;
-  list-style-type: decimal;
-}
-
-#case-study article ol,
-#case-study article ul {
-  margin-left: 45px;
-}
-
-#case-study a.reference {
-  font-size: 0.75rem;
-  color: var(--yellow);
-  text-decoration: none;
-  padding: 2px;
-}
-
-#case-study a.reference:hover {
-  color: var(--light-orange);
-}
-
-#case-study a.reference::before {
-  content: "(";
-}
-
-#case-study a.reference::after {
-  content: ")";
-}
-
-#case-study .multiple-images {
-  display: flex;
-  gap: 10px;
-}
-
-#case-study .multiple-images p {
-  display: flex;
-  flex-direction: column;
-  
-}
-
-#case-study-content {
-  display: flex;
-  gap: 0;
-  justify-content: center;
-}
-
-/* CASE STUDY TABLE OF CONTENTS */
-
-#toc {
-  width: var(--toc-width);
-  position: fixed;
-  top: 10rem;
-  transition: opacity 0.5s ease;
-  opacity: 1;
-  margin-right: 72rem;
-
-  
-
-  a {
-    display: flex;
-    padding: 10px;
-    color: black;
-    text-decoration: none;
-  }
-
-  li.subitem {
-    display: none;
-  }
-
-  li,
-  li.subitem.show {
-    display: flex;
-    align-items: center;
-  }
-
-  li.selected::before {
-    display: block;
-    border: 4px solid var(--red);
-    content: " ";
-    border-radius: 50%;
-    width: 0.5rem;
-    height: 0.5rem;
-    background-color: var(--blue);
-  }
-
-  li::before {
-    display: block;
-    content: " ";
-    border-radius: 50%;
-    width: 0.5rem;
-    height: 0.5rem;
-    background-color: var(--blue);
-  }
-
-  .subitem {
-    padding-left: 30px;
-  }
-}
-
-#toc.show {
-  opacity: 1;
-}
-
-
-
-/* MOBILE SETTINGS */
-/* hero */
-@media (min-width: 1215px) {
-  #landing h1 {
-    font-size: 5vw;
-  }
-
-  #landing-video img {
-    width: 38vw !important;
-  }
-}
-
-@media (max-width: 990px) {
-  #landing {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  #landing h1 {
-    font-size: 8vw;
-  }
-
-  #landing-title {
-    position: relative;
-    transform: none;
-    text-align: center;
-  }
-
-  #landing-video {
-    transform: none;
-  }
-
-  #landing-video img {
-    width: 80vw;
-  }
-
-  #landing-video svg {
-    width: 30vw;
-  }
-}
-
-@media (max-width: 750px) {
-  #rock-wrapper {
-    margin-top: -400px;
-  }
-}
-
-@media (max-width: 590px) {
-  #rock-wrapper {
-    margin-top: -300px;
-  }
-}
-
-@media (min-width: 800px) {
-  /* CSS code for the breakpoint of 800px wide */
-
-  .feature {
-    flex-direction: row;
-    align-items: center;
-    gap: 50px;
-  }
-
-  .feature .gif {
-    min-width: 300px;
-  }
-
-  .right {
-    order: 2;
-  }
-}
-
-@media (max-width: 950px) {
-  #toc {
-    display: none;
-  }
-
-  #case-study article {
-    margin-left: 0 !important;
-  }
-}
-
-@media (max-width: 530px) {
-  #case-study {
-    padding: 35px !important;
-  }
-}
-
-</style>
