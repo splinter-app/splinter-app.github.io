@@ -1,10 +1,10 @@
 ---
 
 ---
-<body>
+
   
-  <div id="case-study-container">
-    <aside id="toc" >
+<div id="case-study-container">
+  <aside id="toc" class="show">
     <ul>
       <!-- Section 1 -->
       <li data-section="section-1" class="selected">
@@ -306,9 +306,9 @@
         </a>
       </li>
     </ul>
-    </aside>
+  </aside>
 
-    
+  <div id="case-study" class="main-section">
     <div id="case-study-content">
       <div class="prose">
         <h1>Case Study</h1>
@@ -1804,23 +1804,14 @@
         </p>
       </div>
     </div>
-    
   </div>
-  
+</div>
 
-</body>
+
 
 
 <style>
-
-#case-study-container {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  min-height: 100vh; /* Ensure container takes full viewport height */
-}
-
-@font-face {
+  @font-face {
   font-family: "Montserrat";
   src: url("fonts/montserrat/Montserrat-Regular.ttf") format("tff");
 }
@@ -1851,24 +1842,87 @@
   --toc-width: 400px;
 }
 
+/* Global */
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
 
+.h-full {
+  height: calc(100vh - 4rem);
+}
+
+.bg-blue {
+  background-color: var(--ekko-blue);
+}
+
+.bg-teal {
+  background-color: var(--ekko-teal);
+}
+
+.bg-pink {
+  background-color: var(--ekko-pink);
+}
+
+.bg-gray {
+  background-color: #eee;
+}
+
+.text-pink {
+  color: var(--ekko-pink);
+}
+
+.text-teal {
+  color: var(--ekko-teal);
+}
+
+.block {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
+.main-section:before {
+  display: block;
+  content: " ";
+  margin-top: -4rem;
+  height: 4rem;
+  visibility: hidden;
+  pointer-events: none;
+  background-color: yellow;
+}
+
+
+#case-study-container {
+  display: flex;
+  justify-content: center;
+  gap: 50px
+}
+
+#case-study {
+  flex-grow: 0.3;
+}
 
 /* TOC */
 #toc {
   background-color: var(--white);
   border-right: 1px solid var(--gray-200);
+  bottom: 0;
+  /* left: calc(var(--toc-width) * -1); */
   overflow-y: auto;
   padding: 2rem 1rem;
-  position: fixed;
+  position: sticky;
   top: 4rem;
   transition: all 0.5s ease;
-  flex: 0 0 var(--toc-width);
-  /* visibility: hidden; */
-  /* width: var(--toc-width); */
-  /* bottom: 0; */
-  /* left: calc(var(--toc-width)); */
-  /* opacity: 0; */
-  
+  /* visibility: hidden;
+  opacity: 0; */
+  width: var(--toc-width);
+  align-self: flex-start;
+  /* flex-grow: 0.5; */
+  padding-top: 10rem;
 }
 
 #toc li {
@@ -1886,7 +1940,7 @@
 }
 
 #toc .selected a {
-  color: var(--ekko-teal);
+  color: #F58549;
   text-decoration: none;
 }
 
@@ -1923,15 +1977,15 @@
 }
 
 #toc .selected a:hover .bullet div {
-  background-color: var(--ekko-teal);
+  background-color: #F58549;
 }
 
 #toc .selected .bullet {
-  background-color: var(--ekko-teal-light);
+  background-color: #ffd7b5;
 }
 
 #toc .selected .bullet div {
-  background-color: var(--ekko-teal);
+  background-color: #F58549;
 }
 
 #toc .subitem {
@@ -1944,12 +1998,7 @@
 }
 
 /* Case Study */
-#case-study {
-  flex: 1;
-}
-
 #case-study-content {
-  
   /* border-bottom: 1px solid var(--gray-200);
   border-top: 1px solid var(--gray-200); */
 }
@@ -1974,7 +2023,7 @@
   content: " ";
   margin-top: -6rem;
   height: 6rem;
-  visibility: hidden;
+  /* visibility: hidden; */
   /* background-color: rgba(0, 0, 0, 0.1); */
   pointer-events: none;
 }
@@ -2026,13 +2075,238 @@
   content: "";
 }
 
+/* Our Team */
+#our-team > div {
+  background-color: var(--gray-900);
+}
+
+#our-team > div > div {
+  margin: 0 auto;
+  max-width: 80rem;
+  padding: 3rem 1rem;
+}
+
+#our-team > div > div > * + * {
+  margin-top: 3rem;
+}
+
+#our-team > div > div > div h2 {
+  color: var(--white);
+  font-size: 1.875rem;
+  font-weight: 800;
+  line-height: 2.25rem;
+}
+
+#our-team > div > div > div p {
+  color: var(--gray-300);
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+#our-team > div > div > div > * + * {
+  margin-top: 1.25rem;
+}
+
+#our-team ul.people > li {
+  margin-top: 1rem;
+}
+
+#our-team .profile {
+  background-color: var(--gray-800);
+  border-radius: 0.5rem;
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+#our-team .profile > * + * {
+  margin-top: 1.5rem;
+}
+
+#our-team .profile > div {
+}
+
+#our-team .profile > div > * + * {
+  margin-top: 0.5rem;
+}
+
+#our-team .profile > div > div {
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1.75rem;
+}
+
+#our-team .profile > div > div > * + * {
+  margin-top: 0.25rem;
+}
+
+#our-team .profile > div > div > h3 {
+  color: var(--white);
+}
+
+#our-team .profile > div > div > p {
+  color: var(--ekko-teal);
+}
+
+#our-team .social {
+  display: flex;
+  justify-content: center;
+}
+
+#our-team .social > * + * {
+  margin-left: 1rem;
+}
+
+#our-team .social li {
+  color: var(--gray-400);
+  width: 1.75rem;
+  margin-top: 0.25rem;
+}
+
+#our-team .social a {
+  color: var(--gray-400);
+  font-size: 1.5rem;
+}
+
+#our-team .social a:hover {
+  color: var(--gray-300);
+}
+
+#our-team img {
+  border-radius: 5rem;
+  height: 10rem;
+  width: 10rem;
+}
+
+/* Youtube */
+#presentation div {
+  padding: 4rem 0;
+  text-align: center;
+}
+
+#presentation iframe {
+  border: 1px solid var(--gray-200);
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  height: calc(100vh - 4rem);
+  margin: 0 auto;
+  max-height: 304px;
+  max-width: calc(100% - 2rem);
+  width: 100%;
+}
+
+#presentation h2 {
+  color: var(--ekko-blue);
+  font-weight: 800;
+  font-size: 2.25rem;
+  margin-bottom: 1em;
+}
+
+/* start-here */
+#start-here > div {
+  display: flex;
+  flex-direction: column;
+}
+
+#start-here > div > div {
+  flex: 0 0 50%;
+}
+
+#start-here .static-logo-color {
+  background-image: url("../images/logo/ekko-logo.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 25%;
+  background-position: 50% calc(50% / 3 + 4rem);
+}
+
+#start-here div.static-logo-teal-light {
+  display: none;
+}
+
+#start-here div.static-logo-pink-light {
+  display: none;
+}
+
+#start-here .h-full {
+  height: auto;
+}
+
+#start-here > div div:last-child {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem 1rem;
+}
+
+#start-here > div div:last-child > img {
+  width: 100%;
+}
+
+#start-here > div div:last-child > img.ekko {
+  max-width: 50%;
+}
+
+#start-here > div div:last-child > * + * {
+  margin-top: 2rem;
+}
+
+#start-here > div div:last-child > p {
+  color: var(--gray-100);
+  font-size: 1.5rem;
+  line-height: 2rem;
+  text-align: center;
+}
+
+#start-here > div div:last-child > p.light-text {
+  color: var(--gray-300);
+}
+
+#start-here > div div:last-child > p > span {
+  font-weight: 500;
+}
+
+#start-here .bg-pink,
+#start-here .bg-teal {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+#start-here .bg-pink h2,
+#start-here .bg-teal h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--white);
+}
+
+#start-here h2.sm-header {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--white);
+}
+
+#start-here video.pad {
+  background-color: var(--white);
+  border-radius: 0.5rem;
+  padding: 2rem;
+}
+
+#start-here img.lg-screen {
+  display: none;
+}
+
+#start-here video {
+  max-width: 100%;
+}
 
 </style>
 
 
 
 <script>
-// Elements
+  // Elements
 const navLinks = document.querySelectorAll("#header nav a");
 const navLinksCount = navLinks.length;
 const header = document.querySelector("header");
@@ -2050,8 +2324,13 @@ const handleScroll = () => {
   handleTocSelection();
 };
 
+const handleResize = () => {
+  // handleProseSize();
+  handleTocSelection();
+};
+
 const handlePageLoad = () => {
-  console.log("handling page load")
+  // handleProseSize();
   handleTocSelection();
 };
 
@@ -2119,12 +2398,11 @@ const handleTocVisibility = () => {
   if (tocIsVisible()) {
     toc.classList.add("show");
   } else {
-    toc.classList.remove("show");
+    toc.classList.add("show");
   }
 };
 
 const handleTocSelection = () => {
-  console.log("handling toc selection")
   const clearSelectedToc = () => {
     const selectedTocItems = document.querySelectorAll("#toc .selected");
     const subItems = document.querySelectorAll(`li.subitem.show`);
@@ -2152,25 +2430,31 @@ const handleTocSelection = () => {
     tocItem.classList.add("selected");
   };
 
-  // if (!toc.classList.contains("show")) return;
-  console.log("handling toc selection 2")
+  if (!toc.classList.contains("show")) return;
 
   for (let i = tocLinksCount - 1; i >= 0; i--) {
-    console.log("handling toc selection 3")
     const link = tocLinks[i];
     if (!link.hash) continue;
     const target = document.querySelector(link.hash);
-    console.log("handling toc selection 4")
+
     if (!!target && target.offsetTop <= window.scrollY + 16 * 2) {
       clearSelectedToc();
       selectTocItem(link, target);
-      console.log("handling toc selection 5")
 
       break;
     }
   }
 };
 
+const handlemobileMenuClick = () => {
+  const menuOpen = header.classList.contains("mobile-menu-open");
+
+  if (menuOpen) {
+    header.classList.remove("mobile-menu-open");
+  } else {
+    header.classList.add("mobile-menu-open");
+  }
+};
 
 // Helpers
 const throttle = (callback, wait) => {
@@ -2190,6 +2474,7 @@ const throttle = (callback, wait) => {
 // Events
 document.addEventListener("DOMContentLoaded", handlePageLoad);
 document.addEventListener("scroll", throttle(handleScroll, 16));
+window.addEventListener("resize", throttle(handleResize, 16));
 mobileMenuButton.addEventListener("click", handlemobileMenuClick);
 mobileMenu.addEventListener("click", handlemobileMenuClick);
 
