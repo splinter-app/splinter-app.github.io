@@ -16,13 +16,13 @@ import '../styles/gradient.css';
 // Content
 // - Hero Image
 import heroImage from '../assets/hero-01.png'
-import heroImage2 from '../assets/Factory.png'
+import heroImage2 from '../assets/Factory2.png'
 ---
 
 <Section id="intro" classes="bg-neutral-50 dark:bg-neutral-900 gradient-background hero-section">
   <Row class="flex items-center h-full">
     <!-- Left Column: Title and Text -->
-    <Col span="5" class="flex flex-col justify-between p-4 h-full">
+    <Col span="7" class="flex flex-col justify-between p-4 h-full">
       <!-- Content will be vertically centered with equal spacing above and below -->
       <div class="flex flex-col h-full">
         <h1>Transform <strong>unstructured data</strong> for AI</h1>
@@ -42,12 +42,12 @@ import heroImage2 from '../assets/Factory.png'
     </Col>
 
     <!-- Right Column: Image -->
-    <Col span="7" class="flex justify-center p-0">
+    <Col span="4" class="flex justify-center p-0">
       <Image
         src={heroImage2}
         alt="Splinter UI"
         class="w-full h-full object-cover translate-y-4 shadow-neutral-200 dark:shadow-neutral-950"
-        format="webp"
+        format="png"
       />
     </Col>
   </Row>
