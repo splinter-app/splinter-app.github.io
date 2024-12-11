@@ -17,6 +17,7 @@ To better understand the value Splinter provides, it is important to recognize t
 Artificial Intelligence (AI) has quickly become a transformative technology, rapidly changing the way that almost every industry in the world functions. AI applications are able to make sense of large amounts of data and are designed to allow us to easily interface with these data sets in more intuitive ways. Some can respond to complex instructions with comprehension that seems almost human-like, while others can retrieve and synthesize relevant information from large data sources in real-time, produce personalized outputs based on analyzing a user’s behavior, or determine the nuance or subtext behind a question. At the core of these applications is the ability to process and comprehend data and present the retrieved information as insights.
 
 Some of the most prominent AI systems are:
+
 - Large Language Models (LLMs) that train on vast amounts of data and generate responses that closely mimic natural communication.
 - Retrieval-Augmented Generation (RAG) systems which take relevant information retrieved from knowledge bases and combine it with machine-generated content to provide an improved response.
 - Recommendation systems such as those used in products like Netflix which can suggest content based on a user’s viewing behavior.
@@ -71,6 +72,7 @@ The process of handling data by moving it through various stages of transformati
 ![](/images)
 
 A common type of pipeline is ETL which is comprised of Extract, Transform, and Load steps:
+
 - Extraction refers to the collection of raw data from different sources such as documents. The steps necessary to extract information differ in implementation depending on the types and formats of the given file (eg. PDF, CSV, JSON, etc.).
 - Transformation involves parsing information out of the raw data and performing operations such as cleaning and removing unnecessary items, enrichment or operations on the data, or normalizing the data to make it suitable for use.
 - Loading the data completes the pipeline by sending the transformed data to storage such as a database for further applications. The loading step can also include managing the flow of data to prevent spikes, monitoring for errors, or database indexing to assist in future processing steps.
@@ -170,7 +172,6 @@ Once the pipeline is fully deployed, a locally deployed user interface provides 
 
 This dashboard offers real-time updates during the ingestion process, including the current state of each document’s ingestion, the number of existing vectors, and the number of new vectors added to the knowledge base.
 
-
 ##### RAG Sandbox:
 
 The built-in RAG chatbot uses the user’s destination database as a knowledge base. The chatbot updates its context based on the documents in the knowledge base, allowing users to verify the accuracy of the ingested data.
@@ -190,6 +191,7 @@ Splinter is intentionally designed to cater to specific use cases, particularly 
 ![](/images)
 
 Splinter consists of 4 major subsections:
+
 - Source (Data Sources and Event Triggers)
 - Data Ingestion Engine
 - Vector Database Destinations
