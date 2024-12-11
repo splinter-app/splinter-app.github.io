@@ -16,133 +16,54 @@ import '../styles/gradient.css';
 // Content
 // - Hero Image
 import heroImage from '../assets/hero-01.png'
-import heroImage2 from '../assets/Factory2.png'
+import factoryImage from '../assets/Factory6.png'
 ---
 
-<Section id="intro" classes="bg-neutral-50 dark:bg-neutral-900 gradient-background hero-section">
-  <Row class="flex items-center h-full">
-    <!-- Left Column: Title and Text -->
-    <Col span="7" class="flex flex-col justify-between p-4 h-full">
-      <!-- Content will be vertically centered with equal spacing above and below -->
-      <div class="flex flex-col h-full">
-        <h1>Transform <strong>unstructured data</strong> for AI</h1>
-        <p class="pb-0 text-lg">An open-source ingestion pipeline designed to transform unstructured data into vectorized formats for integration with knowledge bases</p>
+<Section id="intro" padding="top" classes="bg-neutral-50 dark:bg-neutral-900 gradient-background">
+  <Row>
+		<Col span="2" />
+		<Col span="8" align="center">
+			
+			<h1>Transform <strong>Unstructured Data</strong> for AI Applications</h1>
 
-        <!-- Container for buttons -->
-        <div class="button-container">
-          <!-- First Button -->
-          <Button size="lg" link="/case-study" classes="case-study-button">Read the Case Study</Button>
-
-          <!-- Second Button -->
-          <Button size="lg" link="https://github.com/splinter-app/" classes="github-button">
-            Download from GitHub
-          </Button>
-        </div>
-      </div>
-    </Col>
-
-    <!-- Right Column: Image -->
-    <Col span="4" class="flex justify-center p-0">
-      <Image
-        src={heroImage2}
-        alt="Splinter UI"
-        class="w-full h-full object-cover translate-y-4 shadow-neutral-200 dark:shadow-neutral-950"
-        format="png"
-      />
-    </Col>
-  </Row>
+			<p class="pb-0 text-lg">An open-source ingestion pipeline designed to transform unstructured data into vectorized formats for integration with knowledge bases</p>
+			<Button size="lg" link="/case-study">Read the Case Study</Button>
+		</Col>
+		<Col span="2" />
+		<Col span="2" />
+		<Col span="8">
+      
+			<Image
+				src={factoryImage}
+				alt="Splinter UI"
+				class="translate-y-8 shadow-neutral-200 dark:shadow-neutral-950"
+				format="webp"
+			/>
+      
+      </Col>
+		<Col span="8" />
+    
+	</Row>
+	<!-- <Row>
+		<Col span="2" />
+    <Col span="8" classes="flex flex-col items-center">
+			<Image
+				src={heroImage}
+				alt="Foxi. The tailwind astro theme"
+				class="translate-y-8 shadow-neutral-200 dark:shadow-neutral-950 max-w-md p-20"
+				format="webp"
+			/>
+      <Col span="8" align="center">
+        <h1>Integrate <strong>unstructured data</strong> into AI applications</h1>
+        <p class="pb-0 text-lg">Splinter is an open-source ingestion pipeline designed to transform unstructured data into vectorized formats for integration with knowledge bases.</p>
+        <Button size="lg" link="/">Read the Case Study</Button>
+      </Col>
+      </Col
+		>
+		
+		<Col span="2" />
+		<Col span="2" />
+		
+		<Col span="2" />
+	</Row> -->
 </Section>
-
-<style global>
-  .hero-section {
-    min-height: 75vh;  /* Ensures the Hero section takes at least 75% of the viewport height */
-  }
-
-  .hero-section .row {
-    margin-left: 0;
-    margin-right: 0;
-    height: 100%;  /* Ensures Row takes up the full height of the section */
-  }
-
-  .hero-section .container {
-    max-width: 100vw; /* Full-width container */
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  .hero-section .col {
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  .hero-section .col:first-child {
-    padding-left: 10rem;  /* Adds left padding to the first column (Text Column) */
-  }
-
-  .hero-section .col:last-child {
-    padding-right: 0; /* No padding on the image column */
-  }
-
-  .hero-section .col .flex {
-    /* Ensures the flex box in the column takes full height and vertically centers content */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 100%;
-  }
-
-  /* New Styles for Button Container */
-  .hero-section .button-container {
-    display: flex;          /* This makes the container a flexbox */
-    gap: 1rem;              /* Adds space between the buttons */
-    justify-content: flex-start; /* Align buttons to the left */
-    margin-top: 1.5rem;      /* Adds some space above the button container */
-    width: auto;            /* Allow container to expand based on button size */
-  }
-
-  /* Ensure buttons are side-by-side and have a fixed width */
-  .hero-section .button-container button {
-    width: auto; /* Adjust to content width */
-    flex-shrink: 0; /* Prevent buttons from shrinking */
-  }
-
-  /* Common styles for both buttons */
-  .hero-section .button-container .button {
-    background-color: white;        /* White background */
-    border: 2px solid;      /* Dark border for both buttons */
-    padding: 1rem 1rem;             /* Padding */
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-  }
-
-  /* Case Study Button: Orange Text when not hovering */
-  .hero-section .button-container .button.case-study-button {
-    color: #FD7854;                  /* Orange text for Case Study Button */
-    border-color: #FD7854;           /* Orange border for Case Study */
-  }
-
-  .hero-section .button-container .button.case-study-button:hover {
-    background-color: #FD7854;       /* Orange background on hover */
-    color: white;                    /* White text on hover */
-    border-color: #FD7854;           /* Orange border on hover */
-  }
-
-  /* GitHub Button: GitHub Blue Text when not hovering */
-  .hero-section .button-container .button.github-button {
-    color: #4078c0;                  /* GitHub blue text for GitHub Button */
-    border-color: #4078c0;           /* GitHub blue border for GitHub */
-  }
-
-  .hero-section .button-container .button.github-button:hover {
-    background-color: #4078c0;       /* Correct GitHub blue on hover */
-    color: white;                    /* White text on hover */
-    border-color: #4078c0;           /* GitHub blue border on hover */
-  }
-
-  .hero-section h1 strong {
-    background: linear-gradient(to right, #FFB84D, #FD7854);
-    -webkit-background-clip: text; /* For Webkit browsers (Chrome, Safari, Edge) */
-    background-clip: text; /* For modern browsers */
-    color: transparent; /* Make the text transparent so the gradient is visible */
-    display: inline-block; /* Ensure it behaves like text */
-  }
-</style>
