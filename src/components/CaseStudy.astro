@@ -212,7 +212,7 @@
         <p>
           Many of these AI systems rely on knowledge bases, large wells of data that are structured to facilitate the retrieval of information. While LLM’s primarily rely on patterns learned from their initial training data, they can also work in conjunction with knowledge bases to enhance their performance, particularly in applications where real-time or domain-specific information is required.
         </p>
-        <img src="images/background/rag-knowledge-base.png">
+        <img src="../images/background/rag-knowledge-base.png">
         <p>
           A high quality knowledge base serves as the foundation of many of these applications to provide accurate information, but equally as important is the ability to effectively retrieve this information. For instance, in a RAG system, the knowledge base is used to retrieve the most relevant documents to generate a higher quality response. In semantic search, the knowledge base helps enrich queries with contextual information, allowing the system to understand the relationships between terms and retrieve results based on meaning rather than simply matching keywords. Knowledge bases can take many forms, depending on the application. Common examples of content stored in knowledge bases include internal company documents (e.g., Confluence pages, wikis, or emails), product catalogs, customer support logs, and even specialized datasets like scientific papers or medical records.
         </p>
@@ -225,7 +225,7 @@
           Consider an example of a recommendation engine:
         </p>
         <li>Table of customers and their purchased items:</li>
-        <img src="images/background/purchases.png" >
+        <img src="../images/background/purchases.png" >
         <p>
           To decide what product to recommend to a given customer, we could look into which products other customers purchased and see if there are other customers who have a similar purchase profile. For instance, both Leonardo and Michelangelo purchased coffee, milk, and sugar while Raphael has only purchased coffee and milk, so sugar may be a good recommendation for Raphael.
         </p>
@@ -235,7 +235,7 @@
         <p>
           The relationships can be represented as shown where 0 corresponds to “not purchased” and 1 corresponds to “purchased”. These sets can be described as vectors:
         </p>
-        <img src="images/background/purchases2.png" width="600px">
+        <img src="../images/background/purchases2.png" width="600px">
         <p>
           Vectors are mathematical representations used to represent relationships, similarities, and patterns. In its most basic form, a vector is a list of numbers. We defined a purchase as a 1 and represented a customer’s purchase as a vector <code>[1, 1, 1]</code>. In the example given, there are three elements in the list so we can also think of the vector as a point in a 3-dimensional space. If we compare where Donatello and Raphael are in this 3-dimensional space, we can easily intuit that Raphael <code>[1, 1, 0]</code> is closer than Donatello <code>[0, 0, 1]</code> to the point <code>[1, 1, 1]</code> so Raphael has a purchase profile more similar to Leonardo and Michaelangelo and is thus more likely than Donatello to purchase sugar.
         </p>
@@ -252,12 +252,12 @@
         <h3 id="section-2-4">2.4 Embeddings</h3>
         <p>An embedding is a type of vector that represents data in a more efficient way by being low-dimensional and dense. Unlike traditional vectors, which can have a high number of dimensions and mostly contain zeros, embeddings aim to reduce the number of dimensions while still capturing the most important features of the data. We presented an example where a vector represents a purchase or non-purchase of an item for illustrative purposes, but if we expand this to a wide catalog of products, we expect that most of the elements in the list will be empty and the list would be mostly filled with 0’s, making the list “sparse”. Such vectors are inefficient because they have many empty elements and don't effectively capture relationships between different items. For example, coffee is equally “distant” from milk and sugar because they are both 1 unit away in that dimension. In reality, we can reason that coffee is more closely related to milk as they are both drinks, associated with breakfast, and are frequently consumed both hot and cold. The closeness of coffee and milk versus coffee and sugar is not adequately represented in the simple vector representation of 0’s and 1’s. Embeddings are used instead to map this sparse information into a smaller, more compact vector with non-zero values. A large, sparse vector like <code>[1, 0, 0, …, 0]</code> is represented as a smaller set of “dense” values, such as <code>[0.34, -0.84, 0.15]</code>, which makes embeddings far more efficient and better at reflecting meaningful relationships and their true connections.</p>
         <li>Consider the example:</li>
-        <img src="images/background/embeddings.png">
+        <img src="../images/background/embeddings.png">
         <p>Here, the vectors for coffee and milk are the closest in 3-dimensional space based on cosine similarity.</p>
-        <img src="images/background/cosine-sim.png" width="400px">
+        <img src="../images/background/cosine-sim.png" width="400px">
         
         <p>The first two values (<code>[0.8, 0.6]</code> for coffee and <code>[0.7, 0.8]</code> for milk) likely represent contextual features or characteristics such as being drinks or associated with breakfast. These two products have strong similarities in how they are commonly consumed together. The first two values for sugar <code>[0.3, 0.5]</code> are less similar because sugar has a weaker association with drinks or breakfast items, although still has some involvement in many food contexts. The last value (0.1 for coffee, 0.4 for milk, and 0.9 for sugar) may reflect their broader use in food preparation, such as in baking recipes, where both milk and sugar are frequently used in sweet dishes, while coffee tends to be less common. This difference in how these products are typically used in recipes helps explain why sugar is more closely related to milk than to coffee.</p>
-        <img src="images/background/embeddings-3d.png">
+        <img src="../images/background/embeddings-3d.png">
         <p>
           In a more real-world application of our products example, an embedding may represent not only a customer’s purchase history but also a customer’s personal information, more specific product details, or a customer’s interactions on an e-commerce site. Here we can imagine that a recommendation engine could recommend sugar because it has been a few months since Raphael has purchased sugar and his local supermarket has a sale on organic sugar which he may prefer because he has also purchased organic foods in the past. This recommendation is based on the relationship intersection of all of the vectors that represent Raphael.
         </p>
@@ -272,7 +272,7 @@
         <p>
           The process of handling data by moving it through various stages of transformation and preparing it for final use is often achieved through a data pipeline. A pipeline can be thought of as a sequence of steps that the data flows through, from raw input to structured output, like liquid flowing through a pipe. Each stage in the pipeline performs a specific task, transforming the data in some way until it reaches its final, usable form.
         </p>
-        <img src="images/background/traditional-etl.png">
+        <img src="../images/background/traditional-etl.png">
         <p>
           A common type of pipeline is ETL which is comprised of Extract, Transform, and Load steps:
         </p>
@@ -289,7 +289,7 @@
           <p>
             In AI applications, effectively preparing and structuring raw data is essential for enabling models to extract meaningful insights. Before AI can process text or other data, it must first be broken down into smaller, more manageable pieces through partitioning, chunking, and embedding. These preprocessing steps ensure the data is organized in a way that preserves its semantic structure, allowing AI models to better understand relationships, context, and meaning. This foundational work is crucial for AI systems to generate accurate and context-aware results.
           </p>
-          <img src="images/background/ai-etl.png">
+          <img src="../images/background/ai-etl.png">
           <h6>
           Partitioning and Chunking:
         </h6>
@@ -312,11 +312,11 @@
         <p>
           While traditional data pipelines may focus on structured data (eg. relational tables, spreadsheets), there is a wealth of data that exists as unstructured data. This type of data does not follow a predictable schema but can be immensely rich in data, especially data that is useful for AI applications. Fortunately, data pipelines that perform tasks such as partitioning, chunking, and embedding are particularly relevant for unstructured data as they assist in converting the complex, raw data into the structured and meaningful embeddings that AI models can use and understand.
         </p>
-        <img src="images/background/unstructured-data-comp.png">
+        <img src="../images/background/unstructured-data-comp.png">
         <p>
           When we work with structured data, we work with data that is highly organized and has a predictable schema. Examples of structured data may be a relational table with customer names, emails, and phone numbers, which in turn might have a relationship to another table that stores information about orders, such as the date of a sale, products, and which customer placed the order. The relationship between the entities is well-defined and predictable, making it more straightforward, for example, to pose a query retrieving information by asking what was the most recent order by a customer named April O’Neil. Structured data types also tend to integrate well with other tools given their organization and predictability.
         </p>
-        <img src="images/background/unstructured-data.png" width="500px">
+        <img src="../images/background/unstructured-data.png" width="500px">
         <p>
           However, while structured data is easier to work with, it’s estimated that 80% of data is unstructured. This includes emails, Slack messages, blog posts, training videos, or customer support chats, all of which contain valuable information in a loose structure, but are often scattered across various locations. Additionally, industries like healthcare and law deal with highly regulated data, such as medical records or court transcriptions, which also require careful handling. Organizations may also have proprietary data, like training manuals or internal notes, that are essential but difficult to manage. Some industries have strict regulations that require tighter control over where data is stored and processed to ensure compliance with privacy laws and standards. Frequently, unstructured data sources contain highly valuable and useful information but can be the most difficult to work with. Extracting the information from this data requires more specialized techniques such as natural language processing or computer vision.
         </p>
@@ -364,7 +364,7 @@
 
         <h3 id="section-3-2">3.2 Introducing Splinter</h3>
         <p>Splinter is a self-managed, serverless pipeline designed to simplify the processing of unstructured data and its integration into knowledge bases.</p>
-        <img src="images/challenges/table.png">
+        <img src="../images/challenges/table.png">
         <h3>Self-Managed</h3>
         <p>
           Splinter is fully built using AWS architecture, meaning developers only need an active AWS account to deploy the pipeline. Splinter’s self-managed, serverless design makes it especially useful for organizations seeking both scalability and control over their unstructured data pipelines.
@@ -420,21 +420,21 @@
         <!-- Section 4 -->
         <h2 id="section-4">4. Demo / Walkthrough</h2>
         <p>Splinter offers a Command Line Interface tool to walk the user through the initial deployment steps</p>
-        <img src="images/demo/cli.png">
+        <img src="../images/demo/cli.png">
         <p>After the selected options and configurations are set, the infrastructure is deployed using AWS Cloud Development Kit (CDK).</p>
-        <img src="images/demo/cdk.png">
+        <img src="../images/demo/cdk.png">
 
         <p>Adding, deleting, or updating files in the source triggers the appropriate action in the pipeline and database</p>
-        <img src="images/demo/s3.png">
+        <img src="../images/demo/s3.png">
 
         <p>Vector embeddings are generated from the ingested document.</p>
-        <img src="images/demo/pinecone.png">
+        <img src="../images/demo/pinecone.png">
 
         <p>The observability dashboard displays information about the current progress and other metrics of the ingestion pipeline</p>
-        <img src="images/demo/observability.png">
+        <img src="../images/demo/observability.png">
 
         <p>The RAG Sandbox allows users to validate the vectorized data as a knowledge base. Users input a question and relevant context is retrieved to be used to generate a response from an LLM.</p>
-        <img src="images/demo/rag.png">
+        <img src="../images/demo/rag.png">
 
         <!-- Section 5 -->
         <h2 id="section-5">5. Architecture, Trade-offs and Challenges</h2>
@@ -445,7 +445,7 @@
           <li>Vector Database Destinations</li>
           <li>User Interface (Observability / RAG Sandbox)</li>
         </ul>
-        <img src="images/architecture/high-level.png">
+        <img src="../images/architecture/high-level.png">
 
         <h3 id="section-5-1">5.1 Source</h3>
         <p>
@@ -457,7 +457,7 @@
         <p>
           For example, when a deletion event occurs, it triggers a Lambda function that removes all vectors associated with the document, using a method tailored to the specific database provider. For new documents, a different Lambda function is triggered, which extracts the document's filename and adds a new job to the queue. Jobs are then processed by the ingestion engine. If a document is added but already exists in the source, it is treated as an update. In this case, the same Lambda function for additions is triggered, but it first deletes the old vectors before adding the new ones. This approach allows us to synchronize the documents in the source with their corresponding vectors in the destination, all through event-triggered workflows.
         </p>
-        <img src="images/architecture/source.png">
+        <img src="../images/architecture/source.png">
         <p>
           Other applications might use methods like continuous or periodic polling to fetch changes from the source and push new events. Polling can offer some advantages, such as providing more control over the frequency of updates and ensuring reliable processing by checking data at regular intervals. However, it requires additional services to manage the polling logic and the pushing of notifications. While AWS services like Simple Notification Service could help with this, the added complexity did not seem like a worthwhile tradeoff for our intended use case. Polling can also be less responsive than event triggers, as it depends on the frequency of checks, which can introduce delays in detecting changes. This can lead to stale data, which runs counter to our goal of timely and rapid updates.
         </p>
@@ -472,7 +472,7 @@
         <p>
           In the ingestion subsection, the document from the previous section is processed using a script based on Unstructured.io’s open-source library’s “data ingestion”. This process generates a set of vectors, which are then added to an externally managed database, which will be described in the “destination” subsection. To generate the embeddings, users have the option to either run the embedding model in the container as part of the ingestion script (such as when using a HuggingFace model) or outsource the generation of embeddings to a third-party provider (such as OpenAI).
         </p>
-        <img src="images/architecture/ingestion.png">
+        <img src="../images/architecture/ingestion.png">
         <p>
           Our original prototype used an AWS Elastic Compute Cloud (EC2) instance, a scalable virtual server, to run the ingestion code. This approach allowed us to perform the ingestion without managing physical hardware. While this successfully ran the ingestion script as intended, we recognized that the ingestion itself does not produce any data that needs to be stored or retained, making the continuous availability of the EC2 instance unnecessary. We instead aimed to find a service focused solely on executing the ingestion code and would dissipate after completing the job. Thematically, containers were a good fit for our intended use case because they could be generated quickly, perform a task, and then terminate. Each new document would be processed in its own containerized environment so that multiple containers can run in parallel. This setup also ensures that an error or failure in ingesting one document would not affect the on-going processing of other documents that were currently running.
         </p>
@@ -483,9 +483,9 @@
           Ultimately, a balanced approach was achieved by incorporating AWS Batch. This service allowed us to define the ingestion of each document as a job, which enters a job queue. The queue manages the jobs, ensuring they only run when there is available space and resources in the compute environment. AWS Batch allowed us to add horizontal scalability by enabling multiple documents to be processed in parallel. It also gave us the flexibility to customize the memory and CPU resources for each container, making it easy for users to scale vertically if needed. Additionally, the compute environment itself can be customized, allowing more jobs to run simultaneously and further increasing horizontal scalability.
         </p>
 
-        <img src="images/architecture/v-scaling.png" width="400px">
+        <img src="../images/architecture/v-scaling.png" width="400px">
         <p><i>Vertical scaling of a container by increasing the vCPU and memory allocation, allowing for more processing power within a single container</i></p>
-        <img src="images/architecture/h-scaling.png">
+        <img src="../images/architecture/h-scaling.png">
         <p><i>Horizontal scaling of the compute environment by increasing the maximum vCPU, enabling the simultaneous execution of multiple containers to process more tasks in parallel.
 </i></p>
         <p>
@@ -499,7 +499,7 @@
         <p>
           Another major subsection of Splinter is the destination, where vector embeddings are stored in the user-provided database. Once the data is ingested and transformed into vector embeddings, these vectors are stored as entries in the chosen vector database. Users are required to provide their own database because knowledge bases generated by the ingestion pipeline are highly customizable and have many potential downstream uses that depend on the user’s specific needs. By leveraging their own database, users have full control over data storage, security, and access.
         </p>
-        <img src="images/architecture/destination.png">
+        <img src="../images/architecture/destination.png">
         <p>
           Splinter is designed to support a variety of databases that can store and manage embeddings: a vector database (Pinecone), a NoSQL database (MongoDB), and a relational database (PostgreSQL). Users can select the database that best fits their requirements for performance, scalability, and integration with their broader system architecture. The choice of database depends on factors such as query speed, scalability for large datasets, and compatibility with the rest of the user’s tech stack.
         </p>
@@ -515,11 +515,11 @@
 
         <h3 id="section-5-4">5.4 Frontend Client</h3>
         The client subsection establishes a locally-deployed frontend interface which connects to the destination database to allow users to interact with their ingested data and also connects to various infrastructure components to display key metrics and progress of the pipeline.
-        <img src="images/architecture/ui.png">
+        <img src="../images/architecture/ui.png">
 
         <h3>RAG Sandbox</h3>
         <p>Splinter serves as a data pipeline designed to populate knowledge bases and one common use of knowledge bases is to provide additional context for an LLM prompt through Retrieval-Augmented Generation (RAG). In this process, relevant information is retrieved from a knowledge base and incorporated into the model’s generation process.</p>
-        <img src="images/architecture/rag.png">
+        <img src="../images/architecture/rag.png">
         
         <p>A critical aspect of this process is ensuring that the ingestion of documents into vectors is accurate and that the resulting knowledge base is effectively structured for downstream tasks. If the data is not properly vectorized, the information retrieved during the RAG process may be irrelevant or incomplete, leading to suboptimal model outputs. To help users ensure the quality of their data and the accuracy of their embeddings, we created the RAG Sandbox feature.</p>
         <p>The RAG Sandbox allows users to validate the quality of their ingested knowledge base by generating a test question, which is then embedded using the same model as the ingestion process. The question is used to query the knowledge base, retrieving the top 5 most relevant data chunks. These chunks are then combined with the question to form a prompt, which is passed to the LLM. The model’s generated answer is based on the provided context, allowing users to evaluate how well the knowledge base has been built and how accurately the embeddings represent the relevant information.</p>
@@ -529,7 +529,7 @@
         <h3>Observability Dashboard</h3>
         <p>The observability dashboard is intended to assist with monitoring the overall pipeline. The ingestion process involves multiple events, each generating useful information, but displaying every detail could overwhelm the user. To avoid this, we focused on key events that provide the most value, such as the completion of major ingestion steps (partitioning, chunking, embedding), document processing, vector uploads, and scheduled vector deletions. Additional metrics include the current count of documents and vectors in the database, as well as the number of documents and vectors processed in the current session. We also decided to track the overall job queue progress, displaying the number of jobs that are starting, running, completed, or failed, to provide better observability into the pipeline's progression. The observability dashboard was created to display these metrics in a way to allow users to have a more detailed and live update on the pipeline.
         </p>
-        <img src="images/architecture/observability.png">
+        <img src="../images/architecture/observability.png">
         <p>To keep the frontend up-to-date with new pipeline events, we looked for a solution which could allow constant communication between the cloud-deployed application and the local client. One option was implementing server-side events, which would propagate data from the application to frontend. However, this would require a continuously running server connection which was a thematically incongruent with our ephemeral architecture. Instead, we chose to use AWS WebSocket API Gateway, where routes activate only when new data from the application needs to be displayed in the dashboard. This allowed synchronization between the application and observability dashboard.</p>
         <p>However, we encountered an issue where the WebSocket connection would reset if the frontend was refreshed or after prolonged periods of inactivity. This disrupted session continuity, as real-time updates to the dashboard would be lost when the connection was severed, resulting in potentially important data updates not being passed to the frontend during downtime. To address this, we implemented a database to store recent logs and metrics, ensuring that updates were persisted across frontend refreshes or disconnections.</p>
         <p>The architecture was set up where WebSocket connect and disconnect routes are managed by Lambdas, which track client connections and handle cleanup. When key events are logged, a Lambda processes the data and updates a DynamoDB with logs and vector/document counts. Document events (e.g. addition or deletion) update DynamoDB and send real-time messages through the WebSocket API to update the dashboard. Lastly, a WebSocket route triggers a Lambda to fetch the latest data from DynamoDB, AWS Batch, and the vector database during initial load or refresh, ensuring session persistence.</p>
