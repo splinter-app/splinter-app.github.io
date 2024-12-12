@@ -8,14 +8,17 @@
 import TextImage from './TextImage.astro'
 
 // Content
-import highlight01 from '../assets/highlights/screenshots-combined.png'
-import highlight01mobile from '../assets/highlights/screenshots-combined.png'
+import highlight01 from '../assets/highlights/screenshot-rag.png'
+import highlight01mobile from '../assets/highlights/screenshot-rag.png'
+
 import highlight02 from '../assets/highlights/architecture.png'
 import highlight02mobile from '../assets/highlights/architecture.png'
+
 import highlight03 from '../assets/highlights/screenshot-cli.png'
 import highlight03mobile from '../assets/highlights/screenshot-cli.png'
-import highlight04 from '../assets/highlights/screenshot-cdk.png'
-import highlight04mobile from '../assets/highlights/screenshot-cdk.png'
+
+import highlight04 from '../assets/highlights/screenshot-dashboard.png'
+import highlight04mobile from '../assets/highlights/screenshot-dashboard.png'
 
 type HighlightBlock = {
 	title: string
@@ -28,35 +31,35 @@ type HighlightBlock = {
 }
 const highlightBlocks: HighlightBlock[] = [
 	{
-		title: '<strong>CLI</strong> Tool',
-		text: 'Splinter includes a CLI tool to simplify pipeline deployment, making it easily accessible for developers.',
+		title: 'Automated Deployment to <strong>AWS</strong> with Splinter <strong>CLI</strong> Tool',
+		text: 'Splinter is built using AWS architecture and can be easily deployed using the CLI tool. The self-managed, serverless design makes it especially useful for organizations seeking both scalability and control over their unstructured data pipelines.',
 		image: highlight03,
 		mobileImage: highlight03mobile,
-		imageWidth: 500,
+		imageWidth: 800,
 		imageHeight: highlight03.height,
 		imagePosition: 'right'
 	},
 	{
-		title: 'Automated <strong>Deployment</strong>',
-		text: 'Splinter is fully built using AWS architecture, meaning developers only need an active AWS account to deploy the pipeline. Splinter’s self-managed, serverless design makes it especially useful for organizations seeking both scalability and control over their unstructured data pipelines.',
+		title: 'Data Pipeline <strong>Observability</strong>',
+		text: 'The dashboard offers real-time updates during the ingestion process, including the current state of each document’s ingestion, the number of existing vectors, and the number of new vectors added to the knowledge base.',
 		image: highlight04,
 		mobileImage: highlight04mobile,
-		imageWidth: 600,
+		imageWidth: 800,
 		imageHeight: highlight04.height,
 		imagePosition: 'left'
 	},
   {
-		title: 'Data Pipeline <strong>Observability</strong> & <strong>RAG</strong> Sandbox',
-		text: 'This dashboard offers real-time updates during the ingestion process. The built-in RAG chatbot uses the user’s destination database as a knowledge base. The chatbot updates its context based on the documents in the knowledge base, allowing users to verify the accuracy of the ingested data.',
+		title: '<strong>RAG</strong> Sandbox',
+		text: 'The built-in RAG system uses the user’s destination database as its knowledge base. It updates its context based on the documents in the knowledge base, allowing users to verify the accuracy of the ingested data through direct queries.',
 		image: highlight01,
-		imageWidth: highlight01.width,
+		imageWidth: 800,
 		imageHeight: highlight01.height,
 		mobileImage: highlight01mobile,
 		imagePosition: 'right'
 	},
   {
-		title: '<strong>Ephemeral</strong> and <strong>Event-Driven</strong> Architecture',
-		text: 'Splinter’s ephemeral, event-driven design ensures that it "scales to zero," eliminating costs for idle compute resources. Its infrastructure components remain dormant until ingestion is required, triggering operations only when needed.',
+		title: '<strong>Event-Driven</strong> and <strong>Ephemeral</strong> Architecture',
+		text: 'Splinter synchronizes data sources like AWS S3 or Dropbox with the destination database, automatically updating whenever documents are added, updated, or removed. Splinter’s ephemeral, event-driven design ensures that it "scales to zero," eliminating costs for idle compute resources.',
 		image: highlight02,
 		mobileImage: highlight02mobile,
 		imageWidth: highlight02.width,
