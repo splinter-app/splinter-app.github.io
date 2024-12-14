@@ -239,9 +239,11 @@
         <p>
           Vectors are mathematical representations used to represent relationships, similarities, and patterns. In its most basic form, a vector is a list of numbers. We defined a purchase as a 1 and represented a customer’s purchase as a vector <code>[1, 1, 1]</code>. In the example given, there are three elements in the list so we can also think of the vector as a point in a 3-dimensional space. If we compare where Donatello and Raphael are in this 3-dimensional space, we can easily intuit that Raphael <code>[1, 1, 0]</code> is closer than Donatello <code>[0, 0, 1]</code> to the point <code>[1, 1, 1]</code> so Raphael has a purchase profile more similar to Leonardo and Michaelangelo and is thus more likely than Donatello to purchase sugar.
         </p>
+        <img src="../images/background/cosine-angle.png">
         <p>
           As the complexity and number of dimensions increases, it becomes more challenging to determine similarities or differences. One method of calculating similarity is cosine similarity, where the angle between two vectors is calculated. A smaller angle corresponds to a higher similarity. Through this method, given one customer’s vector representation of purchase history, we are able to determine which customer has the highest cosine similarity and therefore the customer with most similar purchase history. An algorithm called K-Nearest Neighbors (K-NN) allows you to choose any number K and find the K most similar customers to a given data point, also known as the “top K” hits of the most similar vectors.
         </p>
+        <img src="../images/background/neighbors.png" width="700px">
         <p>
           To be able to efficiently retrieve similar vectors, especially as the number of vectors increases, we must rely on specialized techniques. In our example, there are only 4 vectors, but knowledge bases typically have at least thousands of vectors and some even exceed millions of vectors. It becomes prohibitively expensive in time and resources to compute and compare vectors to all others to determine similarity. Instead, vector indexing algorithms optimize the retrieval process by using specialized data structures that organize vectors in a way that makes similarity searches more efficient. An example of an algorithm is Approximate Nearest Neighbors (ANN) where vectors are not directly compared but utilize specialized data structures to give approximations of which vectors are close to each other, trading minor accuracy loss for significantly improved retrieval times. The use of these types of algorithms makes it possible to query and retrieve vectors even in large datasets.
         </p>
@@ -382,6 +384,7 @@
         <p>
           In many organizations, data is constantly changing. New documents are introduced, existing ones are revised, and irrelevant content is removed. Without a strategy to keep the knowledge base and its associated embeddings synchronized, the system will inevitably lag behind current information, leading to less accurate answers and reducing user trust.
         </p>
+        <img src="../images/challenges/stale.png">
         <p>
           To stay reliable, both the documents and also the vector embeddings in a knowledge base need to be continuously refreshed. By doing so, the overall system keeps pace with new, revised, or removed content, ensuring users always see up-to-date information.
         </p>
