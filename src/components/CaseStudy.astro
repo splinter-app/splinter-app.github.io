@@ -156,6 +156,14 @@
           </div>
         </a>
       </li>
+      <li data-section="section-5" class="subitem">
+        <a href="#section-5-5">
+          <div>
+            <div class="bullet"><div></div></div>
+            <p>Full Architecture</p>
+          </div>
+        </a>
+      </li>
       <!-- Section 6 -->
       <li data-section="section-6">
         <a href="#section-6">
@@ -536,6 +544,9 @@
         <p>To keep the frontend up-to-date with new pipeline events, we looked for a solution which could allow constant communication between the cloud-deployed application and the local client. One option was implementing server-side events, which would propagate data from the application to frontend. However, this would require a continuously running server connection which was a thematically incongruent with our ephemeral architecture. Instead, we chose to use AWS WebSocket API Gateway, where routes activate only when new data from the application needs to be displayed in the dashboard. This allowed synchronization between the application and observability dashboard.</p>
         <p>However, we encountered an issue where the WebSocket connection would reset if the frontend was refreshed or after prolonged periods of inactivity. This disrupted session continuity, as real-time updates to the dashboard would be lost when the connection was severed, resulting in potentially important data updates not being passed to the frontend during downtime. To address this, we implemented a database to store recent logs and metrics, ensuring that updates were persisted across frontend refreshes or disconnections.</p>
         <p>The architecture was set up where WebSocket connect and disconnect routes are managed by Lambdas, which track client connections and handle cleanup. When key events are logged, a Lambda processes the data and updates a DynamoDB with logs and vector/document counts. Document events (e.g. addition or deletion) update DynamoDB and send real-time messages through the WebSocket API to update the dashboard. Lastly, a WebSocket route triggers a Lambda to fetch the latest data from DynamoDB, AWS Batch, and the vector database during initial load or refresh, ensuring session persistence.</p>
+        <h3 id="section-5-5">5.5 Full Architecture Diagram</h3>
+        <img src="../images/architecture/architecture-detailed.png">
+        
         <p>Having outlined the core architecture, the next step is to focus on expanding Splinter’s capabilities. Future developments will enhance the platform's versatility and scalability, enabling it to support a wider range of use cases and integrations.</p>
         
         <!-- Section 6 -->
